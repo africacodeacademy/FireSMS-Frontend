@@ -1,32 +1,21 @@
 version: 2.1
 orbs:
-  node: circleci/node@1.1.6
-  heroku: circleci/heroku@0.0.10
+  node: circleci/node@1.1
 workflows:
-  heroku_deploy:
+  test-app:
     jobs:
       - build
-      - heroku/deploy-via-git:  
-          requires:
-            - build
-          filters:
-            branches:
-              only: Dev-Landing-Page
+        
 jobs:
-  build:
+  
+  build: 
     docker:
-      - image: circleci/node:10.16.0
-    steps:
+     - image: cimg/node:14.13.0
+    steps: 
       - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: Install dependencies
+          name: install dependencies
           command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
       - run:
-          name: Run test
-          command: npm test
+          name: run build
+          command: npm run build
