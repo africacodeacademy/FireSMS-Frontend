@@ -1,12 +1,12 @@
-import { Text, Container } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 import NavHeader from "./Components/Navigation/NavHeader";
 
 function App() {
   return (
-    <Container>
+    <div>
       <NavHeader />
       <Text noOfLines={[1, 2, 3]}>Firesms</Text>
-    </Container>
+    </div>
   );
 }
 export default App;
