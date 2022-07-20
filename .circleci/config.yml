@@ -3,7 +3,7 @@ orbs:
   node: circleci/node@1.1.6
   heroku: circleci/heroku@0.0.10
 workflows:
-  heroku_deploy:
+  heroku_deploy_firesms:
     jobs:
       - build
       - heroku/deploy-via-git:  
@@ -11,7 +11,7 @@ workflows:
             - build
           filters:
             branches:
-              only: main
+              only: Dev-Landing-Page
 jobs:
   build:
     docker:
