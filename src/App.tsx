@@ -1,11 +1,6 @@
 import NavHeader from "./Components/Navigation/NavHeader";
 
 function App() {
-  return (
-    <>
-      <NavHeader />
-      <h1>Firesms app</h1>
-    </>
-  );
+  return <NavHeader />;
 }
 export default App;
