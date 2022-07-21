@@ -1,9 +1,8 @@
 version: 2.1
 orbs:
   node: circleci/node@1.1
-  heroku: circleci/heroku@0.0.10
 workflows:
-  deploy-Firesms-app:
+  test-app:
     jobs:
       - build
         
@@ -14,16 +13,10 @@ jobs:
      - image: cimg/node:14.13.0
     steps: 
       - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: install dependencies
           command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
       - run:
           name: Run test
-          command: npm test    
+          command: npm test     
  
