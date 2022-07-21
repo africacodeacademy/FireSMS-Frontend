@@ -1,11 +1,10 @@
-import { Text } from "@chakra-ui/react";
 import NavHeader from "./Components/Navigation/NavHeader";
 
 function App() {
   return (
     <>
       <NavHeader />
-      <Text>Firesms</Text>
+      <h1>Firesms</h1>
     </>
   );
 }

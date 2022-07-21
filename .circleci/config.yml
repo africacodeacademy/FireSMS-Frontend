@@ -1,31 +1,32 @@
 version: 2.1
 orbs:
-  node: circleci/node@1.1.6
+  node: circleci/node@1.1
   heroku: circleci/heroku@0.0.10
 workflows:
-  firesms_app_deploy:
+  deploy-Firesms-app:
     jobs:
       - build
-      - heroku/deploy-via-git:  
-          requires:
-            - build
-          filters:
-            branches:
-              only: Dev-Landing-Page
+        
 jobs:
-  build:
+  
+  build: 
     docker:
-      - image: cimg/node:14.13.0
-    steps:
+     - image: cimg/node:14.13.0
+    steps: 
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: Install dependencies
+          name: install dependencies
           command: npm install
+      - run:
+          name: run build
+          command: npm run build
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-
+      - run:
+          name: Run test
+          command: npm test    
  
