@@ -15,7 +15,7 @@ jobs:
       - checkout
       - run:
           name: install dependencies
-          command: npm install
+          command: npm install react react-dom
       - run:
           name: run build
           command: npm run build
