@@ -5,13 +5,8 @@ orbs:
 workflows:
   firesms_app_deploy:
     jobs:
-      - build
-      - heroku/deploy-via-git:  
-          requires:
-            - build
-          filters:
-            branches:
-              only: Dev-Landing-Page
+    - build
+
 jobs:
   build:
     docker:
