@@ -4,7 +4,7 @@ function App() {
   return (
     <>
       <NavHeader />
-      <h1>Firesms</h1>
+      <h1>Firesms app</h1>
     </>
   );
 }
