@@ -15,7 +15,7 @@ jobs:
       - checkout
       - run:
           name: install dependencies
-          command: npm install
+          command: npm install --legacy-peer-deps
       - run:
           name: Run test
           command: npm test     
