@@ -15,7 +15,7 @@ jobs:
       - checkout
       - run:
           name: install dependencies
-          command: npm install --legacy-peer-deps
+          command: npm install react react-dom
       - run:
           name: Run test
           command: npm test     
