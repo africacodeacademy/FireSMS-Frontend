@@ -1,4 +1,5 @@
 import { Box, Text, Stack } from "@chakra-ui/react";
+import MenuBtn from "./MenuBtn";
 import NavButtons from "./NavButtons";
 
 function NavHeader() {
@@ -16,19 +17,34 @@ function NavHeader() {
         justifyContent="space-between"
         bg="gray.800"
         w="100%"
+        pos="fixed"
+        zIndex={2}
       >
         <Box mt="3" mb="2">
-          <Text ml="4" color="white" fontWeight="bold" fontSize="24px">
+          <Text
+            ml="4"
+            color="white"
+            fontWeight="bold"
+            fontSize="24px"
+            cursor="pointer"
+          >
             FireSMS
           </Text>
         </Box>
         <Box mt="2" mb="2">
-          <Stack mr="4" spacing={0} direction="row" align="center">
+          <Stack
+            mr="4"
+            spacing={0}
+            direction="row"
+            align="center"
+            display={["none", "none", "flex", "flex"]}
+          >
             <NavButtons name={name} />
             <NavButtons name={name2} />
             <NavButtons name={name3} />
             <NavButtons name={name4} />
           </Stack>
+          <MenuBtn />
         </Box>
       </Box>
     </header>

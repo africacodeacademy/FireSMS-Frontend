@@ -9,11 +9,13 @@ function NavButtons(props: any) {
       pr="4"
       pl="4"
       pb="4"
-      fontWeight="semibold"
       color="white"
-      size="dm"
-      _hover={{ bg: "blue.400", color: "white" }}
+      size="16px"
+      cursor="pointer"
+      _hover={{ bg: "#FF5F0F", color: "white" }}
       variant="ghost"
+      as="a"
+      target="_blank"
     >
       {name}
     </Button>

@@ -1,6 +1,6 @@
-import NavHeader from "./Components/Navigation/NavHeader";
+import Layout from "./Components/Layout/Layout";
 
 function App() {
-  return <NavHeader />;
+  return <Layout />;
 }
 export default App;
