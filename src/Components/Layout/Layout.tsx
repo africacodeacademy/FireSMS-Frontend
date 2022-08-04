@@ -1,13 +1,13 @@
-import { Flex } from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
 import Plans from "../LandingPageContents/PlansComponent/plans";
 import NavHeader from "../Navigation/NavHeader";
 
 function Layout() {
   return (
-    <Flex>
+    <Stack>
       <NavHeader />
       <Plans />
-    </Flex>
+    </Stack>
   );
 }
 export default Layout;

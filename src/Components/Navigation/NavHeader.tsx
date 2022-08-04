@@ -20,7 +20,7 @@ function NavHeader() {
         pos="fixed"
         zIndex={2}
       >
-        <Box mt="3" mb="2">
+        <Box mt="4" mb="2">
           <Text
             ml="4"
             color="white"
@@ -31,7 +31,7 @@ function NavHeader() {
             FireSMS
           </Text>
         </Box>
-        <Box mt="2" mb="2">
+        <Box mt="3" mb="2">
           <Stack
             mr="4"
             spacing={0}

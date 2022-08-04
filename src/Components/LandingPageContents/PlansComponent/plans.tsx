@@ -1,39 +1,46 @@
 import { Box, Flex, Button, Text } from "@chakra-ui/react";
+import PricesStak from "../PricesComponet/pricesStack";
 
 function Plans() {
   return (
     <Box
       w="100%"
-      textAlign="center"
+      textAlign={{ base: "center", md: "center" }}
       color="white"
       bg="gray.800"
-      pt="10%"
+      pt={{ base: "30%", md: "13%" }}
       m="0 auto"
       alignItems="center"
     >
       <Flex justify="center">
         <Text
-          fontSize="6xl"
+          fontSize={{ base: "3xl", md: "6xl" }}
           fontWeight="bold"
           color="white"
           textAlign="center"
-          pb="2%"
+          pb={{ base: "8%", md: "2%" }}
         >
           Developer first SMS <br />
-          platform
+          <Text pt="0">platform</Text>
         </Text>
       </Flex>
-      <Flex gap="10" mr="4" justify="center" pb="5%">
+      <Flex
+        gap="10"
+        mr="4"
+        textAlign={{ base: "center", md: "center" }}
+        justify={{ base: "center", md: "center" }}
+        pb={{ base: "20%", md: "8%" }}
+        direction={{ base: "column", md: "row" }}
+        w={{ base: "80%", md: "100%" }}
+      >
         <Button
-          pt="4"
-          pr="4"
-          pl="4"
-          pb="4"
+          pt="5"
+          pr="8"
+          pl="8"
+          pb="5"
           fontWeight="semibold"
           color="white"
-          size="lg"
-          h="62.7px"
-          w="180px"
+          size={{ base: "lg", md: "2xl" }}
           bg="#FF5F0F"
           _hover={{ bg: "#CBD5E0", color: "#FF5F0F" }}
           variant="ghost"
@@ -41,14 +48,12 @@ function Plans() {
           Create Account
         </Button>
         <Button
-          pt="4"
-          pr="4"
-          pl="4"
-          pb="4"
+          pt="5"
+          pr="8"
+          pl="8"
+          pb="5"
           fontWeight="semibold"
-          size="lg"
-          h="62.7px"
-          w="180px"
+          size={{ base: "lg", md: "2xl" }}
           bg="gray.800"
           variant="outline"
           colorScheme="#FF5F0F"
@@ -58,6 +63,7 @@ function Plans() {
           Developers
         </Button>
       </Flex>
+      <PricesStak />
     </Box>
   );
 }

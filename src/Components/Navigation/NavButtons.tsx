@@ -5,12 +5,12 @@ function NavButtons(props: any) {
 
   return (
     <Button
-      pt="3.5"
+      pt="5"
       pr="4"
       pl="4"
-      pb="4"
+      pb="5"
       color="white"
-      size="16px"
+      size={{ base: "8px", md: "md" }}
       cursor="pointer"
       _hover={{ bg: "#FF5F0F", color: "white" }}
       variant="ghost"
