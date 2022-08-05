@@ -1,5 +1,4 @@
 import { Box, Flex, Button, Text } from "@chakra-ui/react";
-import PricesStak from "../PricesComponet/pricesStack";
 
 function Plans() {
   return (
@@ -63,7 +62,6 @@ function Plans() {
           Developers
         </Button>
       </Flex>
-      <PricesStak />
     </Box>
   );
 }
