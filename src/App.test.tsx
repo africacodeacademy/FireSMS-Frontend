@@ -3,6 +3,6 @@ import App from "./App";
 
 test("renders firesms app", () => {
   render(<App />);
-  const title = screen.getByText(/FireSMS/i);
+  const title = screen.getByText(/FireSMS/);
   expect(title).toBeInTheDocument();
 });
