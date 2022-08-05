@@ -26,12 +26,12 @@ function Plans() {
       </Flex>
       <Flex
         gap="10"
-        mr="4"
+        p="4"
         textAlign={{ base: "center", md: "center" }}
         justify={{ base: "center", md: "center" }}
-        pb={{ base: "20%", md: "8%" }}
+        pb={{ base: "20%", md: "6%" }}
         direction={{ base: "column", md: "row" }}
-        w={{ base: "80%", md: "100%" }}
+        w={{ base: "100%", md: "100%" }}
       >
         <Button
           pt="5"

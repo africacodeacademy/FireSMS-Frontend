@@ -3,22 +3,51 @@ import PricesFormat from "./pricesFormat";
 
 function PricesStak() {
   return (
-    <Box bg="gray.800" alignItems="center">
-      <Text color="white" textAlign="center" fontSize="3xl">
+    <Box bg="gray.800" alignItems="center" pb={{ base: "20%", md: "8%" }}>
+      <Text
+        color="white"
+        textAlign="center"
+        fontSize="4xl"
+        fontWeight="semibold"
+        fontFamily="sans-serif"
+      >
         Plans that fit your need
       </Text>
-      <Text color="gray.500" textAlign="center">
+      <Text
+        color="gray.500"
+        textAlign="center"
+        fontSize="lg"
+        pb={{ base: "9%", md: "3%" }}
+      >
         Start with 10 free messages. No credit card needed.
       </Text>
       <Stack
-        spacing={8}
+        spacing={5}
         alignItems="center"
         justifyContent="center"
         direction={{ base: "column", md: "row" }}
       >
-        <PricesFormat title="Hobby" subTitle="less than 1k" desc="R0,15/sms" />
-        <PricesFormat title="Startup" subTitle="1k+" desc="R0,13/sms" />
-        <PricesFormat title="Enterprise" subTitle="10k+" desc="R0,12/sms" />
+        <PricesFormat
+          title="Hobby"
+          subTitle="less than 1k"
+          dataContent1="R"
+          dataContent2="0,15"
+          dataContent3="/sms"
+        />
+        <PricesFormat
+          title="Startup"
+          subTitle="1k+"
+          dataContent1="R"
+          dataContent2="0,13"
+          dataContent3="/sms"
+        />
+        <PricesFormat
+          title="Enterprise"
+          subTitle="10k+"
+          dataContent1="R"
+          dataContent2="0,12"
+          dataContent3="/sms"
+        />
       </Stack>
     </Box>
   );

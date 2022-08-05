@@ -2,7 +2,7 @@ import { extendTheme } from "@chakra-ui/react";
 
 const CustomTheme = extendTheme({
   fonts: {
-    body: "kern, sans-serif",
+    body: "apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol",
     heading: "Georgia, serif",
   },
   breakpoints: {
@@ -58,6 +58,19 @@ const CustomTheme = extendTheme({
     wide: "0.025em",
     wider: "0.05em",
     widest: "0.1em",
+  },
+  borderRadius: {
+    radii: {
+      none: "0",
+      sm: "0.125rem",
+      base: "0.25rem",
+      md: "0.375rem",
+      lg: "0.5rem",
+      xl: "0.75rem",
+      "2xl": "1rem",
+      "3xl": "1.5rem",
+      full: "9999px",
+    },
   },
 });
 export default CustomTheme;

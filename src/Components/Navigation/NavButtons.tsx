@@ -5,10 +5,10 @@ function NavButtons(props: any) {
 
   return (
     <Button
-      pt="5"
+      pt="5.4"
       pr="4"
       pl="4"
-      pb="5"
+      pb="5.4"
       color="white"
       size={{ base: "8px", md: "md" }}
       cursor="pointer"

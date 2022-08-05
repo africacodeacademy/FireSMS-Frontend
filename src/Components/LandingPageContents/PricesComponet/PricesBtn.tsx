@@ -4,7 +4,7 @@ function PrricesBtn() {
   return (
     <Button
       fontWeight="semibold"
-      size="sm"
+      size="md"
       h="42.7px"
       w="110px"
       cursor="pointer"
