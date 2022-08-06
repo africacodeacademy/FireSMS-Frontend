@@ -1,4 +1,6 @@
 import { Stack } from "@chakra-ui/react";
+import Footer from "../Footer/footer";
+import Payments from "../LandingPageContents/Payments.tsx/payment";
 import Plans from "../LandingPageContents/PlansComponent/plans";
 import PricesStak from "../LandingPageContents/PricesComponet/pricesStack";
 import SmsPlatForms from "../LandingPageContents/SMSPlarForms/smsPLatforms";
@@ -11,6 +13,8 @@ function Layout() {
       <Plans />
       <PricesStak />
       <SmsPlatForms />
+      <Payments />
+      <Footer />
     </Stack>
   );
 }
