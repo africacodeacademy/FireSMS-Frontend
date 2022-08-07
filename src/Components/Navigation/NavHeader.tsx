@@ -1,4 +1,5 @@
 import { Box, Text, Stack } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import MenuBtn from "./MenuBtn";
 import NavButtons from "./NavButtons";
 
@@ -21,15 +22,17 @@ function NavHeader() {
         zIndex={2}
       >
         <Box mt="4" mb="2">
-          <Text
-            ml="4"
-            color="white"
-            fontWeight="bold"
-            fontSize="24px"
-            cursor="pointer"
-          >
-            FireSMS
-          </Text>
+          <Link to="/">
+            <Text
+              ml="4"
+              color="white"
+              fontWeight="bold"
+              fontSize="24px"
+              cursor="pointer"
+            >
+              FireSMS
+            </Text>
+          </Link>
         </Box>
         <Box mt="3" mb="2">
           <Stack
@@ -39,10 +42,18 @@ function NavHeader() {
             align="center"
             display={["none", "none", "flex", "flex"]}
           >
-            <NavButtons name={name} />
-            <NavButtons name={name2} />
-            <NavButtons name={name3} />
-            <NavButtons name={name4} />
+            <Link to="/">
+              <NavButtons name={name} />
+            </Link>
+            <Link to="/Docs">
+              <NavButtons name={name2} />
+            </Link>
+            <Link to="/SignIn">
+              <NavButtons name={name3} />
+            </Link>
+            <Link to="/SignUp">
+              <NavButtons name={name4} />
+            </Link>
           </Stack>
           <MenuBtn />
         </Box>
