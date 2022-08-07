@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import Layout from "./Components/Layout/Layout";
+import Footer from "./Components/Footer/footer";
 
-test("renders firesms app", () => {
-  render(<Layout />);
+test("renders firesms Footer", () => {
+  render(<Footer />);
   const title = screen.getAllByText(/FireSMS/i)[0] as HTMLAnchorElement;
   expect(title).toBeInTheDocument();
 });
