@@ -1,4 +1,5 @@
 import { Box, Flex, Button, Text } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 function Plans() {
   return (
@@ -32,35 +33,39 @@ function Plans() {
         direction={{ base: "column", md: "row" }}
         w={{ base: "100%", md: "100%" }}
       >
-        <Button
-          pt="5"
-          pr="8"
-          pl="8"
-          pb="5"
-          fontWeight="semibold"
-          color="white"
-          size={{ base: "lg", md: "2xl" }}
-          bg="#FF5F0F"
-          _hover={{ bg: "#CBD5E0", color: "#FF5F0F" }}
-          variant="ghost"
-        >
-          Create Account
-        </Button>
-        <Button
-          pt="5"
-          pr="8"
-          pl="8"
-          pb="5"
-          fontWeight="semibold"
-          size={{ base: "lg", md: "2xl" }}
-          bg="gray.800"
-          variant="outline"
-          colorScheme="#FF5F0F"
-          color="#FF5F0F"
-          _hover={{ bg: "#CBD5E0", color: "#FF5F0F" }}
-        >
-          Developers
-        </Button>
+        <Link to="/SignUp">
+          <Button
+            pt="5"
+            pr="8"
+            pl="8"
+            pb="5"
+            fontWeight="semibold"
+            color="white"
+            size={{ base: "lg", md: "2xl" }}
+            bg="#FF5F0F"
+            _hover={{ bg: "#CBD5E0", color: "#FF5F0F" }}
+            variant="ghost"
+          >
+            Create Account
+          </Button>
+        </Link>
+        <Link to="/Docs">
+          <Button
+            pt="5"
+            pr="8"
+            pl="8"
+            pb="5"
+            fontWeight="semibold"
+            size={{ base: "lg", md: "2xl" }}
+            bg="gray.800"
+            variant="outline"
+            colorScheme="#FF5F0F"
+            color="#FF5F0F"
+            _hover={{ bg: "#CBD5E0", color: "#FF5F0F" }}
+          >
+            Developers
+          </Button>
+        </Link>
       </Flex>
     </Box>
   );

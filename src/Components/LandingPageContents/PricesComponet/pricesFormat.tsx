@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { Box, Heading, Stack, Text } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import PricesBtn from "./PricesBtn";
 
 function PricesFormat(props: any) {
@@ -33,7 +34,9 @@ function PricesFormat(props: any) {
         </Text>
       </Stack>
       <Text pb="8">
-        <PricesBtn />
+        <Link to="/SignIn">
+          <PricesBtn />
+        </Link>
       </Text>
     </Box>
   );
