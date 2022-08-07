@@ -7,6 +7,7 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
+import { Link } from "react-router-dom";
 
 function MenuBtn() {
   return (
@@ -23,16 +24,16 @@ function MenuBtn() {
         />
         <MenuList>
           <MenuItem _hover={{ bg: "gray.800", color: "white" }}>
-            Pricing
+            <Link to="/">Pricing</Link>
           </MenuItem>
           <MenuItem _hover={{ bg: "gray.800", color: "white" }}>
-            Developers
+            <Link to="/Docs">Developers</Link>
           </MenuItem>
           <MenuItem _hover={{ bg: "gray.800", color: "white" }}>
-            Sign In
+            <Link to="/SignIn">Sign In</Link>
           </MenuItem>
           <MenuItem _hover={{ bg: "gray.800", color: "white" }}>
-            Create account
+            <Link to="/SignUp">Create account</Link>
           </MenuItem>
         </MenuList>
       </Menu>
