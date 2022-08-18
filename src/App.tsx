@@ -4,6 +4,7 @@ import Layout from "./Components/Layout/Layout";
 import SelectDeveloper from "./Components/LandingPageContents/Developers/selectDeveloper";
 import SignIn from "./Components/Sign In/signin";
 import SignUp from "./Components/Sign Up/signUp";
+import ForgotPassword from "./Components/ForgotPassword/ForgotPassword";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/Docs" element={<SelectDeveloper />} />
+        <Route path="/ResetPassword" element={<ForgotPassword />} />
       </Routes>
     </Box>
   );

@@ -1,15 +1,15 @@
 import { Stack } from "@chakra-ui/react";
 import Footer from "../Footer/footer";
 import NavHeader from "../Navigation/NavHeader";
-import SignUpForm from "./signUpForm";
+import ForgotPasswordForm from "./ForgotPasswordForm";
 
-function SignUp() {
+function ForgotPassword() {
   return (
     <Stack bg="gray.800">
       <NavHeader />
-      <SignUpForm />
+      <ForgotPasswordForm />
       <Footer />
     </Stack>
   );
 }
-export default SignUp;
+export default ForgotPassword;

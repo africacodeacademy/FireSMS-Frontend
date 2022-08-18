@@ -35,10 +35,11 @@ function Plans() {
       >
         <Link to="/SignUp">
           <Button
-            pt="5"
-            pr="8"
-            pl="8"
-            pb="5"
+            pt="6"
+            w={{ base: "90%", md: "100%" }}
+            pr={{ base: "28", md: "8" }}
+            pl={{ base: "28", md: "8" }}
+            pb="6"
             fontWeight="semibold"
             color="white"
             size={{ base: "lg", md: "2xl" }}
@@ -51,10 +52,11 @@ function Plans() {
         </Link>
         <Link to="/Docs">
           <Button
-            pt="5"
-            pr="8"
-            pl="8"
-            pb="5"
+            w={{ base: "90%", md: "100%" }}
+            pt="6"
+            pr={{ base: "28", md: "8" }}
+            pl={{ base: "28", md: "8" }}
+            pb="6"
             fontWeight="semibold"
             size={{ base: "lg", md: "2xl" }}
             bg="gray.800"
