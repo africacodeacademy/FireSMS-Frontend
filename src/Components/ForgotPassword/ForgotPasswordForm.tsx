@@ -7,28 +7,28 @@ import {
   Heading,
   Flex,
   Box,
+  FormHelperText,
 } from "@chakra-ui/react";
+import { useForm } from "react-hook-form";
 import { useState } from "react";
 
 function ForgotPasswordForm() {
-  const [email, setEmail] = useState();
   const [isCreateAccount, setCreateAccount] = useState(true);
-  const handleEmailChange = (e: any) => setEmail(e.target.value);
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
 
-  const showLoading = () => {
+  const onSubmit = () => {
     setCreateAccount(false);
-  };
-
-  const handleCreateAccount = (event: any) => {
-    event.preventDefault();
-    // back end here
   };
   return (
     <Flex w={{ base: "100%", md: "100%" }} alignItems="center" justify="center">
       <Box mt={{ base: "28%", md: "10%" }} mb={{ base: "49%", md: "18%" }}>
-        <form method="POST" onSubmit={handleCreateAccount}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Stack
-            w={{ base: "xs", md: "sm" }}
+            w={{ base: "xs", md: "lg" }}
             direction="column"
             rounded={6}
             alignItems="center"
@@ -53,14 +53,18 @@ function ForgotPasswordForm() {
                 Please provide the email address that you signed up with
               </FormLabel>
               <Input
-                isRequired
+                textAlign="center"
+                color="white"
                 type="email"
                 id="email"
                 placeholder="Your Email Address"
                 aria-describedby="email-helper-text"
-                value={email}
-                onChange={handleEmailChange}
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...register("email", { required: true })}
               />
+              <FormHelperText color="red" textAlign="center">
+                {errors.email?.type === "required" && "Email is required"}
+              </FormHelperText>
             </FormControl>
             <FormControl textAlign="center" pb={{ base: "3%", md: "3%" }}>
               {isCreateAccount ? (
@@ -71,7 +75,6 @@ function ForgotPasswordForm() {
                   colorScheme="white"
                   color="white"
                   type="submit"
-                  onClick={showLoading}
                   bg="orange.400"
                   _hover={{ bg: "teal", color: "white" }}
                   variant="ghost"
@@ -86,6 +89,7 @@ function ForgotPasswordForm() {
                   colorScheme="white"
                   color="white"
                   isLoading
+                  type="submit"
                   size={{ base: "md", md: "md" }}
                   loadingText="Submitting"
                 />

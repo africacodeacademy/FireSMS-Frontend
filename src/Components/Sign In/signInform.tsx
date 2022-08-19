@@ -12,31 +12,28 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 function SignINForm() {
-  const [email, setEmail] = useState("");
-  const [password, setIPassword] = useState("");
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
   const [isSubmit, setIsSubmit] = useState(true);
-  const handleEmailChange = (e: any) => setEmail(e.target.value);
-  const handlePasswordChange = (e: any) => setIPassword(e.target.value);
-
-  const emailError = email === "";
-  const passwordError = password === "";
 
   const showLoading = () => {
     setIsSubmit(false);
   };
 
-  const handleSignIn = (event: any) => {
-    event.preventDefault();
-
-    // back end here
+  const onSubmit = () => {
+    showLoading();
   };
 
   return (
     <Flex w={{ base: "100%", md: "100%" }} alignItems="center" justify="center">
       <Box mt={{ base: "28%", md: "10%" }} mb={{ base: "23.5%", md: "4%" }}>
-        <form method="POST" onSubmit={handleSignIn}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Stack
             w={{ base: "xs", md: "sm" }}
             direction="column"
@@ -58,39 +55,38 @@ function SignINForm() {
             <FormControl w={{ base: "90%", md: "90%" }}>
               <FormLabel>Email</FormLabel>
               <Input
-                isRequired
                 type="email"
                 id="email"
                 placeholder="Email Address"
                 aria-describedby="email-helper-text"
-                value={email}
-                onChange={handleEmailChange}
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...register("emailAddress", { required: true })}
               />
-              {!emailError ? (
-                <FormHelperText />
-              ) : (
-                <FormHelperText color="red">
-                  Invalid Email Address
-                </FormHelperText>
-              )}
+              <FormHelperText color="red">
+                {errors.emailAddress?.type === "required" &&
+                  "Email is required"}
+              </FormHelperText>
             </FormControl>
             <FormControl w={{ base: "90%", md: "90%" }}>
               <FormLabel>Password</FormLabel>
               <Input
-                isRequired
                 type="password"
                 id="password"
                 placeholder="Password"
                 aria-describedby="password-helper-text"
-                value={password}
-                onChange={handlePasswordChange}
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...register("password", {
+                  required: true,
+                  minLength: 6,
+                  maxLength: 12,
+                })}
               />
-
-              {!passwordError ? (
-                <FormHelperText />
-              ) : (
-                <FormHelperText color="red">Invalid password</FormHelperText>
-              )}
+              <FormHelperText color="red">
+                {errors.password?.type === "minLength" &&
+                  "Entered Password is less than 6 charactors"}
+                {errors.password?.type === "maxLength" &&
+                  "Entered Password is more than 12 charactors"}
+              </FormHelperText>
             </FormControl>
             <FormControl textAlign="center" pb={{ base: "3%", md: "3%" }}>
               {isSubmit ? (
@@ -101,7 +97,6 @@ function SignINForm() {
                   colorScheme="white"
                   color="white"
                   type="submit"
-                  onClick={showLoading}
                   bg="orange.400"
                   _hover={{ bg: "teal", color: "white" }}
                   variant="ghost"

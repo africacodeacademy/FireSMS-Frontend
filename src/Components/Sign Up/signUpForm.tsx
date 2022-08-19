@@ -8,31 +8,32 @@ import {
   Flex,
   Box,
   Select,
+  FormHelperText,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 function SignUpForm() {
-  const [email, setEmail] = useState();
-  const [password, setIPassword] = useState();
-  const [phoneNumber, setPhoneNumber] = useState();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
   const [isCreateAccount, setCreateAccount] = useState(true);
-  const handleEmailChange = (e: any) => setEmail(e.target.value);
-  const handlePasswordChange = (e: any) => setIPassword(e.target.value);
-  const handlePhoneNumber = (e: any) => setPhoneNumber(e.target.value);
 
   const showLoading = () => {
     setCreateAccount(false);
   };
 
-  const handleCreateAccount = async (event: any) => {
-    event.preventDefault();
+  const onSubmit = () => {
+    showLoading();
   };
 
   return (
     <Flex w={{ base: "100%", md: "100%" }} alignItems="center" justify="center">
       <Box mt={{ base: "28%", md: "10%" }} mb={{ base: "23.5%", md: "2%" }}>
-        <form method="POST" onSubmit={handleCreateAccount}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Stack
             w={{ base: "xs", md: "sm" }}
             direction="column"
@@ -54,14 +55,17 @@ function SignUpForm() {
             <FormControl w={{ base: "90%", md: "90%" }}>
               <FormLabel>Email</FormLabel>
               <Input
-                isRequired
                 type="email"
                 id="email"
                 placeholder="Email Address"
                 aria-describedby="email-helper-text"
-                value={email}
-                onChange={handleEmailChange}
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...register("emailAddress", { required: true })}
               />
+              <FormHelperText color="red">
+                {errors.emailAddress?.type === "required" &&
+                  "Email is required"}
+              </FormHelperText>
             </FormControl>
             <FormControl w={{ base: "90%", md: "90%" }}>
               <FormLabel>Country</FormLabel>
@@ -73,26 +77,44 @@ function SignUpForm() {
             <FormControl w={{ base: "90%", md: "90%" }}>
               <FormLabel>Phone Number</FormLabel>
               <Input
-                isRequired
                 type="number"
                 id="phoneNumber"
                 placeholder="Phone Numnber"
                 aria-describedby="number-helper-text"
-                value={phoneNumber}
-                onChange={handlePhoneNumber}
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...register("phoneNumber", {
+                  required: true,
+                  minLength: 8,
+                  maxLength: 15,
+                })}
               />
+              <FormHelperText color="red">
+                {errors.phoneNumber?.type === "minLength" &&
+                  "Entered number is less than 8 digits"}
+                {errors.phoneNumber?.type === "maxLength" &&
+                  "Entered number is more than 15 digits"}
+              </FormHelperText>
             </FormControl>
             <FormControl w={{ base: "90%", md: "90%" }}>
               <FormLabel>Password</FormLabel>
               <Input
-                isRequired
                 type="password"
                 id="password"
                 placeholder="Password"
                 aria-describedby="password-helper-text"
-                value={password}
-                onChange={handlePasswordChange}
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...register("password", {
+                  required: true,
+                  minLength: 6,
+                  maxLength: 12,
+                })}
               />
+              <FormHelperText color="red">
+                {errors.password?.type === "minLength" &&
+                  "Entered Password is less than 6 charactors"}
+                {errors.password?.type === "maxLength" &&
+                  "Entered Password is more than 12 charactors"}
+              </FormHelperText>
             </FormControl>
             <FormControl textAlign="center" pb={{ base: "3%", md: "3%" }}>
               {isCreateAccount ? (
@@ -103,7 +125,6 @@ function SignUpForm() {
                   colorScheme="white"
                   color="white"
                   type="submit"
-                  onClick={showLoading}
                   bg="orange.400"
                   _hover={{ bg: "teal", color: "white" }}
                   variant="ghost"
