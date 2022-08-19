@@ -25,7 +25,7 @@ function ForgotPasswordForm() {
   };
   return (
     <Flex w={{ base: "100%", md: "100%" }} alignItems="center" justify="center">
-      <Box mt={{ base: "28%", md: "10%" }} mb={{ base: "79%", md: "18%" }}>
+      <Box mt={{ base: "28%", md: "10%" }} mb={{ base: "99%", md: "18%" }}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack
             w={{ base: "xs", md: "lg" }}
