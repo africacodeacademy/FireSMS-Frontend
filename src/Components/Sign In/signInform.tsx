@@ -49,6 +49,8 @@ function SignINForm() {
               pb={{ base: "8%", md: "5%" }}
               pt={{ base: "1%", md: "0%" }}
               textAlign="center"
+              fontFamily="sans-serif"
+              fontWeight="bold"
             >
               Login
             </Heading>

@@ -41,6 +41,8 @@ function ForgotPasswordForm() {
               pb={{ base: "4%", md: "2%" }}
               pt={{ base: "1%", md: "0%" }}
               textAlign="center"
+              fontFamily="sans-serif"
+              fontWeight="bold"
             >
               Forgot Password
             </Heading>
