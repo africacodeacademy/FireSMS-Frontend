@@ -83,23 +83,23 @@ function Developers() {
         w="100%"
       >
         {value === "Javascript" ? (
-          <Box alignItems="center" textAlign="center">
+          <Stack alignItems="center" textAlign="center">
             <JSDevelopers />
-          </Box>
+          </Stack>
         ) : (
           <> </>
         )}
         {value === "PHP" ? (
-          <Box alignItems="center" textAlign="center">
+          <Stack alignItems="center" textAlign="center">
             <PHPDevelopers />
-          </Box>
+          </Stack>
         ) : (
           <> </>
         )}
         {value === "Python" ? (
-          <Box alignItems="center" textAlign="center">
+          <Stack alignItems="center" justifyItems="center" textAlign="center">
             <PythonDevelopers />
-          </Box>
+          </Stack>
         ) : (
           <> </>
         )}
