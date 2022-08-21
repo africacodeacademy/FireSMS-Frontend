@@ -32,6 +32,12 @@
                 "avoidEscape": true
             }
         ],
+        "prettier/prettier": [
+            "error",
+            {
+                "endOfLine": "auto"
+            }
+        ],
         "@typescript-eslint/quotes":[
             "error",
             "double",

@@ -1,12 +1,10 @@
-import React from "react";
-import "./App.css";
+import { Stack } from "@chakra-ui/react";
 
 function App() {
   return (
-    <div className="App">
-      <h1>FireSms</h1>
-    </div>
+    <Stack bg="gray.300">
+      <h2>Fire SMS Yes</h2>
+    </Stack>
   );
 }
-
 export default App;
