@@ -37,11 +37,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "prepare": "husky install",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
-    "pre-commit": "lint-staged"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
