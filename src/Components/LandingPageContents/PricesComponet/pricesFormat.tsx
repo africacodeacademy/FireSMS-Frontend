@@ -34,7 +34,7 @@ function PricesFormat(props: any) {
         </Text>
       </Stack>
       <Text pb="8">
-        <Link to="/SignIn">
+        <Link id="SignIn3" to="/SignIn">
           <PricesBtn />
         </Link>
       </Text>

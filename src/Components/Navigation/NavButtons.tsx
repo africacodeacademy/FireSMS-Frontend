@@ -14,8 +14,6 @@ function NavButtons(props: any) {
       cursor="pointer"
       _hover={{ bg: "#FF5F0F", color: "white" }}
       variant="ghost"
-      as="a"
-      target="_blank"
     >
       {name}
     </Button>

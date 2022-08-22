@@ -24,16 +24,24 @@ function MenuBtn() {
         />
         <MenuList>
           <MenuItem _hover={{ bg: "gray.800", color: "white" }}>
-            <Link to="/">Pricing</Link>
+            <Link id="Pricing" to="/">
+              Pricing
+            </Link>
           </MenuItem>
           <MenuItem _hover={{ bg: "gray.800", color: "white" }}>
-            <Link to="/Docs">Developers</Link>
+            <Link id="Developers" to="/Docs">
+              Developers
+            </Link>
           </MenuItem>
           <MenuItem _hover={{ bg: "gray.800", color: "white" }}>
-            <Link to="/SignIn">Sign In</Link>
+            <Link id=" Sign33" to="/SignIn">
+              Sign In
+            </Link>
           </MenuItem>
           <MenuItem _hover={{ bg: "gray.800", color: "white" }}>
-            <Link to="/SignUp">Create account</Link>
+            <Link id="Create account" to="/SignUp">
+              Create account
+            </Link>
           </MenuItem>
         </MenuList>
       </Menu>

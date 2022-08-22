@@ -21,7 +21,7 @@ function Plans() {
           pb={{ base: "8%", md: "2%" }}
         >
           Developer first SMS <br />
-          <Text pt="0">platform</Text>
+          platform
         </Text>
       </Flex>
       <Flex
@@ -33,7 +33,7 @@ function Plans() {
         direction={{ base: "column", md: "row" }}
         w={{ base: "100%", md: "100%" }}
       >
-        <Link to="/SignUp">
+        <Link id="SignUp5" to="/SignUp">
           <Button
             pt="6"
             w={{ base: "90%", md: "100%" }}
@@ -50,7 +50,7 @@ function Plans() {
             Create Account
           </Button>
         </Link>
-        <Link to="/Docs">
+        <Link id="Docs" to="/Docs">
           <Button
             w={{ base: "90%", md: "100%" }}
             pt="6"

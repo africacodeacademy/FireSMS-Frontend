@@ -120,7 +120,7 @@ function SignINForm() {
                 </Button>
               )}
 
-              <Link to="/SignUp">
+              <Link id="SignUp" to="/SignUp">
                 <Button
                   size={{ base: "md", md: "md" }}
                   w="90%"
@@ -141,7 +141,9 @@ function SignINForm() {
               pb={{ base: "4%", md: "2%" }}
               color="gray.800"
             >
-              <Link to="/ResetPassword">Forgot password</Link>
+              <Link id="Forgot" to="/ResetPassword">
+                Forgot password
+              </Link>
             </Text>
           </Stack>
         </form>

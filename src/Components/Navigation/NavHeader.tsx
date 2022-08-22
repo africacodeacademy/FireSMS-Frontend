@@ -14,7 +14,7 @@ function NavHeader() {
     <header>
       <Box
         display="flex"
-        align-Items="center"
+        align-items="center"
         justifyContent="space-between"
         bg="gray.800"
         w="100%"
@@ -22,7 +22,7 @@ function NavHeader() {
         zIndex={2}
       >
         <Box mt="4" mb="2">
-          <Link to="/">
+          <Link id="FireSMS" to="/">
             <Text
               ml="4"
               color="white"
@@ -42,16 +42,16 @@ function NavHeader() {
             align="center"
             display={["none", "none", "flex", "flex"]}
           >
-            <Link to="/">
+            <Link id="link1" to="/">
               <NavButtons name={name} />
             </Link>
-            <Link to="/Docs">
+            <Link id="link2" to="/Docs">
               <NavButtons name={name2} />
             </Link>
-            <Link to="/SignIn">
+            <Link id="link3" to="/SignIn">
               <NavButtons name={name3} />
             </Link>
-            <Link to="/SignUp">
+            <Link id="link4" to="/SignUp">
               <NavButtons name={name4} />
             </Link>
           </Stack>
