@@ -13,6 +13,7 @@ function Payments() {
         color="#FF5F0F"
         pt={{ base: "14%", md: "5%" }}
         pb={{ base: "8%", md: "4%" }}
+        id="PaymentOptions"
       >
         Payment options
       </Text>

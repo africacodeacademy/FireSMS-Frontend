@@ -19,6 +19,7 @@ function Plans() {
           color="white"
           textAlign="center"
           pb={{ base: "8%", md: "2%" }}
+          id="firstSMS"
         >
           Developer first SMS <br />
           platform

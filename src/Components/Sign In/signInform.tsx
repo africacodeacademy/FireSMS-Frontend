@@ -20,10 +20,10 @@ function SignINForm() {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const [isSubmit, setIsSubmit] = useState(true);
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const showLoading = () => {
-    setIsSubmit(false);
+    setIsSubmit(true);
   };
 
   const onSubmit = () => {
@@ -91,12 +91,13 @@ function SignINForm() {
               </FormHelperText>
             </FormControl>
             <FormControl textAlign="center" pb={{ base: "3%", md: "3%" }}>
-              {isSubmit ? (
+              {!isSubmit ? (
                 <Button
                   size={{ base: "md", md: "md" }}
                   w={{ base: "90%", md: "90%" }}
                   mt="5%"
                   colorScheme="white"
+                  id="submitBtn"
                   color="white"
                   type="submit"
                   bg="orange.400"
@@ -109,6 +110,7 @@ function SignINForm() {
                 <Button
                   w={{ base: "90%", md: "90%" }}
                   mt="5%"
+                  id="isLoading"
                   bg="orange.400"
                   colorScheme="white"
                   color="white"
@@ -116,7 +118,7 @@ function SignINForm() {
                   size={{ base: "md", md: "md" }}
                   loadingText="Submitting"
                 >
-                  Submit
+                  Submitting
                 </Button>
               )}
 
@@ -130,7 +132,6 @@ function SignINForm() {
                   bg="#CBD5E0"
                   _hover={{ bg: "#CBD5E0", color: "#FF5F0F" }}
                   variant="ghost"
-                  type="submit"
                 >
                   Register
                 </Button>

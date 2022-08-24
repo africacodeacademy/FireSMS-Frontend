@@ -79,9 +79,9 @@ function SignUpForm() {
             <FormControl w={{ base: "90%", md: "90%" }}>
               <FormLabel>Phone Number</FormLabel>
               <Input
-                type="number"
+                type="telephone"
                 id="phoneNumber"
-                placeholder="Phone Numnber"
+                placeholder="Phone Number"
                 aria-describedby="number-helper-text"
                 // eslint-disable-next-line react/jsx-props-no-spreading
                 {...register("phoneNumber", {
@@ -144,7 +144,7 @@ function SignUpForm() {
                   size={{ base: "md", md: "md" }}
                   loadingText="Creating Account"
                 >
-                  Create Account
+                  Creating Account
                 </Button>
               )}
 
