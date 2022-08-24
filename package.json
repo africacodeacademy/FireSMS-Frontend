@@ -35,9 +35,8 @@
   },
   "scripts": {
     "start": "serve -s build",
-    "dev": "react-scripts start",
+    "Dev-Landing-Page": "react-scripts start",
     "build": "react-scripts build",
-    "homepage": "https://firesms-app.herokuapp.com/",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prepare": "husky install",
