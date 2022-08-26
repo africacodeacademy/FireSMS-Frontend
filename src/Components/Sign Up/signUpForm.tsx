@@ -15,19 +15,15 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 function SignUpForm() {
+  const [loading, setLoading] = useState(false);
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const [isCreateAccount, setCreateAccount] = useState(true);
-
-  const showLoading = () => {
-    setCreateAccount(false);
-  };
 
   const onSubmit = () => {
-    showLoading();
+    setLoading(true);
   };
 
   return (
@@ -119,34 +115,21 @@ function SignUpForm() {
               </FormHelperText>
             </FormControl>
             <FormControl textAlign="center" pb={{ base: "3%", md: "3%" }}>
-              {isCreateAccount ? (
-                <Button
-                  size={{ base: "md", md: "md" }}
-                  w={{ base: "90%", md: "90%" }}
-                  mt="5%"
-                  colorScheme="white"
-                  color="white"
-                  type="submit"
-                  bg="orange.400"
-                  _hover={{ bg: "teal", color: "white" }}
-                  variant="ghost"
-                >
-                  Create Account
-                </Button>
-              ) : (
-                <Button
-                  w={{ base: "90%", md: "90%" }}
-                  mt="5%"
-                  bg="orange.400"
-                  colorScheme="white"
-                  color="white"
-                  isLoading
-                  size={{ base: "md", md: "md" }}
-                  loadingText="Creating Account"
-                >
-                  Creating Account
-                </Button>
-              )}
+              <Button
+                size={{ base: "md", md: "md" }}
+                w={{ base: "90%", md: "90%" }}
+                mt="5%"
+                colorScheme="white"
+                color="white"
+                type="submit"
+                bg="orange.400"
+                _hover={{ bg: "teal", color: "white" }}
+                variant="ghost"
+                isLoading={loading}
+                loadingText="Creating Account"
+              >
+                Create Account
+              </Button>
 
               <Link to="/SignIn">
                 <Button

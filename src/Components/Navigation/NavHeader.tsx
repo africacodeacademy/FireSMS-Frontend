@@ -42,18 +42,10 @@ function NavHeader() {
             align="center"
             display={["none", "none", "flex", "flex"]}
           >
-            <Link id="link1" to="/">
-              <NavButtons name={name} />
-            </Link>
-            <Link id="link2" to="/Docs">
-              <NavButtons name={name2} />
-            </Link>
-            <Link id="link3" to="/SignIn">
-              <NavButtons name={name3} />
-            </Link>
-            <Link id="link4" to="/SignUp">
-              <NavButtons name={name4} />
-            </Link>
+            <NavButtons name={name} link="/" />
+            <NavButtons name={name2} link="/Docs" />
+            <NavButtons name={name3} link="/SignIn" />
+            <NavButtons name={name4} link="/SignUp" />
           </Stack>
           <MenuBtn />
         </Box>

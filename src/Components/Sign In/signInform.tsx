@@ -11,29 +11,59 @@ import {
   Box,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "../../APIs/axiosBaseURL";
 
 function SignINForm() {
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
-  const [isSubmit, setIsSubmit] = useState(false);
+  const LOGIN_URL = "/login";
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [myPassword, setMyPassword] = useState("");
+  const [loginStatus, setLoginStatus] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const showLoading = () => {
-    setIsSubmit(true);
+  const handleEmail = (e: any) => {
+    setEmail(e.target.value);
+  };
+  const handlePassword = (e: any) => {
+    setMyPassword(e.target.value);
   };
 
-  const onSubmit = () => {
-    showLoading();
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const response = await axios.post(
+        LOGIN_URL,
+        JSON.stringify({ emailOrPhone: email, password: myPassword }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        },
+      );
+      setLoading(false);
+      // eslint-disable-next-line no-console
+      console.log(response.status);
+      navigate("/DashBoard");
+    } catch (err: any) {
+      setLoading(false);
+      if (!err?.response) {
+        setLoginStatus("No Server Response");
+      } else if (err.response?.status === 400) {
+        setLoginStatus("Missing Username or Password");
+      } else if (err.response?.status === 401) {
+        setLoginStatus("Unauthorized");
+      } else {
+        setLoginStatus("Login Failed");
+      }
+    }
   };
 
   return (
     <Flex w={{ base: "100%", md: "100%" }} alignItems="center" justify="center">
       <Box mt={{ base: "28%", md: "10%" }} mb={{ base: "23.5%", md: "4%" }}>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit}>
           <Stack
             w={{ base: "xs", md: "sm" }}
             direction="column"
@@ -46,7 +76,6 @@ function SignINForm() {
           >
             <Heading
               color="orange.400"
-              pb={{ base: "8%", md: "5%" }}
               pt={{ base: "1%", md: "0%" }}
               textAlign="center"
               fontFamily="sans-serif"
@@ -55,19 +84,27 @@ function SignINForm() {
               Login
             </Heading>
             <FormControl w={{ base: "90%", md: "90%" }}>
+              <FormHelperText
+                pb={{ base: "5%", md: "5%" }}
+                textAlign="center"
+                fontFamily="sans-serif"
+                fontWeight="semi-bold"
+                color="red"
+              >
+                {loginStatus}
+              </FormHelperText>
+            </FormControl>
+            <FormControl w={{ base: "90%", md: "90%" }}>
               <FormLabel>Email</FormLabel>
               <Input
                 type="email"
                 id="email"
                 placeholder="Email Address"
                 aria-describedby="email-helper-text"
-                // eslint-disable-next-line react/jsx-props-no-spreading
-                {...register("emailAddress", { required: true })}
+                value={email}
+                onChange={handleEmail}
               />
-              <FormHelperText color="red">
-                {errors.emailAddress?.type === "required" &&
-                  "Email is required"}
-              </FormHelperText>
+              <FormHelperText color="red" />
             </FormControl>
             <FormControl w={{ base: "90%", md: "90%" }}>
               <FormLabel>Password</FormLabel>
@@ -76,51 +113,28 @@ function SignINForm() {
                 id="password"
                 placeholder="Password"
                 aria-describedby="password-helper-text"
-                // eslint-disable-next-line react/jsx-props-no-spreading
-                {...register("password", {
-                  required: true,
-                  minLength: 6,
-                  maxLength: 12,
-                })}
+                value={myPassword}
+                onChange={handlePassword}
               />
-              <FormHelperText color="red">
-                {errors.password?.type === "minLength" &&
-                  "Entered Password is less than 6 charactors"}
-                {errors.password?.type === "maxLength" &&
-                  "Entered Password is more than 12 charactors"}
-              </FormHelperText>
+              <FormHelperText color="red" />
             </FormControl>
             <FormControl textAlign="center" pb={{ base: "3%", md: "3%" }}>
-              {!isSubmit ? (
-                <Button
-                  size={{ base: "md", md: "md" }}
-                  w={{ base: "90%", md: "90%" }}
-                  mt="5%"
-                  colorScheme="white"
-                  id="submitBtn"
-                  color="white"
-                  type="submit"
-                  bg="orange.400"
-                  _hover={{ bg: "teal", color: "white" }}
-                  variant="ghost"
-                >
-                  Submit
-                </Button>
-              ) : (
-                <Button
-                  w={{ base: "90%", md: "90%" }}
-                  mt="5%"
-                  id="isLoading"
-                  bg="orange.400"
-                  colorScheme="white"
-                  color="white"
-                  isLoading
-                  size={{ base: "md", md: "md" }}
-                  loadingText="Submitting"
-                >
-                  Submitting
-                </Button>
-              )}
+              <Button
+                size={{ base: "md", md: "md" }}
+                w={{ base: "90%", md: "90%" }}
+                mt="5%"
+                colorScheme="white"
+                id="submitBtn"
+                color="white"
+                type="submit"
+                bg="orange.400"
+                _hover={{ bg: "teal", color: "white" }}
+                variant="ghost"
+                isLoading={loading}
+                loadingText="Submitting"
+              >
+                Submit
+              </Button>
 
               <Link id="SignUp" to="/SignUp">
                 <Button
