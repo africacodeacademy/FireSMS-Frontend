@@ -1,6 +1,6 @@
 import { Table, Tr, Td, TableContainer, Tbody } from "@chakra-ui/react";
 
-function AccTable() {
+function AccountsTable() {
   return (
     <TableContainer pb={{ base: "18%", md: "5%" }} w="-webkit-fit-content">
       <Table
@@ -38,4 +38,4 @@ function AccTable() {
     </TableContainer>
   );
 }
-export default AccTable;
+export default AccountsTable;

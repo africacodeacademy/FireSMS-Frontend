@@ -1,9 +1,16 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { Box, Heading, Stack, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import PricesBtn from "./PricesBtn";
 
-function PricesFormat(props: any) {
+interface CardData {
+  title: string;
+  subTitle: string;
+  dataContent1: string;
+  dataContent2: string;
+  dataContent3: string;
+}
+
+function PricesFormat(props: CardData) {
   const { title, dataContent1, dataContent2, dataContent3, subTitle, ...rest } =
     props;
   return (

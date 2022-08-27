@@ -11,25 +11,63 @@ import {
   FormHelperText,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import axios from "../../APIs/axiosBaseURL";
+
+type FormValues = {
+  email: string;
+  CountryName: string;
+  phoneNumber: number;
+  password: number;
+};
 
 function SignUpForm() {
+  const [loginStatus, setLoginStatus] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const REGISTRATION_URL = "/user";
   const {
     register,
-    formState: { errors },
+    reset,
     handleSubmit,
-  } = useForm();
+    formState: { errors },
+  } = useForm<FormValues>();
 
-  const onSubmit = () => {
+  const onSubmit = handleSubmit(async (data, e) => {
+    e?.preventDefault();
     setLoading(true);
-  };
+    try {
+      await axios
+        .post(REGISTRATION_URL, JSON.stringify({ data }), {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        })
+        .then((response) => {
+          if (response.status >= 200 && response.status < 300) {
+            setLoading(false);
+            reset();
+            navigate("/DashBoard");
+          }
+        });
+    } catch (err: any) {
+      setLoading(false);
+      if (!err?.response) {
+        setLoginStatus("No Server Response");
+      } else if (err.response?.status === 400) {
+        setLoginStatus("Missing Username or Password");
+      } else if (err.response?.status === 401) {
+        setLoginStatus("Unauthorized");
+      } else {
+        setLoginStatus("User Registration Failed");
+      }
+    }
+  });
 
   return (
     <Flex w={{ base: "100%", md: "100%" }} alignItems="center" justify="center">
       <Box mt={{ base: "28%", md: "10%" }} mb={{ base: "23.5%", md: "2%" }}>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={onSubmit}>
           <Stack
             w={{ base: "xs", md: "sm" }}
             direction="column"
@@ -51,26 +89,43 @@ function SignUpForm() {
               Create Account
             </Heading>
             <FormControl w={{ base: "90%", md: "90%" }}>
+              <FormHelperText
+                pb={{ base: "5%", md: "5%" }}
+                textAlign="center"
+                fontFamily="sans-serif"
+                fontWeight="semi-bold"
+                color="red"
+              >
+                {loginStatus}
+              </FormHelperText>
+            </FormControl>
+            <FormControl w={{ base: "90%", md: "90%" }}>
               <FormLabel>Email</FormLabel>
               <Input
                 type="email"
                 id="email"
                 placeholder="Email Address"
                 aria-describedby="email-helper-text"
-                // eslint-disable-next-line react/jsx-props-no-spreading
-                {...register("emailAddress", { required: true })}
+                {...register("email", { required: true })}
               />
               <FormHelperText color="red">
-                {errors.emailAddress?.type === "required" &&
-                  "Email is required"}
+                {errors.email?.type === "required" && "Email is required"}
               </FormHelperText>
             </FormControl>
             <FormControl w={{ base: "90%", md: "90%" }}>
-              <FormLabel>Country</FormLabel>
-              <Select placeholder="Select country">
-                <option>Lesotho</option>
-                <option>Botwsana</option>
+              <FormLabel htmlFor="Country Name">Country</FormLabel>
+              <Select
+                id="CountryName"
+                placeholder="Select Country"
+                {...register("CountryName", { required: true })}
+              >
+                <option value="Lesotho">Lesotho</option>
+                <option value="Botwsana">Botwsana</option>
               </Select>
+              <FormHelperText color="red">
+                {errors.CountryName?.type === "required" &&
+                  "Country Name is required"}
+              </FormHelperText>
             </FormControl>
             <FormControl w={{ base: "90%", md: "90%" }}>
               <FormLabel>Phone Number</FormLabel>
@@ -79,7 +134,6 @@ function SignUpForm() {
                 id="phoneNumber"
                 placeholder="Phone Number"
                 aria-describedby="number-helper-text"
-                // eslint-disable-next-line react/jsx-props-no-spreading
                 {...register("phoneNumber", {
                   required: true,
                   minLength: 8,
@@ -100,7 +154,6 @@ function SignUpForm() {
                 id="password"
                 placeholder="Password"
                 aria-describedby="password-helper-text"
-                // eslint-disable-next-line react/jsx-props-no-spreading
                 {...register("password", {
                   required: true,
                   minLength: 6,

@@ -12,40 +12,44 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import axios from "../../APIs/axiosBaseURL";
+
+type FormValues = {
+  email: string;
+  password: number;
+};
 
 function SignINForm() {
   const LOGIN_URL = "/login";
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [myPassword, setMyPassword] = useState("");
   const [loginStatus, setLoginStatus] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleEmail = (e: any) => {
-    setEmail(e.target.value);
-  };
-  const handlePassword = (e: any) => {
-    setMyPassword(e.target.value);
-  };
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>();
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
+  const onSubmit = handleSubmit(async (data, e) => {
+    e?.preventDefault();
     setLoading(true);
 
     try {
-      const response = await axios.post(
-        LOGIN_URL,
-        JSON.stringify({ emailOrPhone: email, password: myPassword }),
-        {
+      await axios
+        .post(LOGIN_URL, JSON.stringify({ data }), {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
-        },
-      );
-      setLoading(false);
-      // eslint-disable-next-line no-console
-      console.log(response.status);
-      navigate("/DashBoard");
+        })
+        .then((response) => {
+          if (response.status >= 200 && response.status < 300) {
+            setLoading(false);
+            reset();
+            navigate("/DashBoard");
+          }
+        });
     } catch (err: any) {
       setLoading(false);
       if (!err?.response) {
@@ -58,12 +62,12 @@ function SignINForm() {
         setLoginStatus("Login Failed");
       }
     }
-  };
+  });
 
   return (
     <Flex w={{ base: "100%", md: "100%" }} alignItems="center" justify="center">
       <Box mt={{ base: "28%", md: "10%" }} mb={{ base: "23.5%", md: "4%" }}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={onSubmit}>
           <Stack
             w={{ base: "xs", md: "sm" }}
             direction="column"
@@ -101,10 +105,11 @@ function SignINForm() {
                 id="email"
                 placeholder="Email Address"
                 aria-describedby="email-helper-text"
-                value={email}
-                onChange={handleEmail}
+                {...register("email", { required: true })}
               />
-              <FormHelperText color="red" />
+              <FormHelperText color="red">
+                {errors.email?.type === "required" && "Email is required"}
+              </FormHelperText>
             </FormControl>
             <FormControl w={{ base: "90%", md: "90%" }}>
               <FormLabel>Password</FormLabel>
@@ -113,10 +118,18 @@ function SignINForm() {
                 id="password"
                 placeholder="Password"
                 aria-describedby="password-helper-text"
-                value={myPassword}
-                onChange={handlePassword}
+                {...register("password", {
+                  required: true,
+                  minLength: 6,
+                  maxLength: 12,
+                })}
               />
-              <FormHelperText color="red" />
+              <FormHelperText color="red">
+                {errors.password?.type === "minLength" &&
+                  "Entered Password is less than 6 charactors"}
+                {errors.password?.type === "maxLength" &&
+                  "Entered Password is more than 12 charactors"}
+              </FormHelperText>
             </FormControl>
             <FormControl textAlign="center" pb={{ base: "3%", md: "3%" }}>
               <Button

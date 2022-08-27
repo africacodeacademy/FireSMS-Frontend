@@ -1,15 +1,23 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { Box, Heading, Stack, Text } from "@chakra-ui/react";
 
-function PlatformCardFormat(props: any) {
-  const { title, dataContent1, dataContent2, dataContent3, bgcolor, ...rest } =
+interface CardDataTypes {
+  title: string;
+  bg: string;
+  dataContent1: string;
+  dataContent2: string;
+  dataContent3: string;
+}
+
+function PlatformCardFormat(props: CardDataTypes) {
+  const { title, dataContent1, dataContent2, dataContent3, bg, ...rest } =
     props;
   return (
     <Box
       textAlign="center"
       p={5}
       borderRadius="lg"
-      bg={bgcolor}
+      bg={bg}
       w={{ base: "88%", md: "18%" }}
       {...rest}
     >

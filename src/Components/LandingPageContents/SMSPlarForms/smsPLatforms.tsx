@@ -30,6 +30,7 @@ function SmsPlatForms() {
           dataContent3="Per SMS"
         />
         <PlatformCardFormat
+          bg="gray.900"
           title="Twilio"
           dataContent1="R"
           dataContent2="1,20+"
