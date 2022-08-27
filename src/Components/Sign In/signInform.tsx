@@ -59,7 +59,7 @@ function SignINForm() {
       } else if (err.response?.status === 401) {
         setLoginStatus("Unauthorized");
       } else {
-        setLoginStatus("Login Failed");
+        setLoginStatus("Incorrect user details");
       }
     }
   });

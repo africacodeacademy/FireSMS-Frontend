@@ -2,6 +2,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Checkbox,
   Button,
   Stack,
   Heading,
@@ -20,6 +21,7 @@ type FormValues = {
   CountryName: string;
   phoneNumber: number;
   password: number;
+  checkBox: boolean;
 };
 
 function SignUpForm() {
@@ -165,6 +167,18 @@ function SignUpForm() {
                   "Entered Password is less than 6 charactors"}
                 {errors.password?.type === "maxLength" &&
                   "Entered Password is more than 12 charactors"}
+              </FormHelperText>
+            </FormControl>
+            <FormControl w={{ base: "90%", md: "90%" }}>
+              <Checkbox
+                id="checkBox"
+                {...register("checkBox", { required: true })}
+              >
+                Accept Tearms and Conditions
+              </Checkbox>
+              <FormHelperText color="red">
+                {errors.checkBox?.type === "required" &&
+                  "Terms and conditions need to be accepted"}
               </FormHelperText>
             </FormControl>
             <FormControl textAlign="center" pb={{ base: "3%", md: "3%" }}>

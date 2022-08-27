@@ -62,6 +62,17 @@ describe("Test SignUp component", () => {
     userEvent.type(EmailInput, "molati@gmail.com");
     userEvent.type(PhoneNumberInput, "595959597");
     userEvent.type(PasswordInput, "57313255");
+    userEvent.selectOptions(
+      screen.getByRole("combobox"),
+      screen.getByRole("option", { name: "Lesotho" }),
+    );
+
+    const checkBox = screen.getByRole("checkbox", {
+      name: /Accept Tearms and Conditions/i,
+    });
+    expect(checkBox).not.toBeChecked();
+    userEvent.click(checkBox);
+    expect(checkBox).toBeChecked();
 
     userEvent.click(CreateAccounButton);
     await screen.findByText(/Creating Account/i);
