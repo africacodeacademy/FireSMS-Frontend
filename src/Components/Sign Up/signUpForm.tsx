@@ -18,9 +18,9 @@ import axios from "../../APIs/axiosBaseURL";
 
 type FormValues = {
   email: string;
-  CountryName: string;
-  phoneNumber: number;
-  password: number;
+  country: string;
+  phone: number;
+  password: string;
   checkBox: boolean;
 };
 
@@ -56,10 +56,8 @@ function SignUpForm() {
       setLoading(false);
       if (!err?.response) {
         setLoginStatus("No Server Response");
-      } else if (err.response?.status === 400) {
-        setLoginStatus("Missing Username or Password");
-      } else if (err.response?.status === 401) {
-        setLoginStatus("Unauthorized");
+      } else if (err.response?.status === 409) {
+        setLoginStatus("User Details Already Exists");
       } else {
         setLoginStatus("User Registration Failed");
       }
@@ -117,15 +115,15 @@ function SignUpForm() {
             <FormControl w={{ base: "90%", md: "90%" }}>
               <FormLabel htmlFor="Country Name">Country</FormLabel>
               <Select
-                id="CountryName"
+                id="country"
                 placeholder="Select Country"
-                {...register("CountryName", { required: true })}
+                {...register("country", { required: true })}
               >
                 <option value="Lesotho">Lesotho</option>
                 <option value="Botwsana">Botwsana</option>
               </Select>
               <FormHelperText color="red">
-                {errors.CountryName?.type === "required" &&
+                {errors.country?.type === "required" &&
                   "Country Name is required"}
               </FormHelperText>
             </FormControl>
@@ -133,19 +131,19 @@ function SignUpForm() {
               <FormLabel>Phone Number</FormLabel>
               <Input
                 type="telephone"
-                id="phoneNumber"
+                id="phone"
                 placeholder="Phone Number"
                 aria-describedby="number-helper-text"
-                {...register("phoneNumber", {
+                {...register("phone", {
                   required: true,
                   minLength: 8,
                   maxLength: 15,
                 })}
               />
               <FormHelperText color="red">
-                {errors.phoneNumber?.type === "minLength" &&
+                {errors.phone?.type === "minLength" &&
                   "Entered number is less than 8 digits"}
-                {errors.phoneNumber?.type === "maxLength" &&
+                {errors.phone?.type === "maxLength" &&
                   "Entered number is more than 15 digits"}
               </FormHelperText>
             </FormControl>

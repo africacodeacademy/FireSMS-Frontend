@@ -17,7 +17,7 @@ import axios from "../../APIs/axiosBaseURL";
 
 type FormValues = {
   email: string;
-  password: number;
+  password: string;
 };
 
 function SignINForm() {
@@ -59,7 +59,7 @@ function SignINForm() {
       } else if (err.response?.status === 401) {
         setLoginStatus("Unauthorized");
       } else {
-        setLoginStatus("Incorrect user details");
+        setLoginStatus("Login Failed");
       }
     }
   });
