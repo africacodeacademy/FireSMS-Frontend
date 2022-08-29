@@ -3,13 +3,24 @@ import {
   Menu,
   MenuButton,
   MenuList,
-  MenuItem,
   IconButton,
+  Text,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
-import { Link } from "react-router-dom";
+import { animateScroll as scroll } from "react-scroll";
+import MyMenuItem from "./MyMenuItem";
 
 function MenuBtn() {
+  // props data for Nav buttons
+  const name = "Pricing";
+  const name2 = "Developers";
+  const name3 = "Sign In";
+  const name4 = "Create account";
+
+  // Scroll to 379px from the top
+  const goTo = () => {
+    scroll.scrollTo(379);
+  };
   return (
     <Flex>
       <Menu>
@@ -23,26 +34,12 @@ function MenuBtn() {
           mr="4"
         />
         <MenuList>
-          <MenuItem _hover={{ bg: "gray.800", color: "white" }}>
-            <Link id="Pricing" to="/">
-              Pricing
-            </Link>
-          </MenuItem>
-          <MenuItem _hover={{ bg: "gray.800", color: "white" }}>
-            <Link id="Developers" to="/Docs">
-              Developers
-            </Link>
-          </MenuItem>
-          <MenuItem _hover={{ bg: "gray.800", color: "white" }}>
-            <Link id=" SignOption" to="/SignIn">
-              Sign In
-            </Link>
-          </MenuItem>
-          <MenuItem _hover={{ bg: "gray.800", color: "white" }}>
-            <Link id="Create account" to="/SignUp">
-              Create account
-            </Link>
-          </MenuItem>
+          <Text onClick={goTo}>
+            <MyMenuItem name={name} link="/" />
+          </Text>
+          <MyMenuItem name={name2} link="/Docs" />
+          <MyMenuItem name={name3} link="/SignIn" />
+          <MyMenuItem name={name4} link="/SignUp" />
         </MenuList>
       </Menu>
     </Flex>

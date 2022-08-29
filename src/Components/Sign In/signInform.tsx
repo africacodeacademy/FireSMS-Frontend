@@ -69,7 +69,7 @@ function SignINForm() {
       <Box mt={{ base: "28%", md: "10%" }} mb={{ base: "23.5%", md: "4%" }}>
         <form onSubmit={onSubmit}>
           <Stack
-            w={{ base: "xs", md: "sm" }}
+            w={{ base: "sm", md: "sm" }}
             direction="column"
             bg="white"
             rounded={6}

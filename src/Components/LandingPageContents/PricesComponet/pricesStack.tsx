@@ -3,7 +3,12 @@ import PricesFormat from "./pricesFormat";
 
 function PricesStak() {
   return (
-    <Box bg="gray.800" alignItems="center" pb={{ base: "20%", md: "8%" }}>
+    <Box
+      id="Prices"
+      bg="gray.800"
+      alignItems="center"
+      pb={{ base: "20%", md: "8%" }}
+    >
       <Text
         color="white"
         textAlign="center"

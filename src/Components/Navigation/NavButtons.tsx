@@ -10,7 +10,12 @@ function NavButtons(props: ButtonProp) {
   const { name, link } = props;
 
   return (
-    <Link to={link}>
+    <Link
+      to={link}
+      onClick={() => {
+        window.scroll({ top: 0, left: 0, behavior: "smooth" });
+      }}
+    >
       <Button
         pt="5.4"
         pr="4"

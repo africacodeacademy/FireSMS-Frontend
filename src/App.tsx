@@ -6,6 +6,7 @@ import SignIn from "./Components/Sign In/signin";
 import SignUp from "./Components/Sign Up/signUp";
 import ForgotPassword from "./Components/ForgotPassword/ForgotPassword";
 import DashBoard from "./Components/DashBoard/dashBoard";
+import PrivateRoutes from "./Components/Auth/PrivateRoutes";
 
 function App() {
   return (
@@ -15,8 +16,10 @@ function App() {
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/Docs" element={<DisplayDevelopers />} />
-        <Route path="/DashBoard" element={<DashBoard />} />
         <Route path="/ResetPassword" element={<ForgotPassword />} />
+        <Route element={<PrivateRoutes />}>
+          <Route path="/DashBoard" element={<DashBoard />} />
+        </Route>
       </Routes>
     </Box>
   );

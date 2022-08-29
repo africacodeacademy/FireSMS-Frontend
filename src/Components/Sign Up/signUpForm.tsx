@@ -6,10 +6,10 @@ import {
   Button,
   Stack,
   Heading,
-  Flex,
   Box,
   Select,
   FormHelperText,
+  Flex,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -66,29 +66,28 @@ function SignUpForm() {
 
   return (
     <Flex w={{ base: "100%", md: "100%" }} alignItems="center" justify="center">
-      <Box mt={{ base: "28%", md: "10%" }} mb={{ base: "23.5%", md: "2%" }}>
+      <Box mt={{ base: "28%", md: "10%" }} mb={{ base: "23.5%", md: "4%" }}>
         <form onSubmit={onSubmit}>
           <Stack
-            w={{ base: "xs", md: "sm" }}
+            w={{ base: "sm", md: "sm" }}
             direction="column"
             bg="white"
             rounded={6}
             alignItems="center"
             justifyContent="center"
             pb={{ base: "2%", md: "1%" }}
-            pt={{ base: "11%", md: "5%" }}
+            pt={{ base: "11%", md: "8%" }}
           >
             <Heading
+              w="80%"
               color="orange.400"
-              pb={{ base: "8%", md: "5%" }}
-              pt={{ base: "1%", md: "0%" }}
               textAlign="center"
               fontFamily="sans-serif"
               fontWeight="bold"
             >
               Create Account
             </Heading>
-            <FormControl w={{ base: "90%", md: "90%" }}>
+            <FormControl w={{ base: "70%", md: "70%" }}>
               <FormHelperText
                 pb={{ base: "5%", md: "5%" }}
                 textAlign="center"
@@ -99,8 +98,8 @@ function SignUpForm() {
                 {loginStatus}
               </FormHelperText>
             </FormControl>
-            <FormControl w={{ base: "90%", md: "90%" }}>
-              <FormLabel>Email</FormLabel>
+            <FormControl w={{ base: "70%", md: "70%" }}>
+              <FormLabel>Email Address</FormLabel>
               <Input
                 type="email"
                 id="email"
@@ -112,7 +111,7 @@ function SignUpForm() {
                 {errors.email?.type === "required" && "Email is required"}
               </FormHelperText>
             </FormControl>
-            <FormControl w={{ base: "90%", md: "90%" }}>
+            <FormControl w={{ base: "70%", md: "70%" }}>
               <FormLabel htmlFor="Country Name">Country</FormLabel>
               <Select
                 id="country"
@@ -127,7 +126,7 @@ function SignUpForm() {
                   "Country Name is required"}
               </FormHelperText>
             </FormControl>
-            <FormControl w={{ base: "90%", md: "90%" }}>
+            <FormControl w={{ base: "70%", md: "70%" }}>
               <FormLabel>Phone Number</FormLabel>
               <Input
                 type="telephone"
@@ -147,7 +146,7 @@ function SignUpForm() {
                   "Entered number is more than 15 digits"}
               </FormHelperText>
             </FormControl>
-            <FormControl w={{ base: "90%", md: "90%" }}>
+            <FormControl w={{ base: "70%", md: "70%" }}>
               <FormLabel>Password</FormLabel>
               <Input
                 type="password"
@@ -167,7 +166,7 @@ function SignUpForm() {
                   "Entered Password is more than 12 charactors"}
               </FormHelperText>
             </FormControl>
-            <FormControl w={{ base: "90%", md: "90%" }}>
+            <FormControl w={{ base: "70%", md: "70%" }}>
               <Checkbox
                 id="checkBox"
                 {...register("checkBox", { required: true })}
@@ -179,10 +178,10 @@ function SignUpForm() {
                   "Terms and conditions need to be accepted"}
               </FormHelperText>
             </FormControl>
-            <FormControl textAlign="center" pb={{ base: "3%", md: "3%" }}>
+            <FormControl textAlign="center" pb={{ base: "5%", md: "7%" }}>
               <Button
                 size={{ base: "md", md: "md" }}
-                w={{ base: "90%", md: "90%" }}
+                w="70%"
                 mt="5%"
                 colorScheme="white"
                 color="white"
@@ -199,7 +198,7 @@ function SignUpForm() {
               <Link to="/SignIn">
                 <Button
                   size={{ base: "md", md: "md" }}
-                  w="90%"
+                  w="70%"
                   mt="5%"
                   colorScheme="white"
                   color="gray.900"

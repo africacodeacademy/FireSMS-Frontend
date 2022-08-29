@@ -1,5 +1,7 @@
-import { Box, Text, Stack } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Box, Stack, Text } from "@chakra-ui/react";
+import { animateScroll as scroll } from "react-scroll";
+import CompanyName from "./CompanyName";
 import MenuBtn from "./MenuBtn";
 import NavButtons from "./NavButtons";
 
@@ -9,6 +11,11 @@ function NavHeader() {
   const name2 = "Developers";
   const name3 = "Sign In";
   const name4 = "Create account";
+
+  // Scroll to 452px from the top
+  const goToPricing = () => {
+    scroll.scrollTo(452);
+  };
 
   return (
     <header>
@@ -21,19 +28,7 @@ function NavHeader() {
         pos="fixed"
         zIndex={2}
       >
-        <Box mt="4" mb="2">
-          <Link id="FireSMS" to="/">
-            <Text
-              ml="4"
-              color="white"
-              fontWeight="bold"
-              fontSize="24px"
-              cursor="pointer"
-            >
-              FireSMS
-            </Text>
-          </Link>
-        </Box>
+        <CompanyName />
         <Box mt="3" mb="2">
           <Stack
             mr="4"
@@ -42,7 +37,9 @@ function NavHeader() {
             align="center"
             display={["none", "none", "flex", "flex"]}
           >
-            <NavButtons name={name} link="/" />
+            <Text onClick={goToPricing}>
+              <NavButtons name={name} link="/" />
+            </Text>
             <NavButtons name={name2} link="/Docs" />
             <NavButtons name={name3} link="/SignIn" />
             <NavButtons name={name4} link="/SignUp" />
