@@ -1,7 +1,7 @@
 import { Stack } from "@chakra-ui/react";
 import Footer from "../../Footer/footer";
 import NavHeader from "../../Navigation/NavHeader";
-import SelectDeveloper from "./SelectDeveloper";
+import SelectDeveloper from "./selectDeveloper";
 
 function DisplayDevelopers() {
   return (
