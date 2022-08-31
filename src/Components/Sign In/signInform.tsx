@@ -58,7 +58,7 @@ function SignINForm() {
 
   return (
     <Flex w="full" alignItems="center" justify="center">
-      <Box mt={{ base: "28%", md: "10%" }} mb={{ base: "23.5%", md: "4%" }}>
+      <Box mt={{ base: "28%", md: "10%" }} mb={{ base: "27.5%", md: "4%" }}>
         <form onSubmit={onSubmit}>
           <Stack
             w={{ base: "sm", md: "sm" }}

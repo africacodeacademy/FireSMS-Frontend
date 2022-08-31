@@ -5,7 +5,7 @@ import SignUpForm from "./signUpForm";
 
 function SignUp() {
   return (
-    <Stack bg="gray.800" w="100%">
+    <Stack bg="gray.800">
       <NavHeader />
       <SignUpForm />
       <Footer />
