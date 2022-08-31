@@ -9,11 +9,12 @@ import {
   FormHelperText,
   Flex,
   Box,
+  Toast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import axios from "../../APIs/axiosBaseURL";
+import AuthUser from "../Auth/AuthUser";
 
 type FormValues = {
   email: string;
@@ -21,7 +22,6 @@ type FormValues = {
 };
 
 function SignINForm() {
-  const LOGIN_URL = "/login";
   const navigate = useNavigate();
   const [loginStatus, setLoginStatus] = useState("");
   const [loading, setLoading] = useState(false);
@@ -33,39 +33,31 @@ function SignINForm() {
     formState: { errors },
   } = useForm<FormValues>();
 
+  const showToast = () => {
+    Toast({
+      position: "top",
+      title: "Logged In Successfully..",
+      status: "success",
+      duration: 2500,
+      isClosable: true,
+    });
+  };
+
   const onSubmit = handleSubmit(async (data, e) => {
     e?.preventDefault();
     setLoading(true);
-
-    try {
-      await axios
-        .post(LOGIN_URL, JSON.stringify({ data }), {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        })
-        .then((response) => {
-          if (response.status >= 200 && response.status < 300) {
-            setLoading(false);
-            reset();
-            navigate("/DashBoard");
-          }
-        });
-    } catch (err: any) {
-      setLoading(false);
-      if (!err?.response) {
-        setLoginStatus("No Server Response");
-      } else if (err.response?.status === 400) {
-        setLoginStatus("Missing Username or Password");
-      } else if (err.response?.status === 401) {
-        setLoginStatus("Unauthorized");
-      } else {
-        setLoginStatus("Login Failed");
-      }
-    }
+    setLoginStatus("Server Response");
+    // eslint-disable-next-line no-console
+    console.log(data.email, data.password);
+    reset();
+    showToast();
+    AuthUser.login(() => {
+      navigate("/DashBoard");
+    });
   });
 
   return (
-    <Flex w={{ base: "100%", md: "100%" }} alignItems="center" justify="center">
+    <Flex w="full" alignItems="center" justify="center">
       <Box mt={{ base: "28%", md: "10%" }} mb={{ base: "23.5%", md: "4%" }}>
         <form onSubmit={onSubmit}>
           <Stack
@@ -87,7 +79,7 @@ function SignINForm() {
             >
               Login
             </Heading>
-            <FormControl w={{ base: "90%", md: "90%" }}>
+            <FormControl px={3} w={{ base: "full", md: "90%" }}>
               <FormHelperText
                 pb={{ base: "5%", md: "5%" }}
                 textAlign="center"
@@ -98,7 +90,7 @@ function SignINForm() {
                 {loginStatus}
               </FormHelperText>
             </FormControl>
-            <FormControl w={{ base: "90%", md: "90%" }}>
+            <FormControl px={3} w={{ base: "full", md: "90%" }}>
               <FormLabel>Email</FormLabel>
               <Input
                 type="email"
@@ -111,7 +103,7 @@ function SignINForm() {
                 {errors.email?.type === "required" && "Email is required"}
               </FormHelperText>
             </FormControl>
-            <FormControl w={{ base: "90%", md: "90%" }}>
+            <FormControl px={3} w={{ base: "full", md: "90%" }}>
               <FormLabel>Password</FormLabel>
               <Input
                 type="password"
@@ -131,10 +123,14 @@ function SignINForm() {
                   "Entered Password is more than 12 charactors"}
               </FormHelperText>
             </FormControl>
-            <FormControl textAlign="center" pb={{ base: "3%", md: "3%" }}>
+            <FormControl
+              textAlign="center"
+              px={{ base: "3", md: "7" }}
+              pb={{ base: "3%", md: "3%" }}
+            >
               <Button
                 size={{ base: "md", md: "md" }}
-                w={{ base: "90%", md: "90%" }}
+                w="full"
                 mt="5%"
                 colorScheme="white"
                 id="submitBtn"
@@ -152,7 +148,7 @@ function SignINForm() {
               <Link id="SignUp" to="/SignUp">
                 <Button
                   size={{ base: "md", md: "md" }}
-                  w="90%"
+                  w="full"
                   mt="5%"
                   colorScheme="white"
                   color="gray.900"

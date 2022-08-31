@@ -10,10 +10,12 @@ import {
   Select,
   FormHelperText,
   Flex,
+  Toast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import AuthUser from "../Auth/AuthUser";
 import axios from "../../APIs/axiosBaseURL";
 
 type FormValues = {
@@ -36,6 +38,16 @@ function SignUpForm() {
     formState: { errors },
   } = useForm<FormValues>();
 
+  const showToast = () => {
+    Toast({
+      position: "top",
+      title: "Registrated Successfully",
+      status: "success",
+      duration: 2500,
+      isClosable: true,
+    });
+  };
+
   const onSubmit = handleSubmit(async (data, e) => {
     e?.preventDefault();
     setLoading(true);
@@ -49,7 +61,10 @@ function SignUpForm() {
           if (response.status >= 200 && response.status < 300) {
             setLoading(false);
             reset();
-            navigate("/DashBoard");
+            showToast();
+            AuthUser.login(() => {
+              navigate("/DashBoard");
+            });
           }
         });
     } catch (err: any) {
@@ -65,7 +80,7 @@ function SignUpForm() {
   });
 
   return (
-    <Flex w={{ base: "100%", md: "100%" }} alignItems="center" justify="center">
+    <Flex w="full" alignItems="center" justify="center">
       <Box mt={{ base: "28%", md: "10%" }} mb={{ base: "23.5%", md: "4%" }}>
         <form onSubmit={onSubmit}>
           <Stack
@@ -75,11 +90,10 @@ function SignUpForm() {
             rounded={6}
             alignItems="center"
             justifyContent="center"
-            pb={{ base: "2%", md: "1%" }}
+            pb={{ base: "5%", md: "6%" }}
             pt={{ base: "11%", md: "8%" }}
           >
             <Heading
-              w="80%"
               color="orange.400"
               textAlign="center"
               fontFamily="sans-serif"
@@ -87,7 +101,7 @@ function SignUpForm() {
             >
               Create Account
             </Heading>
-            <FormControl w={{ base: "70%", md: "70%" }}>
+            <FormControl px={3} w={{ base: "full", md: "90%" }}>
               <FormHelperText
                 pb={{ base: "5%", md: "5%" }}
                 textAlign="center"
@@ -98,7 +112,7 @@ function SignUpForm() {
                 {loginStatus}
               </FormHelperText>
             </FormControl>
-            <FormControl w={{ base: "70%", md: "70%" }}>
+            <FormControl px={3} w={{ base: "full", md: "90%" }}>
               <FormLabel>Email Address</FormLabel>
               <Input
                 type="email"
@@ -111,7 +125,7 @@ function SignUpForm() {
                 {errors.email?.type === "required" && "Email is required"}
               </FormHelperText>
             </FormControl>
-            <FormControl w={{ base: "70%", md: "70%" }}>
+            <FormControl px={3} w={{ base: "full", md: "90%" }}>
               <FormLabel htmlFor="Country Name">Country</FormLabel>
               <Select
                 id="country"
@@ -126,7 +140,7 @@ function SignUpForm() {
                   "Country Name is required"}
               </FormHelperText>
             </FormControl>
-            <FormControl w={{ base: "70%", md: "70%" }}>
+            <FormControl px={3} w={{ base: "full", md: "90%" }}>
               <FormLabel>Phone Number</FormLabel>
               <Input
                 type="telephone"
@@ -146,7 +160,7 @@ function SignUpForm() {
                   "Entered number is more than 15 digits"}
               </FormHelperText>
             </FormControl>
-            <FormControl w={{ base: "70%", md: "70%" }}>
+            <FormControl px={3} w={{ base: "full", md: "90%" }}>
               <FormLabel>Password</FormLabel>
               <Input
                 type="password"
@@ -166,7 +180,7 @@ function SignUpForm() {
                   "Entered Password is more than 12 charactors"}
               </FormHelperText>
             </FormControl>
-            <FormControl w={{ base: "70%", md: "70%" }}>
+            <FormControl px={3} w={{ base: "full", md: "90%" }}>
               <Checkbox
                 id="checkBox"
                 {...register("checkBox", { required: true })}
@@ -178,10 +192,14 @@ function SignUpForm() {
                   "Terms and conditions need to be accepted"}
               </FormHelperText>
             </FormControl>
-            <FormControl textAlign="center" pb={{ base: "5%", md: "7%" }}>
+            <FormControl
+              textAlign="center"
+              px={3}
+              w={{ base: "full", md: "90%" }}
+            >
               <Button
                 size={{ base: "md", md: "md" }}
-                w="70%"
+                w="full"
                 mt="5%"
                 colorScheme="white"
                 color="white"
@@ -198,7 +216,7 @@ function SignUpForm() {
               <Link to="/SignIn">
                 <Button
                   size={{ base: "md", md: "md" }}
-                  w="70%"
+                  w="full"
                   mt="5%"
                   colorScheme="white"
                   color="gray.900"

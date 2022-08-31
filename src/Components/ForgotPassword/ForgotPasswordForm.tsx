@@ -18,6 +18,7 @@ type FormValues = {
 
 function ForgotPasswordForm() {
   const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("");
   const {
     register,
     reset,
@@ -25,20 +26,21 @@ function ForgotPasswordForm() {
     formState: { errors },
   } = useForm<FormValues>();
 
-  const onSubmit = handleSubmit((data, e) => {
+  const onSubmit = handleSubmit(async (data, e) => {
     e?.preventDefault();
     setLoading(true);
-    // eslint-disable-next-line no-console
-    console.log(data);
+    setStatus("Server Response");
     reset();
+    // eslint-disable-next-line no-console
+    console.log(data.email);
   });
 
   return (
-    <Flex w={{ base: "100%", md: "100%" }} alignItems="center" justify="center">
+    <Flex w="full" alignItems="center" justify="center">
       <Box mt={{ base: "28%", md: "10%" }} mb={{ base: "99%", md: "18%" }}>
         <form onSubmit={onSubmit}>
           <Stack
-            w={{ base: "xs", md: "lg" }}
+            w={{ base: "sm", md: "lg" }}
             direction="column"
             rounded={6}
             alignItems="center"
@@ -56,7 +58,18 @@ function ForgotPasswordForm() {
             >
               Forgot Password
             </Heading>
-            <FormControl w={{ base: "90%", md: "90%" }}>
+            <FormControl px={3} w={{ base: "full", md: "90%" }}>
+              <FormHelperText
+                pb={{ base: "1%", md: "1%" }}
+                textAlign="center"
+                fontFamily="sans-serif"
+                fontWeight="semi-bold"
+                color="red.500"
+              >
+                {status}
+              </FormHelperText>
+            </FormControl>
+            <FormControl px={3} w={{ base: "full", md: "90%" }}>
               <FormLabel
                 textAlign="center"
                 color="white"
@@ -65,6 +78,7 @@ function ForgotPasswordForm() {
                 Please provide the email address that you signed up with
               </FormLabel>
               <Input
+                w="full"
                 textAlign="center"
                 color="white"
                 type="email"
@@ -73,15 +87,20 @@ function ForgotPasswordForm() {
                 aria-describedby="email-helper-text"
                 {...register("email", { required: true })}
               />
-              <FormHelperText color="red" textAlign="center">
+              <FormHelperText color="red.500" textAlign="center">
                 {errors.email?.type === "required" &&
                   "Email Address is required"}
               </FormHelperText>
             </FormControl>
-            <FormControl textAlign="center" pb={{ base: "3%", md: "3%" }}>
+            <FormControl
+              textAlign="center"
+              px={3}
+              w={{ base: "full", md: "90%" }}
+              pb={{ base: "3%", md: "3%" }}
+            >
               <Button
                 size={{ base: "md", md: "md" }}
-                w={{ base: "90%", md: "90%" }}
+                w="full"
                 mt="5%"
                 colorScheme="white"
                 color="white"
