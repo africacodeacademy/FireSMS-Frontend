@@ -7,9 +7,8 @@ import {
   Stack,
   Heading,
   FormHelperText,
-  Flex,
-  Box,
   Toast,
+  Flex,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -57,121 +56,117 @@ function SignINForm() {
   });
 
   return (
-    <Flex w="full" alignItems="center" justify="center">
-      <Box mt={{ base: "28%", md: "10%" }} mb={{ base: "27.5%", md: "4%" }}>
+    <Flex minH="100vh" align="center" justify="center">
+      <Stack
+        bg="white"
+        rounded={6}
+        spacing={4}
+        w="90%"
+        maxW="sm"
+        boxShadow="lg"
+        p={6}
+        my={12}
+      >
         <form onSubmit={onSubmit}>
-          <Stack
-            w={{ base: "sm", md: "sm" }}
-            direction="column"
-            bg="white"
-            rounded={6}
-            alignItems="center"
-            justifyContent="center"
-            pb={{ base: "2%", md: "1%" }}
-            pt={{ base: "11%", md: "5%" }}
+          <Heading
+            color="orange.400"
+            fontSize={{ base: "3xl", md: "4xl" }}
+            pt={{ base: "1%", md: "0%" }}
+            textAlign="center"
+            fontFamily="sans-serif"
+            fontWeight="bold"
           >
-            <Heading
-              color="orange.400"
-              pt={{ base: "1%", md: "0%" }}
+            Login
+          </Heading>
+          <FormControl>
+            <FormHelperText
+              pb={{ base: "5%", md: "5%" }}
               textAlign="center"
               fontFamily="sans-serif"
-              fontWeight="bold"
+              fontWeight="semi-bold"
+              color="red"
             >
-              Login
-            </Heading>
-            <FormControl px={3} w={{ base: "full", md: "90%" }}>
-              <FormHelperText
-                pb={{ base: "5%", md: "5%" }}
-                textAlign="center"
-                fontFamily="sans-serif"
-                fontWeight="semi-bold"
-                color="red"
-              >
-                {loginStatus}
-              </FormHelperText>
-            </FormControl>
-            <FormControl px={3} w={{ base: "full", md: "90%" }}>
-              <FormLabel>Email</FormLabel>
-              <Input
-                type="email"
-                id="email"
-                placeholder="Email Address"
-                aria-describedby="email-helper-text"
-                {...register("email", { required: true })}
-              />
-              <FormHelperText color="red">
-                {errors.email?.type === "required" && "Email is required"}
-              </FormHelperText>
-            </FormControl>
-            <FormControl px={3} w={{ base: "full", md: "90%" }}>
-              <FormLabel>Password</FormLabel>
-              <Input
-                type="password"
-                id="password"
-                placeholder="Password"
-                aria-describedby="password-helper-text"
-                {...register("password", {
-                  required: true,
-                  minLength: 6,
-                  maxLength: 12,
-                })}
-              />
-              <FormHelperText color="red">
-                {errors.password?.type === "minLength" &&
-                  "Entered Password is less than 6 charactors"}
-                {errors.password?.type === "maxLength" &&
-                  "Entered Password is more than 12 charactors"}
-              </FormHelperText>
-            </FormControl>
-            <FormControl
-              textAlign="center"
-              px={{ base: "3", md: "7" }}
-              pb={{ base: "3%", md: "3%" }}
+              {loginStatus}
+            </FormHelperText>
+          </FormControl>
+          <FormControl>
+            <FormLabel>Email</FormLabel>
+            <Input
+              type="email"
+              id="email"
+              placeholder="Email Address"
+              aria-describedby="email-helper-text"
+              {...register("email", { required: true })}
+            />
+            <FormHelperText color="red">
+              {errors.email?.type === "required" && "Email is required"}
+            </FormHelperText>
+          </FormControl>
+          <FormControl>
+            <FormLabel>Password</FormLabel>
+            <Input
+              type="password"
+              id="password"
+              placeholder="Password"
+              aria-describedby="password-helper-text"
+              {...register("password", {
+                required: true,
+                minLength: 6,
+                maxLength: 12,
+              })}
+            />
+            <FormHelperText color="red">
+              {errors.password?.type === "minLength" &&
+                "Entered Password is less than 6 charactors"}
+              {errors.password?.type === "maxLength" &&
+                "Entered Password is more than 12 charactors"}
+            </FormHelperText>
+          </FormControl>
+          <FormControl textAlign="center" pb={{ base: "4.6%", md: "4.5%" }}>
+            <Button
+              size={{ base: "md", md: "md" }}
+              w="full"
+              mt="5%"
+              colorScheme="white"
+              id="submitBtn"
+              color="white"
+              type="submit"
+              bg="orange.400"
+              _hover={{ bg: "teal", color: "white" }}
+              variant="ghost"
+              isLoading={loading}
+              loadingText="Submitting"
             >
+              Submit
+            </Button>
+
+            <Link id="SignUp" to="/SignUp">
               <Button
                 size={{ base: "md", md: "md" }}
                 w="full"
                 mt="5%"
                 colorScheme="white"
-                id="submitBtn"
-                color="white"
-                type="submit"
-                bg="orange.400"
-                _hover={{ bg: "teal", color: "white" }}
+                color="gray.900"
+                bg="#CBD5E0"
+                _hover={{ bg: "#CBD5E0", color: "#FF5F0F" }}
                 variant="ghost"
-                isLoading={loading}
-                loadingText="Submitting"
               >
-                Submit
+                Register
               </Button>
-
-              <Link id="SignUp" to="/SignUp">
-                <Button
-                  size={{ base: "md", md: "md" }}
-                  w="full"
-                  mt="5%"
-                  colorScheme="white"
-                  color="gray.900"
-                  bg="#CBD5E0"
-                  _hover={{ bg: "#CBD5E0", color: "#FF5F0F" }}
-                  variant="ghost"
-                >
-                  Register
-                </Button>
-              </Link>
-            </FormControl>
-            <Text
-              cursor="pointer"
-              pb={{ base: "4%", md: "2%" }}
-              color="gray.800"
-            >
-              <Link id="Forgot" to="/ResetPassword">
-                Forgot password
-              </Link>
-            </Text>
-          </Stack>
+            </Link>
+          </FormControl>
+          <Text
+            textAlign="center"
+            cursor="pointer"
+            pb={{ base: "4%", md: "2%" }}
+            color="gray.800"
+          >
+            <Link id="Forgot" to="/ResetPassword">
+              Forgot password
+            </Link>
+          </Text>
         </form>
-      </Box>
+      </Stack>
     </Flex>
   );
 }
