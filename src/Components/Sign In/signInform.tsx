@@ -10,7 +10,7 @@ import {
   useToast,
   Flex,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import AuthUser from "../Auth/AuthUser";
@@ -34,12 +34,6 @@ function SignINForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
-
-  useEffect(() => {
-    AuthUser.logout(() => {
-      navigate("/SignIn");
-    });
-  }, [navigate]);
 
   const showToast = () => {
     toast({
