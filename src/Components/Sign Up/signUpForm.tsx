@@ -11,7 +11,7 @@ import {
   Flex,
   Toast,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import AuthUser from "../Auth/AuthUser";
@@ -47,15 +47,30 @@ function SignUpForm() {
     });
   };
 
+  useEffect(() => {
+    AuthUser.logout(() => {
+      navigate("/SignUp");
+    });
+  }, [navigate]);
+
   const onSubmit = handleSubmit(async (data, e) => {
     e?.preventDefault();
     setLoading(true);
     try {
       await axios
-        .post(REGISTRATION_URL, JSON.stringify({ data }), {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        })
+        .post(
+          REGISTRATION_URL,
+          JSON.stringify({
+            email: data.email,
+            country: data.country,
+            phone: data.phone,
+            password: data.password,
+          }),
+          {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+          },
+        )
         .then((response) => {
           if (response.status >= 200 && response.status < 300) {
             setLoading(false);
@@ -173,14 +188,14 @@ function SignUpForm() {
               {...register("password", {
                 required: true,
                 minLength: 6,
-                maxLength: 12,
+                maxLength: 32,
               })}
             />
             <FormHelperText color="red">
               {errors.password?.type === "minLength" &&
                 "Entered Password is less than 6 charactors"}
               {errors.password?.type === "maxLength" &&
-                "Entered Password is more than 12 charactors"}
+                "Entered Password is more than 32 charactors"}
             </FormHelperText>
           </FormControl>
           <FormControl>

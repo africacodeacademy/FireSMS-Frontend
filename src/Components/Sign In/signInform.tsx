@@ -10,10 +10,11 @@ import {
   Toast,
   Flex,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import AuthUser from "../Auth/AuthUser";
+import axios from "../../APIs/axiosBaseURL";
 
 type FormValues = {
   email: string;
@@ -21,6 +22,7 @@ type FormValues = {
 };
 
 function SignINForm() {
+  const LOGIN_URL = "/user/login";
   const navigate = useNavigate();
   const [loginStatus, setLoginStatus] = useState("");
   const [loading, setLoading] = useState(false);
@@ -31,6 +33,12 @@ function SignINForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
+
+  useEffect(() => {
+    AuthUser.logout(() => {
+      navigate("/SignIn");
+    });
+  }, [navigate]);
 
   const showToast = () => {
     Toast({
@@ -45,14 +53,35 @@ function SignINForm() {
   const onSubmit = handleSubmit(async (data, e) => {
     e?.preventDefault();
     setLoading(true);
-    setLoginStatus("Server Response");
-    // eslint-disable-next-line no-console
-    console.log(data.email, data.password);
-    reset();
-    showToast();
-    AuthUser.login(() => {
-      navigate("/DashBoard");
-    });
+
+    try {
+      await axios
+        .post(LOGIN_URL, JSON.stringify({ data }), {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        })
+        .then((response) => {
+          if (response.status >= 200 && response.status < 300) {
+            setLoading(false);
+            reset();
+            showToast();
+            AuthUser.login(() => {
+              navigate("/DashBoard");
+            });
+          }
+        });
+    } catch (err: any) {
+      setLoading(false);
+      if (!err?.response) {
+        setLoginStatus("No Server Response");
+      } else if (err.response?.status === 400) {
+        setLoginStatus("Missing Username or Password");
+      } else if (err.response?.status === 401) {
+        setLoginStatus("Unauthorized");
+      } else {
+        setLoginStatus("Login Failed");
+      }
+    }
   });
 
   return (
@@ -112,14 +141,14 @@ function SignINForm() {
               {...register("password", {
                 required: true,
                 minLength: 6,
-                maxLength: 12,
+                maxLength: 32,
               })}
             />
             <FormHelperText color="red">
               {errors.password?.type === "minLength" &&
                 "Entered Password is less than 6 charactors"}
               {errors.password?.type === "maxLength" &&
-                "Entered Password is more than 12 charactors"}
+                "Entered Password is more than 32 charactors"}
             </FormHelperText>
           </FormControl>
           <FormControl textAlign="center" pb={{ base: "4.6%", md: "4.5%" }}>
