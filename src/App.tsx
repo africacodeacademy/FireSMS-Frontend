@@ -13,12 +13,12 @@ function App() {
     <Box>
       <Routes>
         <Route path="/" element={<Layout />} />
-        <Route path="/SignIn" element={<SignIn />} />
-        <Route path="/SignUp" element={<SignUp />} />
-        <Route path="/Docs" element={<DisplayDevelopers />} />
-        <Route path="/ResetPassword" element={<ForgotPassword />} />
+        <Route path="/signIn" element={<SignIn />} />
+        <Route path="/signUp" element={<SignUp />} />
+        <Route path="/docs" element={<DisplayDevelopers />} />
+        <Route path="/resetPassword" element={<ForgotPassword />} />
         <Route element={<PrivateRoutes />}>
-          <Route path="/DashBoard" element={<DashBoard />} />
+          <Route path="/dashBoard" element={<DashBoard />} />
         </Route>
       </Routes>
     </Box>

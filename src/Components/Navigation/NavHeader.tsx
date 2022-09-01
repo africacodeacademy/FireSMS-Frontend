@@ -40,9 +40,9 @@ function NavHeader() {
             <Text onClick={goToPricing}>
               <NavButtons name={name} link="/" />
             </Text>
-            <NavButtons name={name2} link="/Docs" />
-            <NavButtons name={name3} link="/SignIn" />
-            <NavButtons name={name4} link="/SignUp" />
+            <NavButtons name={name2} link="/docs" />
+            <NavButtons name={name3} link="/signIn" />
+            <NavButtons name={name4} link="/signUp" />
           </Stack>
           <MenuBtn />
         </Box>

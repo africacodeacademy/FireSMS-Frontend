@@ -6,7 +6,7 @@ function App() {
   const navigate = useNavigate();
   const signOut = () => {
     AuthUser.logout(() => {
-      navigate("/SignIn");
+      navigate("/signIn");
     });
   };
   return (

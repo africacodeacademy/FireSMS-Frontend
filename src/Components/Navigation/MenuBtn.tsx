@@ -37,9 +37,9 @@ function MenuBtn() {
           <Text onClick={goTo}>
             <MyMenuItem name={name} link="/" />
           </Text>
-          <MyMenuItem name={name2} link="/Docs" />
-          <MyMenuItem name={name3} link="/SignIn" />
-          <MyMenuItem name={name4} link="/SignUp" />
+          <MyMenuItem name={name2} link="/docs" />
+          <MyMenuItem name={name3} link="/signIn" />
+          <MyMenuItem name={name4} link="/signUp" />
         </MenuList>
       </Menu>
     </Flex>

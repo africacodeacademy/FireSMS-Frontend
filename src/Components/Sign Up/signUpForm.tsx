@@ -9,7 +9,7 @@ import {
   Select,
   FormHelperText,
   Flex,
-  Toast,
+  useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -29,6 +29,7 @@ function SignUpForm() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const REGISTRATION_URL = "/user";
+  const toast = useToast();
   const {
     register,
     reset,
@@ -37,7 +38,7 @@ function SignUpForm() {
   } = useForm<FormValues>();
 
   const showToast = () => {
-    Toast({
+    toast({
       position: "top",
       title: "Registrated Successfully",
       status: "success",
@@ -69,7 +70,7 @@ function SignUpForm() {
             setLoading(false);
             reset();
             showToast();
-            navigate("/Sign");
+            navigate("/signIn");
           }
         });
     } catch (err: any) {

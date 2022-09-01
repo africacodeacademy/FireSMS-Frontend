@@ -66,7 +66,7 @@ function SignINForm() {
             reset();
             showToast();
             AuthUser.login(() => {
-              navigate("/DashBoard");
+              navigate("/dashBoard");
             });
           }
         });
