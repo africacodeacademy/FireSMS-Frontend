@@ -7,7 +7,7 @@ import {
   Stack,
   Heading,
   FormHelperText,
-  Toast,
+  useToast,
   Flex,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
@@ -26,6 +26,7 @@ function SignINForm() {
   const navigate = useNavigate();
   const [loginStatus, setLoginStatus] = useState("");
   const [loading, setLoading] = useState(false);
+  const toast = useToast();
 
   const {
     register,
@@ -41,7 +42,7 @@ function SignINForm() {
   }, [navigate]);
 
   const showToast = () => {
-    Toast({
+    toast({
       position: "top",
       title: "Logged In Successfully..",
       status: "success",
