@@ -77,7 +77,7 @@ function SignUpForm() {
       setLoading(false);
       if (!err?.response) {
         setLoginStatus("No Server Response");
-      } else if (err.response?.status === 409) {
+      } else if (err.response?.status === 400) {
         setLoginStatus("User Details Already Exists");
       } else {
         setLoginStatus("User Registration Failed");
