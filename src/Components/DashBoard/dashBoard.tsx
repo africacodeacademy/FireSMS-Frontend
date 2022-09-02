@@ -1,13 +1,10 @@
 import { Box, Button, Stack, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import AuthUser from "../Auth/AuthUser";
 
 function App() {
   const navigate = useNavigate();
   const signOut = () => {
-    AuthUser.logout(() => {
-      navigate("/signIn");
-    });
+    navigate("/signIn");
   };
   return (
     <Box alignItems="center">

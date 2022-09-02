@@ -51,10 +51,14 @@ function SignINForm() {
 
     try {
       await axios
-        .post(LOGIN_URL, JSON.stringify({ data }), {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        })
+        .post(
+          LOGIN_URL,
+          JSON.stringify({ emailOrPhone: data.email, password: data.password }),
+          {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+          },
+        )
         .then((response) => {
           if (response.status >= 200 && response.status < 300) {
             setLoading(false);
