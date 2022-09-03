@@ -6,7 +6,6 @@ import SignIn from "./Components/Sign In/signin";
 import SignUp from "./Components/Sign Up/signUp";
 import ForgotPassword from "./Components/ForgotPassword/ForgotPassword";
 import DashBoard from "./Components/DashBoard/dashBoard";
-import PrivateRoutes from "./Components/Auth/PrivateRoutes";
 import ResetPassword from "./Components/ResetPassword/restPassword";
 
 function App() {
@@ -19,9 +18,7 @@ function App() {
         <Route path="/reset-password/:resetId" element={<ResetPassword />} />
         <Route path="/docs" element={<DisplayDevelopers />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />
-        <Route element={<PrivateRoutes />}>
-          <Route path="/dashBoard" element={<DashBoard />} />
-        </Route>
+        <Route path="/dashBoard" element={<DashBoard />} />
       </Routes>
     </Box>
   );

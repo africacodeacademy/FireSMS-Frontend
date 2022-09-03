@@ -13,7 +13,6 @@ import {
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import AuthUser from "../Auth/AuthUser";
 import axios from "../../APIs/axiosBaseURL";
 
 type FormValues = {
@@ -67,9 +66,7 @@ function SignINForm() {
             setLoading(false);
             reset();
             showToast();
-            AuthUser.login(() => {
-              navigate("/dashBoard");
-            });
+            navigate("/dashBoard");
           }
         });
     } catch (err: any) {
