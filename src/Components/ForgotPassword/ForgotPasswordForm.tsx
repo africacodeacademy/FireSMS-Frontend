@@ -6,18 +6,23 @@ import {
   Stack,
   Heading,
   Flex,
+  Text,
   FormHelperText,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { BsCheckCircleFill } from "react-icons/bs";
+import axios from "../../APIs/axiosBaseURL";
 
 type FormValues = {
   email: string;
 };
 
 function ForgotPasswordForm() {
+  const RORGOTPASSWORD_URL = "/user/forgot-password";
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
+  const [submitStatus, setsubmitStatus] = useState(false);
   const {
     register,
     reset,
@@ -28,10 +33,37 @@ function ForgotPasswordForm() {
   const onSubmit = handleSubmit(async (data, e) => {
     e?.preventDefault();
     setLoading(true);
-    setStatus("Server Response");
-    reset();
-    // eslint-disable-next-line no-console
-    console.log(data.email);
+    try {
+      await axios
+        .post(
+          RORGOTPASSWORD_URL,
+          JSON.stringify({
+            emailOrPhone: data.email,
+          }),
+          {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+          },
+        )
+        .then((response) => {
+          if (response.status >= 200 && response.status < 300) {
+            setLoading(false);
+            setsubmitStatus(true);
+            reset();
+          }
+        });
+    } catch (err: any) {
+      setLoading(false);
+      if (!err?.response) {
+        setStatus("No Server Response");
+      } else if (err.response?.status === 400) {
+        setStatus("Missing Username or Password");
+      } else if (err.response?.status === 401) {
+        setStatus("Unauthorized");
+      } else {
+        setStatus("Login Failed");
+      }
+    }
   });
 
   return (
@@ -57,6 +89,28 @@ function ForgotPasswordForm() {
           >
             Forgot Password
           </Heading>
+          {submitStatus && submitStatus === true && (
+            <Stack
+              bg="green.100"
+              color="black"
+              alignItems="center"
+              textAlign="center"
+              mt="2%"
+            >
+              <Text
+                fontSize={{ base: "3xl", md: "5xl" }}
+                pt="7%"
+                color="green.500"
+              >
+                <BsCheckCircleFill />
+              </Text>
+              <Text fontWeight="bold">Request submitted</Text>
+              <Text pb="5%" w="75%">
+                You should receive a password reset email with instructions if
+                your email address has an account
+              </Text>
+            </Stack>
+          )}
           <FormControl>
             <FormHelperText
               pb={{ base: "1%", md: "1%" }}

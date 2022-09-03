@@ -14,14 +14,16 @@ describe("Test SignIn component", () => {
     expect(SignInbuttons).toHaveLength(2);
   });
 
-  test("Check Email input and it should accept email", () => {
+  test("Check userName input", () => {
     render(
       <Router>
         <SignINForm />
       </Router>,
     );
-    const EnteredEmail = screen.getByPlaceholderText("Email Address");
-    expect(EnteredEmail).toHaveAttribute("type", "email");
+    const EntereduserName = screen.getByPlaceholderText(
+      "Email or Phone Number",
+    );
+    expect(EntereduserName).toHaveAttribute("type", "text");
   });
 
   test("password input is password", () => {
@@ -47,8 +49,8 @@ describe("Test SignIn component", () => {
     expect(submitButton).toBeInTheDocument();
 
     const PasswordInput = screen.getByPlaceholderText("Password");
-    const EmailInput = screen.getByPlaceholderText("Email Address");
-    userEvent.type(EmailInput, "molati@gmail.com");
+    const userName = screen.getByPlaceholderText("Email or Phone Number");
+    userEvent.type(userName, "molati@gmail.com");
     userEvent.type(PasswordInput, "57313255");
 
     userEvent.click(submitButton);

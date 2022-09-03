@@ -7,6 +7,7 @@ import SignUp from "./Components/Sign Up/signUp";
 import ForgotPassword from "./Components/ForgotPassword/ForgotPassword";
 import DashBoard from "./Components/DashBoard/dashBoard";
 import PrivateRoutes from "./Components/Auth/PrivateRoutes";
+import ResetPassword from "./Components/ResetPassword/restPassword";
 
 function App() {
   return (
@@ -15,8 +16,9 @@ function App() {
         <Route path="/" element={<Layout />} />
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/signUp" element={<SignUp />} />
+        <Route path="/reset-password/:resetId" element={<ResetPassword />} />
         <Route path="/docs" element={<DisplayDevelopers />} />
-        <Route path="/resetPassword" element={<ForgotPassword />} />
+        <Route path="/forgotPassword" element={<ForgotPassword />} />
         <Route element={<PrivateRoutes />}>
           <Route path="/dashBoard" element={<DashBoard />} />
         </Route>

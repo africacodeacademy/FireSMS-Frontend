@@ -19,7 +19,7 @@ import axios from "../../APIs/axiosBaseURL";
 type FormValues = {
   email: string;
   country: string;
-  phone: number;
+  phone: string;
   password: string;
   checkBox: boolean;
 };
@@ -153,7 +153,7 @@ function SignUpForm() {
           <FormControl>
             <FormLabel>Phone Number</FormLabel>
             <Input
-              type="telephone"
+              type="tel"
               id="phone"
               placeholder="Phone Number"
               aria-describedby="number-helper-text"
@@ -164,6 +164,7 @@ function SignUpForm() {
               })}
             />
             <FormHelperText color="red">
+              {errors.phone?.type === "required" && "Phone number is required"}
               {errors.phone?.type === "minLength" &&
                 "Entered number is less than 8 digits"}
               {errors.phone?.type === "maxLength" &&
@@ -179,15 +180,14 @@ function SignUpForm() {
               aria-describedby="password-helper-text"
               {...register("password", {
                 required: true,
-                minLength: 6,
-                maxLength: 32,
+                pattern:
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{10,32}$/,
               })}
             />
             <FormHelperText color="red">
-              {errors.password?.type === "minLength" &&
-                "Entered Password is less than 6 charactors"}
-              {errors.password?.type === "maxLength" &&
-                "Entered Password is more than 32 charactors"}
+              {errors.password?.type === "required" && "Password is required"}
+              {errors.password?.type === "pattern" &&
+                "Password should at least include 1 Symbol,1 Uppercase, 7 Lowercase & 1 Number,"}
             </FormHelperText>
           </FormControl>
           <FormControl>
@@ -219,7 +219,7 @@ function SignUpForm() {
               Create Account
             </Button>
 
-            <Link to="/SignIn">
+            <Link to="/signIn">
               <Button
                 size={{ base: "md", md: "md" }}
                 w="full"

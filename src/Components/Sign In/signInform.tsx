@@ -17,7 +17,7 @@ import AuthUser from "../Auth/AuthUser";
 import axios from "../../APIs/axiosBaseURL";
 
 type FormValues = {
-  email: string;
+  userName: string;
   password: string;
 };
 
@@ -53,7 +53,10 @@ function SignINForm() {
       await axios
         .post(
           LOGIN_URL,
-          JSON.stringify({ emailOrPhone: data.email, password: data.password }),
+          JSON.stringify({
+            emailOrPhone: data.userName,
+            password: data.password,
+          }),
           {
             headers: { "Content-Type": "application/json" },
             withCredentials: true,
@@ -118,16 +121,17 @@ function SignINForm() {
             </FormHelperText>
           </FormControl>
           <FormControl>
-            <FormLabel>Email</FormLabel>
+            <FormLabel>Username</FormLabel>
             <Input
-              type="email"
-              id="email"
-              placeholder="Email Address"
+              type="text"
+              id="userName"
+              placeholder="Email or Phone Number"
               aria-describedby="email-helper-text"
-              {...register("email", { required: true })}
+              {...register("userName", { required: true })}
             />
             <FormHelperText color="red">
-              {errors.email?.type === "required" && "Email is required"}
+              {errors.userName?.type === "required" &&
+                "Email Address or Phone number required"}
             </FormHelperText>
           </FormControl>
           <FormControl>
@@ -139,15 +143,14 @@ function SignINForm() {
               aria-describedby="password-helper-text"
               {...register("password", {
                 required: true,
-                minLength: 6,
-                maxLength: 32,
+                pattern:
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{10,32}$/,
               })}
             />
             <FormHelperText color="red">
-              {errors.password?.type === "minLength" &&
-                "Entered Password is less than 6 charactors"}
-              {errors.password?.type === "maxLength" &&
-                "Entered Password is more than 32 charactors"}
+              {errors.password?.type === "required" && "Password is required"}
+              {errors.password?.type === "pattern" &&
+                "Password should at least include 1 Symbol,1 Uppercase, 7 Lowercase & 1 Number,"}
             </FormHelperText>
           </FormControl>
           <FormControl textAlign="center" pb={{ base: "4.6%", md: "4.5%" }}>
@@ -168,7 +171,7 @@ function SignINForm() {
               Submit
             </Button>
 
-            <Link id="SignUp" to="/SignUp">
+            <Link id="SignUp" to="/signUp">
               <Button
                 size={{ base: "md", md: "md" }}
                 w="full"
@@ -189,7 +192,7 @@ function SignINForm() {
             pb={{ base: "4%", md: "2%" }}
             color="gray.800"
           >
-            <Link id="Forgot" to="/ResetPassword">
+            <Link id="Forgot" to="/forgotPassword">
               Forgot password
             </Link>
           </Text>
