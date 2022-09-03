@@ -51,7 +51,7 @@ describe("Test SignIn component", () => {
     const PasswordInput = screen.getByPlaceholderText("Password");
     const userName = screen.getByPlaceholderText("Email or Phone Number");
     userEvent.type(userName, "molati@gmail.com");
-    userEvent.type(PasswordInput, "57313255");
+    userEvent.type(PasswordInput, "@EricMolati2022");
 
     userEvent.click(submitButton);
     await screen.findByText(/Submitting/i);

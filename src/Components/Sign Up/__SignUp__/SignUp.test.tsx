@@ -31,7 +31,7 @@ describe("Test SignUp component", () => {
       </Router>,
     );
     const EnteredPhoneNumber = screen.getByPlaceholderText("Phone Number");
-    expect(EnteredPhoneNumber).toHaveAttribute("type", "telephone");
+    expect(EnteredPhoneNumber).toHaveAttribute("type", "tel");
   });
 
   test("password input is password", () => {
@@ -61,7 +61,7 @@ describe("Test SignUp component", () => {
     const EmailInput = screen.getByPlaceholderText("Email Address");
     userEvent.type(EmailInput, "molati@gmail.com");
     userEvent.type(PhoneNumberInput, "595959597");
-    userEvent.type(PasswordInput, "57313255");
+    userEvent.type(PasswordInput, "@EricMolati2022");
     userEvent.selectOptions(
       screen.getByRole("combobox"),
       screen.getByRole("option", { name: "Lesotho" }),
