@@ -56,13 +56,12 @@ function ResetPasswordForm() {
         await axios
           .post(
             RESETPASSWORD_URL,
-            JSON.stringify({
+            {
               resetKey: tokenId,
               newPassword: data.password,
-            }),
+            },
             {
               headers: { "Content-Type": "application/json" },
-              withCredentials: true,
             },
           )
           .then((response) => {

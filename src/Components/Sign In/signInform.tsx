@@ -44,7 +44,7 @@ function SignINForm() {
     });
   };
 
-  const onSubmit = handleSubmit(async (data, e) => {
+  const onSubmit = handleSubmit(async (mydata, e) => {
     e?.preventDefault();
     setLoading(true);
 
@@ -53,20 +53,21 @@ function SignINForm() {
         .post(
           LOGIN_URL,
           JSON.stringify({
-            emailOrPhone: data.userName,
-            password: data.password,
+            emailOrPhone: mydata.userName,
+            password: mydata.password,
           }),
           {
             headers: { "Content-Type": "application/json" },
-            withCredentials: true,
           },
         )
         .then((response) => {
           if (response.status >= 200 && response.status < 300) {
+            localStorage.setItem("access_token", response.data.accessToken);
+            localStorage.setItem("session", response.data);
             setLoading(false);
             reset();
             showToast();
-            navigate("/dashBoard");
+            navigate("/DashBoard");
           }
         });
     } catch (err: any) {

@@ -37,12 +37,11 @@ function ForgotPasswordForm() {
       await axios
         .post(
           RORGOTPASSWORD_URL,
-          JSON.stringify({
+          {
             emailOrPhone: data.email,
-          }),
+          },
           {
             headers: { "Content-Type": "application/json" },
-            withCredentials: true,
           },
         )
         .then((response) => {

@@ -47,22 +47,21 @@ function SignUpForm() {
     });
   };
 
-  const onSubmit = handleSubmit(async (data, e) => {
+  const onSubmit = handleSubmit(async (mydata, e) => {
     e?.preventDefault();
     setLoading(true);
     try {
       await axios
         .post(
           REGISTRATION_URL,
-          JSON.stringify({
-            email: data.email,
-            country: data.country,
-            phone: data.phone,
-            password: data.password,
-          }),
+          {
+            email: mydata.email,
+            country: mydata.country,
+            phone: mydata.phone,
+            password: mydata.password,
+          },
           {
             headers: { "Content-Type": "application/json" },
-            withCredentials: true,
           },
         )
         .then((response) => {
