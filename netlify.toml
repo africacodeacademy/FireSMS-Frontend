@@ -1,7 +1,7 @@
 [build]
   command = "CI= npm run build"
-  publish="/build"
-  base = "build/static/js"
+  publish="/dist"
+  base = "build\static\js"
 [[redirects]]
   from = "/*"
   to = "/index.html"
