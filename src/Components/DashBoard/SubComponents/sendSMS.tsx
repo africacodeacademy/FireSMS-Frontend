@@ -168,7 +168,7 @@ export default function SmsCard() {
                     bg: "blue.500",
                   }}
                 >
-                  Sign in
+                  Send
                 </Button>
               </Stack>
             </form>
