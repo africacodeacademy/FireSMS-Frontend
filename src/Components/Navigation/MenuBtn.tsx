@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { animateScroll as scroll } from "react-scroll";
+import { Link } from "react-router-dom";
 import MyMenuItem from "./MyMenuItem";
 
 function MenuBtn() {
@@ -33,13 +34,21 @@ function MenuBtn() {
           display={["flex", "flex", "none", "none"]}
           mr="4"
         />
-        <MenuList>
+        <MenuList bg="gray.800" color="white" mt="1.5%">
           <Text onClick={goTo}>
-            <MyMenuItem name={name} link="/" />
+            <Link to="/">
+              <MyMenuItem name={name} />
+            </Link>
           </Text>
-          <MyMenuItem name={name2} link="/docs" />
-          <MyMenuItem name={name3} link="/signIn" />
-          <MyMenuItem name={name4} link="/signUp" />
+          <Link to="/docs">
+            <MyMenuItem name={name2} />
+          </Link>
+          <Link to="/signIn">
+            <MyMenuItem name={name3} />
+          </Link>
+          <Link to="/signUp">
+            <MyMenuItem name={name4} />
+          </Link>
         </MenuList>
       </Menu>
     </Flex>

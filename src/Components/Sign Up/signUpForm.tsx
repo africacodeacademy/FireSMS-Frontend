@@ -180,13 +180,19 @@ function SignUpForm() {
               {...register("password", {
                 required: true,
                 pattern:
-                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{10,32}$/,
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{10,30}$/,
+                minLength: 10,
+                maxLength: 30,
               })}
             />
             <FormHelperText color="red">
               {errors.password?.type === "required" && "Password is required"}
+              {errors.password?.type === "minLength" &&
+                "Required Password minLength is 10"}
+              {errors.password?.type === "maxLength" &&
+                "Required Password maxLength is 30"}
               {errors.password?.type === "pattern" &&
-                "Password should at least include 1 Symbol,1 Uppercase, 7 Lowercase & 1 Number,"}
+                "Password should at least include 1 Symbol,1 Uppercase, 1 Lowercase & 1 Number,"}
             </FormHelperText>
           </FormControl>
           <FormControl>

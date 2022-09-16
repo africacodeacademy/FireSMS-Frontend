@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Stack, Text } from "@chakra-ui/react";
 import { animateScroll as scroll } from "react-scroll";
+import { Link } from "react-router-dom";
 import CompanyName from "./CompanyName";
 import MenuBtn from "./MenuBtn";
 import NavButtons from "./NavButtons";
@@ -28,7 +29,9 @@ function NavHeader() {
         pos="fixed"
         zIndex={2}
       >
-        <CompanyName />
+        <Box w="30%">
+          <CompanyName />
+        </Box>
         <Box mt="3" mb="2">
           <Stack
             mr="4"
@@ -38,11 +41,19 @@ function NavHeader() {
             display={["none", "none", "flex", "flex"]}
           >
             <Text onClick={goToPricing}>
-              <NavButtons name={name} link="/" />
+              <Link to="/">
+                <NavButtons name={name} />
+              </Link>
             </Text>
-            <NavButtons name={name2} link="/docs" />
-            <NavButtons name={name3} link="/signIn" />
-            <NavButtons name={name4} link="/signUp" />
+            <Link to="/docs">
+              <NavButtons name={name2} />
+            </Link>
+            <Link to="/signIn">
+              <NavButtons name={name3} />
+            </Link>
+            <Link to="/signUp">
+              <NavButtons name={name4} />
+            </Link>
           </Stack>
           <MenuBtn />
         </Box>

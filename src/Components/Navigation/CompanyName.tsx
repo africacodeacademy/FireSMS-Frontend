@@ -1,26 +1,41 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Flex, HStack, Stack, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import companyLogo from "../DashBoard/logo/logo_fire.png";
 
 function CompanyName() {
   return (
-    <Box mt="4" mb="2">
+    <Flex mt="3.5" mb="2">
       <Link
         to="/"
         onClick={() => {
           window.scroll({ top: 0, left: 0, behavior: "smooth" });
         }}
       >
-        <Text
-          ml="4"
-          color="white"
-          fontWeight="bold"
-          fontSize="24px"
-          cursor="pointer"
-        >
-          FireSMS
-        </Text>
+        <HStack direction="row" spacing={0} mt={{ sm: "0", md: "-2" }}>
+          <Stack
+            w="15%"
+            alignItems="center"
+            ml="4"
+            display={["none", "none", "flex", "flex"]}
+          >
+            <Text mt="-1">
+              <img width="80px" height="40px" alt="logo" src={companyLogo} />
+            </Text>
+          </Stack>
+          <Stack>
+            <Text
+              ml={{ base: "4", md: "1" }}
+              color="white"
+              fontWeight="bold"
+              fontSize="2xl"
+              cursor="pointer"
+            >
+              FireSMS
+            </Text>
+          </Stack>
+        </HStack>
       </Link>
-    </Box>
+    </Flex>
   );
 }
 export default CompanyName;

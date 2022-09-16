@@ -5,8 +5,8 @@ import DisplayDevelopers from "./Components/LandingPageContents/Developers/Displ
 import SignIn from "./Components/Sign In/signin";
 import SignUp from "./Components/Sign Up/signUp";
 import ForgotPassword from "./Components/ForgotPassword/ForgotPassword";
-import DashBoard from "./Components/DashBoard/dashBoard";
 import ResetPassword from "./Components/ResetPassword/restPassword";
+import DashBoard from "./Components/DashBoard/DashBoard";
 
 function App() {
   return (
