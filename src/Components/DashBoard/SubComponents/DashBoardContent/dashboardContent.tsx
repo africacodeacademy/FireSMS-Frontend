@@ -14,49 +14,53 @@ import UserProfile from "./ComponetsContents/userProfile";
 function DashBoardContent() {
   const { selectedContent } = useContext(DashBoardContext);
   return (
-    <Box bg="teal.600" justifyContent="center" alignItems="center">
+    <Box justifyContent="center" alignItems="center" py={10}>
       {selectedContent && selectedContent === "Home" && (
-        <Stack alignItems="center" textAlign="center">
+        <Stack alignItems="center" textAlign="center" mt="2%">
           <DashBoardHome />
         </Stack>
       )}
       {selectedContent && selectedContent === "SendSMS" && (
-        <Stack alignItems="center" textAlign="center">
+        <Stack alignItems="center" mt={{ base: "5%", md: "2%" }}>
           <SendSMS />
         </Stack>
       )}
       {selectedContent && selectedContent === "History" && (
-        <Stack alignItems="center" textAlign="center">
+        <Stack
+          alignItems="center"
+          textAlign="center"
+          mt={{ base: "5%", md: "3%" }}
+        >
           <SMSHistory />
         </Stack>
       )}
       {selectedContent && selectedContent === "SMSBulk" && (
-        <Stack alignItems="center" textAlign="center">
+        <Stack alignItems="center" textAlign="center" mt="2%">
           <SMSBulk />
         </Stack>
       )}
       {selectedContent && selectedContent === "SMSBatch" && (
-        <Stack alignItems="center" textAlign="center">
+        <Stack alignItems="center" textAlign="center" mt="2%">
           <SMSBatch />
         </Stack>
       )}
       {selectedContent && selectedContent === "CheckBalance" && (
-        <Stack alignItems="center" textAlign="center">
+        <Stack alignItems="center" textAlign="center" mt="2%">
           <CheckBalance />
         </Stack>
       )}
       {selectedContent && selectedContent === "Profile" && (
-        <Stack alignItems="center" textAlign="center">
+        <Stack alignItems="center" textAlign="center" mt="2%">
           <UserProfile />
         </Stack>
       )}
       {selectedContent && selectedContent === "Pricing" && (
-        <Stack alignItems="center" textAlign="center">
+        <Stack alignItems="center" textAlign="center" mt="2%">
           <UserPricingOptions />
         </Stack>
       )}
       {selectedContent && selectedContent === "developer" && (
-        <Stack alignItems="center" textAlign="center">
+        <Stack alignItems="center" textAlign="center" mt="2%">
           <DeveloperOptions />
         </Stack>
       )}

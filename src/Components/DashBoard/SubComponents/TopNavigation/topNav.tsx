@@ -38,6 +38,9 @@ function TopNav() {
       borderBottomWidth="1px"
       borderBottomColor={useColorModeValue("gray.200", "gray.700")}
       justifyContent="space-between"
+      pos="fixed"
+      zIndex={2}
+      w={{ base: "100%", md: sideBarSize === "small" ? "94.2%" : "85%" }}
     >
       <Box display={{ base: "contents", md: "none" }}>
         <Text
