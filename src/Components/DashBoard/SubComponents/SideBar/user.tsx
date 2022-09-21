@@ -1,6 +1,7 @@
-import { Avatar, Flex, HStack, Text, VStack } from "@chakra-ui/react";
+import { Flex, HStack, Text, VStack } from "@chakra-ui/react";
 import { useContext } from "react";
 import { DashBoardContext } from "../../DashboardContext/dashboardContext";
+import UserPic from "../../logo/user.png";
 
 function User() {
   const { sideBarSize } = useContext(DashBoardContext);
@@ -14,10 +15,7 @@ function User() {
         mb={sideBarSize === "small" ? "-610%" : "-210%"}
       >
         <HStack cursor="pointer">
-          <Avatar
-            size="sm"
-            src="https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
-          />
+          <img alt="UserPic" width="35px" height="35px" src={UserPic} />
           {sideBarSize && sideBarSize === "large" && (
             <VStack
               display={{ base: "none", md: "flex" }}

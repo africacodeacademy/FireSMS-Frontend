@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {
   Table,
   Thead,
@@ -14,6 +15,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import Loader from "react-spinners/HashLoader";
 import axios from "axios";
 
 function SMSHistory() {
@@ -21,7 +23,11 @@ function SMSHistory() {
   const [status, setStatus] = useState("");
   const [smsMessages, setSmsMessages] = useState<any[]>([]);
   const [page, setPage] = useState(1);
-  const SMS_HISTORY_URL = `https://firesms-messaging-platform.herokuapp.com/sms/message/history?page=${page}&limit=4`;
+  const [totalTexts, setTotalTexts] = useState(0);
+  const [checkStatus, setcheckStatus] = useState(false);
+  const [prevStatus, setprevStatus] = useState(true);
+  const [keepCount, setKeepCount] = useState(10);
+  const SMS_HISTORY_URL = `https://firesms-messaging-platform.herokuapp.com/sms/message/history?page=${page}&limit=10`;
 
   useEffect(() => {
     axios
@@ -34,6 +40,7 @@ function SMSHistory() {
       })
       .then((response) => {
         if (response.status >= 200 && response.status < 300) {
+          setTotalTexts(response.data.messages.count);
           setSmsMessages(response.data.messages.rows);
         }
       })
@@ -41,20 +48,36 @@ function SMSHistory() {
   }, [SMS_HISTORY_URL, token]);
 
   const movetoNext = () => {
-    setPage(page + 1);
+    if (keepCount + 10 >= totalTexts) {
+      setcheckStatus(true);
+    } else {
+      setprevStatus(false);
+      setcheckStatus(false);
+      setPage(page + 1);
+      setKeepCount(keepCount + 10);
+    }
   };
 
   const movetoBack = () => {
-    setPage(page - 1);
+    if (page > 1) {
+      setPage(page - 1);
+      setKeepCount(keepCount - 10);
+      setcheckStatus(false);
+    } else {
+      setprevStatus(true);
+    }
   };
 
   if (smsMessages.length < 1) {
     return (
-      <Box>
-        <Text>Empty.......</Text>
+      <Box mt="3%">
+        <Loader color="#00A3C4" size={50} />
       </Box>
     );
   }
+
+  console.log(keepCount);
+  console.log(totalTexts);
 
   return (
     <Box w="90%">
@@ -82,6 +105,7 @@ function SMSHistory() {
                 <Button
                   size="sm"
                   fontWeight="bold"
+                  isDisabled={prevStatus}
                   bg="teal.200"
                   _hover={{ bg: "red.200", color: "gray.600" }}
                   onClick={movetoBack}
@@ -90,6 +114,7 @@ function SMSHistory() {
                 </Button>
                 <Button
                   size="sm"
+                  isDisabled={checkStatus}
                   fontWeight="bold"
                   bg="teal.200"
                   _hover={{ bg: "teal.500", color: "white" }}
