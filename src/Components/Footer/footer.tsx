@@ -10,9 +10,11 @@ function Footer() {
       borderTopColor={{ base: "gray.300", md: "gray.800" }}
       borderWidth="0.5px"
     >
-      <Text alignItems="center" textAlign="center" color="white">
-        Powered by Africa Code Foundry
-      </Text>
+      <a href="https://africacode.org/">
+        <Text alignItems="center" textAlign="center" color="white">
+          Powered by Africa Code Foundry
+        </Text>
+      </a>
     </Box>
   );
 }

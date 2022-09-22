@@ -14,7 +14,7 @@ function SelectDeveloper() {
     defaultValue: "Javascript",
   });
   return (
-    <Box bg="gray.800" w="100%" textAlign="center" alignItems="center">
+    <Box w="100%" textAlign="center" alignItems="center">
       <Text
         fontSize="4xl"
         fontWeight="bold"
@@ -25,7 +25,7 @@ function SelectDeveloper() {
       >
         Documentation
       </Text>
-      <Text color="white">Use the language of your choice</Text>
+      <Text color="orange.400">Use the language of your choice</Text>
       <Stack
         direction="row"
         pt="5%"

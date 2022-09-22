@@ -156,11 +156,13 @@ function SendSMS() {
                 <Textarea
                   id="smsText"
                   aria-describedby="email-helper-text"
-                  {...register("smsText", { required: true })}
+                  {...register("smsText", { required: true, maxLength: 160 })}
                 />
                 <FormHelperText color="red">
                   {errors.smsText?.type === "required" &&
                     "SMS text is required"}
+                  {errors.smsText?.type === "maxLength" &&
+                    "Entered Text message is more than 160 charactors"}
                 </FormHelperText>
               </FormControl>
               <Stack spacing={10} mt={5}>

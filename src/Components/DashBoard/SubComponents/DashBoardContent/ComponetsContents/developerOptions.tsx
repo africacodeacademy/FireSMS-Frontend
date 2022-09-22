@@ -1,11 +1,10 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
+import SelectDeveloper from "../../../../LandingPageContents/Developers/selectDeveloper";
 
 function DeveloperOptions() {
   return (
-    <Box bg="teal.600">
-      <Text fontSize="lg" fontWeight="semibold" textAlign="center">
-        DeveloperOptions
-      </Text>
+    <Box w="100%">
+      <SelectDeveloper />
     </Box>
   );
 }
