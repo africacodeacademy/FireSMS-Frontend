@@ -6,7 +6,7 @@ import SignIn from "./Components/Sign In/signin";
 import SignUp from "./Components/Sign Up/signUp";
 import ForgotPassword from "./Components/ForgotPassword/ForgotPassword";
 import ResetPassword from "./Components/ResetPassword/restPassword";
-import DashBoard from "./Components/DashBoard/DashBoard";
+import DashBoard from "./Components/DashBoard/dashBoard";
 
 function App() {
   return (
