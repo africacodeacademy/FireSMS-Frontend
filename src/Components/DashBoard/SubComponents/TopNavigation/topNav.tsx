@@ -50,6 +50,7 @@ function TopNav() {
           fontWeight="bold"
           fontSize="24px"
           cursor="pointer"
+          onClick={() => setSelectedContent("Home")}
         >
           FireSMS
         </Text>

@@ -10,6 +10,7 @@ import TopNav from "../TopNavigation/topNav";
 import SidebarContent from "./sideBarContent";
 import DashBoardContent from "../DashBoardContent/dashboardContent";
 import { DashBoardContext } from "../../DashboardContext/dashboardContext";
+import Footer from "../../../Footer/footer";
 
 function SideBarWithHeader() {
   const { isOpen, onClose } = useDisclosure();
@@ -36,6 +37,9 @@ function SideBarWithHeader() {
       <TopNav />
       <Box ml={{ base: 0, md: sideBarSize === "small" ? "79" : "15%" }} p="4">
         <DashBoardContent />
+      </Box>
+      <Box display={{ base: "contents", md: "none" }}>
+        <Footer />
       </Box>
     </Box>
   );

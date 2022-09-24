@@ -1,6 +1,7 @@
 import { Box, Stack } from "@chakra-ui/react";
 import { useContext } from "react";
 import { DashBoardContext } from "../../DashboardContext/dashboardContext";
+import MobileSideBar from "../SideBar/mobileSideBar";
 import CheckBalance from "./ComponetsContents/checkBalance";
 import DashBoardHome from "./ComponetsContents/dashBoardHome";
 import DeveloperOptions from "./ComponetsContents/developerOptions";
@@ -15,17 +16,20 @@ function DashBoardContent() {
   const { selectedContent } = useContext(DashBoardContext);
   return (
     <Box alignItems="center" py={10}>
+      <Box mt="22%" display={{ base: "Block", md: "none" }}>
+        <MobileSideBar />
+      </Box>
       {selectedContent && selectedContent === "Home" && (
         <Stack
           alignItems="center"
           textAlign="center"
-          mt={{ base: "5%", md: "4%" }}
+          mt={{ base: "5%", md: "6%" }}
         >
           <DashBoardHome />
         </Stack>
       )}
       {selectedContent && selectedContent === "SendSMS" && (
-        <Stack alignItems="center" mt={{ base: "5%", md: "4%" }}>
+        <Stack alignItems="center" mt={{ base: "5%", md: "6%" }}>
           <SendSMS />
         </Stack>
       )}
@@ -33,28 +37,28 @@ function DashBoardContent() {
         <Stack
           alignItems="center"
           textAlign="center"
-          mt={{ base: "5%", md: "4%" }}
+          mt={{ base: "5%", md: "6%" }}
         >
           <SMSHistory />
         </Stack>
       )}
       {selectedContent && selectedContent === "SMSBulk" && (
-        <Stack alignItems="center" textAlign="center" mt="4%">
+        <Stack alignItems="center" textAlign="center" mt="6%">
           <SMSBulk />
         </Stack>
       )}
       {selectedContent && selectedContent === "SMSBatch" && (
-        <Stack alignItems="center" textAlign="center" mt="4%">
+        <Stack alignItems="center" textAlign="center" mt="6%">
           <SMSBatch />
         </Stack>
       )}
       {selectedContent && selectedContent === "CheckBalance" && (
-        <Stack alignItems="center" textAlign="center" mt="4%">
+        <Stack alignItems="center" textAlign="center" mt="6%">
           <CheckBalance />
         </Stack>
       )}
       {selectedContent && selectedContent === "Profile" && (
-        <Stack alignItems="center" textAlign="center" mt="4%">
+        <Stack alignItems="center" textAlign="center" mt="6%">
           <UserProfile />
         </Stack>
       )}
@@ -62,7 +66,7 @@ function DashBoardContent() {
         <Stack
           alignItems="center"
           textAlign="center"
-          mt={{ base: "5%", md: "4%" }}
+          mt={{ base: "5%", md: "6%" }}
         >
           <UserPricingOptions />
         </Stack>

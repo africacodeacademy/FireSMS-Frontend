@@ -192,7 +192,7 @@ function SignUpForm() {
               {errors.password?.type === "maxLength" &&
                 "Required Password maxLength is 30"}
               {errors.password?.type === "pattern" &&
-                "Password should at least include 1 Symbol,1 Uppercase, 1 Lowercase & 1 Number,"}
+                "Password should at least include 1 Symbol,1 Uppercase, 1 Lowercase & 1 Number"}
             </FormHelperText>
           </FormControl>
           <FormControl>
