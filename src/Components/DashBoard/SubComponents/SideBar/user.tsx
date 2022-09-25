@@ -4,7 +4,7 @@ import { DashBoardContext } from "../../DashboardContext/dashboardContext";
 import UserPic from "../../logo/user.png";
 
 function User() {
-  const { sideBarSize } = useContext(DashBoardContext);
+  const { sideBarSize, setSelectedContent } = useContext(DashBoardContext);
   return (
     <HStack>
       <Flex
@@ -14,7 +14,7 @@ function User() {
         mx="2"
         mb={sideBarSize === "small" ? "-610%" : "-210%"}
       >
-        <HStack cursor="pointer">
+        <HStack cursor="pointer" onClick={() => setSelectedContent("Profile")}>
           <img alt="UserPic" width="35px" height="35px" src={UserPic} />
           {sideBarSize && sideBarSize === "large" && (
             <VStack

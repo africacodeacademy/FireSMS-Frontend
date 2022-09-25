@@ -1,11 +1,4 @@
-import {
-  Flex,
-  HStack,
-  useColorModeValue,
-  Box,
-  Text,
-  Stack,
-} from "@chakra-ui/react";
+import { Flex, HStack, useColorModeValue, Text, Stack } from "@chakra-ui/react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import NavButtons from "../../../Navigation/NavButtons";
@@ -42,29 +35,8 @@ function TopNav() {
       zIndex={2}
       w={{ base: "100%", md: sideBarSize === "small" ? "94.2%" : "85%" }}
     >
-      <Box display={{ base: "contents", md: "none" }}>
-        <Text
-          mt="13.3"
-          ml="4"
-          color="white"
-          fontWeight="bold"
-          fontSize="24px"
-          cursor="pointer"
-        >
-          FireSMS
-        </Text>
-      </Box>
-      <HStack
-        cursor="pointer"
-        direction="row"
-        display={{ base: "none", md: "contents" }}
-        spacing={0}
-      >
-        <Stack
-          w="5%"
-          alignItems="center"
-          onClick={() => setSelectedContent("Home")}
-        >
+      <HStack cursor="pointer" direction="row" spacing={0} w="50%">
+        <Stack alignItems="center" onClick={() => setSelectedContent("Home")}>
           <img width="30px" height="20px" alt="logo" src={companyLogo} />
         </Stack>
         <Stack w="92%" onClick={() => setSelectedContent("Home")}>

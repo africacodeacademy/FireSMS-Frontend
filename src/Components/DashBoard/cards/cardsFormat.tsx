@@ -16,7 +16,7 @@ function CardsFormat(props: CardData) {
       shadow="lg"
       borderWidth="1px"
       borderRadius="lg"
-      w={{ base: "100%", md: "21%" }}
+      w={{ base: "100%", md: "30%" }}
       {...rest}
     >
       <Heading

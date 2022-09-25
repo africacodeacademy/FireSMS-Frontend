@@ -28,10 +28,10 @@ function DashBaord() {
       setLoading(false);
       navigate("/signIn");
     } else {
-      setLoading(false);
       const token = localStorage.getItem("access_token");
       const decoded: UserValues = jwt_decode(token || "");
       setUsersID(decoded.uuId);
+      setLoading(false);
     }
   }, [navigate]);
 

@@ -7,6 +7,7 @@ function Footer() {
       pb={{ base: "8%", md: "2%" }}
       mb={{ base: "0%", md: "0%" }}
       borderColor="gray.800"
+      bg="gray.800"
       borderTopColor={{ base: "gray.300", md: "gray.800" }}
       borderWidth="0.5px"
     >

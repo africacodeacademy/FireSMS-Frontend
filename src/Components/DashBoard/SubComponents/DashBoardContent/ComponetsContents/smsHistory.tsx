@@ -21,12 +21,13 @@ function SMSHistory() {
   const token = localStorage.getItem("access_token");
   const [status, setStatus] = useState("");
   const [smsMessages, setSmsMessages] = useState<any[]>([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
+  const myLimit = 10;
   const [totalTexts, setTotalTexts] = useState(0);
   const [checkStatus, setcheckStatus] = useState(false);
   const [prevStatus, setprevStatus] = useState(true);
   const [keepCount, setKeepCount] = useState(10);
-  const SMS_HISTORY_URL = `https://firesms-messaging-platform.herokuapp.com/sms/message/history?page=${page}&limit=10`;
+  const SMS_HISTORY_URL = `https://firesms-messaging-platform.herokuapp.com/sms/message/history?page=${page}&limit=${myLimit}`;
 
   useEffect(() => {
     axios
@@ -47,7 +48,7 @@ function SMSHistory() {
   }, [SMS_HISTORY_URL, token]);
 
   const movetoNext = () => {
-    if (keepCount + 10 >= totalTexts) {
+    if (keepCount >= totalTexts) {
       setcheckStatus(true);
     } else {
       setprevStatus(false);
@@ -69,14 +70,11 @@ function SMSHistory() {
 
   if (smsMessages.length < 1) {
     return (
-      <Box mt="3%">
+      <Box mt="3%" mb={{ base: "120%", md: "0%" }}>
         <Loader color="#00A3C4" size={50} />
       </Box>
     );
   }
-
-  console.log(keepCount);
-  console.log(totalTexts);
 
   return (
     <Box w="90%">
@@ -126,15 +124,15 @@ function SMSHistory() {
             <Thead>
               <Tr>
                 <Th>SMS ID</Th>
+                <Th>Date Send</Th>
                 <Th>SMS Text</Th>
-                <Th>SMS Status</Th>
               </Tr>
             </Thead>
             <Tbody>
               {Object.values(smsMessages).map((value) => (
                 <Tr key={value.id + 1}>
                   <Td>{value.id}</Td>
-                  <Td>{value.status}</Td>
+                  <Td>{value.createdAt.split("", 10)}</Td>
                   <Td>{value.text}</Td>
                 </Tr>
               ))}
