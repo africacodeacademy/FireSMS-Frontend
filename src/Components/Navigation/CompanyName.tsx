@@ -12,19 +12,13 @@ function CompanyName() {
         }}
       >
         <HStack direction="row" spacing={0} mt={{ sm: "0", md: "-2" }}>
-          <Stack
-            w="15%"
-            alignItems="center"
-            ml="4"
-            display={["none", "none", "flex", "flex"]}
-          >
+          <Stack w="15%" alignItems="center" ml={{ base: "0", md: "4" }}>
             <Text mt="-1">
               <img width="80px" height="40px" alt="logo" src={companyLogo} />
             </Text>
           </Stack>
           <Stack>
             <Text
-              ml={{ base: "4", md: "1" }}
               color="white"
               fontWeight="bold"
               fontSize="2xl"

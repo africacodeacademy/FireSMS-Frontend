@@ -1,4 +1,5 @@
-import { Box, Stack, Text } from "@chakra-ui/react";
+import { Box, Stack } from "@chakra-ui/react";
+import CardsFormat from "../../../cards/cardsFormat";
 import Allcharts from "../../../charts/allCharts";
 
 function CheckBalance() {
@@ -16,33 +17,10 @@ function CheckBalance() {
         justifyContent="center"
         direction={{ base: "column", md: "row" }}
         mb="4%"
-        w="100%"
       >
-        <Stack
-          bg="white"
-          alignItems={{ base: "center", md: "left" }}
-          justifyContent="left"
-          shadow="lg"
-          p={2}
-          pt="3%"
-          pb="4%"
-          borderWidth="1px"
-          borderRadius="lg"
-          w={{ base: "100%", md: "32%" }}
-        >
-          <Text
-            color="gray.700"
-            fontSize="2xl"
-            pb="1"
-            fontFamily="Arial"
-            fontWeight="bold"
-          >
-            Available Balance
-          </Text>
-          <Text fontSize="xl" color="blue.500" fontWeight="semibold">
-            25 Points
-          </Text>
-        </Stack>
+        <CardsFormat title="Balance" subTitle="" dataContent1="25 Points" />
+        <CardsFormat title="Failed Messages" subTitle="" dataContent1="0" />
+        <CardsFormat title="Pending Messages" subTitle="" dataContent1="0" />
       </Stack>
       <Allcharts />
     </Box>
