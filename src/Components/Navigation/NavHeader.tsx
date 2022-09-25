@@ -29,7 +29,7 @@ function NavHeader() {
         pos="fixed"
         zIndex={2}
       >
-        <Box w="30%" ml={{ base: "4", md: "0" }}>
+        <Box w="30%" ml={{ base: "2", md: "0" }}>
           <CompanyName />
         </Box>
         <Box mt="3" mb="2">
