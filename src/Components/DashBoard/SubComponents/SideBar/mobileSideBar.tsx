@@ -105,7 +105,7 @@ function MobileSideBar() {
           color: "white",
         }}
         _hover={{ bg: "orange.400", color: "white" }}
-        w={{ base: "80%", md: "0%" }}
+        w={{ base: "82%", md: "0%" }}
       >
         <Text fontSize="1xl" fontWeight="bold">
           Balance
