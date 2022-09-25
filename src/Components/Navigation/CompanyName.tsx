@@ -19,7 +19,7 @@ function CompanyName() {
           w="100%"
         >
           <Stack w={{ base: "17%", md: "17%" }} alignItems="center">
-            <Text mt="-2">
+            <Text mt="-3">
               <img width="80px" height="40px" alt="logo" src={companyLogo} />
             </Text>
           </Stack>
