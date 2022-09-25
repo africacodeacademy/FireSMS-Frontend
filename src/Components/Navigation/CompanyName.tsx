@@ -4,20 +4,22 @@ import companyLogo from "../DashBoard/logo/logo_fire.png";
 
 function CompanyName() {
   return (
-    <Flex mt="3.5" mb="2">
+    <Flex mt="3.5" mb="2" w="100%">
       <Link
         to="/"
         onClick={() => {
           window.scroll({ top: 0, left: 0, behavior: "smooth" });
         }}
       >
-        <HStack direction="row" spacing={0} mt={{ sm: "0", md: "-2" }}>
-          <Stack
-            w={{ base: "20%", md: "15%" }}
-            alignItems="center"
-            ml={{ md: "3" }}
-          >
-            <Text mt="-1">
+        <HStack
+          direction="row"
+          spacing={0}
+          mt={{ sm: "0", md: "-2" }}
+          ml="1"
+          w="100%"
+        >
+          <Stack w={{ base: "17%", md: "17%" }} alignItems="center">
+            <Text mt="-2">
               <img width="80px" height="40px" alt="logo" src={companyLogo} />
             </Text>
           </Stack>
