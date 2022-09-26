@@ -19,7 +19,7 @@ type FormValues = {
 };
 
 function ForgotPasswordForm() {
-  const RORGOTPASSWORD_URL = "/user/forgot-password";
+  const RORGOTPASSWORD_URL = "/api/v1/user/forgot-password";
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
   const [submitStatus, setsubmitStatus] = useState(false);
@@ -55,12 +55,12 @@ function ForgotPasswordForm() {
       setLoading(false);
       if (!err?.response) {
         setStatus("No Server Response");
-      } else if (err.response?.status === 400) {
-        setStatus("Missing Username or Password");
+      } else if (err.response?.status === 404) {
+        setStatus("User not found");
       } else if (err.response?.status === 401) {
-        setStatus("Unauthorized");
+        setStatus("Failed to send reset email");
       } else {
-        setStatus("Login Failed");
+        setStatus("Failed to submit email");
       }
     }
   });

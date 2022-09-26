@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import Loader from "react-spinners/HashLoader";
-import axios from "axios";
+import axios from "../../../../../APIs/axiosBaseURL";
 
 function SMSHistory() {
   const token = localStorage.getItem("access_token");
@@ -27,7 +27,7 @@ function SMSHistory() {
   const [checkStatus, setcheckStatus] = useState(false);
   const [prevStatus, setprevStatus] = useState(true);
   const [keepCount, setKeepCount] = useState(10);
-  const SMS_HISTORY_URL = `https://firesms-messaging-platform.herokuapp.com/sms/message/history?page=${page}&limit=${myLimit}`;
+  const SMS_HISTORY_URL = `/api/v1/sms/message/history?page=${page}&limit=${myLimit}`;
 
   useEffect(() => {
     axios
@@ -77,7 +77,7 @@ function SMSHistory() {
   }
 
   return (
-    <Box w="90%">
+    <Box w="100%">
       <Heading
         fontSize="3xl"
         fontWeight="semibold"

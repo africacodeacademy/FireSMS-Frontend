@@ -21,7 +21,7 @@ type FormValues = {
 };
 
 function SignINForm() {
-  const LOGIN_URL = "/user/login";
+  const LOGIN_URL = "/api/v1/user/login";
   const navigate = useNavigate();
   const [loginStatus, setLoginStatus] = useState("");
   const [loading, setLoading] = useState(false);
