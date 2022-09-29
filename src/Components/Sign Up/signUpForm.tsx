@@ -200,11 +200,12 @@ function SignUpForm() {
               id="checkBox"
               {...register("checkBox", { required: true })}
             >
-              Accept Tearms and Conditions
+              Accept Terms and Conditions
             </Checkbox>
             <FormHelperText color="red">
               {errors.checkBox?.type === "required" &&
-                "Terms and conditions need to be accepted"}
+                "26773867278
+26776495683 need to be accepted"}
             </FormHelperText>
           </FormControl>
           <FormControl>
