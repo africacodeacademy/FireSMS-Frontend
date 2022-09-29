@@ -38,7 +38,7 @@ function DashBoardContent() {
           alignItems="center"
           textAlign="center"
           mt={{ base: "5%", md: "6%" }}
-          mb={{ base: "8%", md: "1%" }}
+          mb={{ base: "90%", md: "1%" }}
         >
           <SMSHistory />
         </Stack>

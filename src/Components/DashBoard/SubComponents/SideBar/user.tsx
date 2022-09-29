@@ -4,7 +4,8 @@ import { DashBoardContext } from "../../DashboardContext/dashboardContext";
 import UserPic from "../../logo/user.png";
 
 function User() {
-  const { sideBarSize, setSelectedContent } = useContext(DashBoardContext);
+  const { sideBarSize, setSelectedContent, userName } =
+    useContext(DashBoardContext);
   return (
     <HStack>
       <Flex
@@ -24,7 +25,7 @@ function User() {
               fontSize="16"
             >
               <Text fontSize="sm" color="gray.800">
-                User Name
+                {userName}
               </Text>
             </VStack>
           )}

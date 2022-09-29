@@ -29,7 +29,7 @@ function SMSBulk() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
   const toast = useToast();
-  const SMS_URL = "";
+  const SMS_BULK = "/api/v1/send/bulk";
 
   const {
     register,
@@ -55,12 +55,12 @@ function SMSBulk() {
     try {
       await axios
         .post(
-          SMS_URL,
+          SMS_BULK,
           {
             userId: usersID,
             action: "message_send",
             text: mydata.smsText,
-            to: mydata.receivernumber,
+            to: mydata.receivernumber.split(/\r\n/),
             from: mydata.fromUser,
           },
           {
@@ -79,7 +79,7 @@ function SMSBulk() {
       if (!err?.response) {
         setStatus("No Server Response");
       } else {
-        setStatus("Failed............");
+        setStatus("Failed to send SMS");
       }
     }
   });
@@ -117,7 +117,7 @@ function SMSBulk() {
                 <FormLabel>Send SMS TO</FormLabel>
                 <Textarea
                   id="number"
-                  placeholder="Enter or Paste Batch Phone numbers line by line"
+                  placeholder="Enter or Paste Recipients Phone numbers line by line"
                   aria-describedby="number-helper-text"
                   {...register("receivernumber", {
                     required: true,
@@ -125,21 +125,9 @@ function SMSBulk() {
                 />
                 <FormHelperText color="red" textAlign="left">
                   {errors.receivernumber?.type === "required" &&
-                    "Phones number required"}
+                    "Recipients  Phone numbers required"}
                 </FormHelperText>
               </FormControl>
-              <Text fontWeight="semibold">OR</Text>
-              <Stack spacing={10} mt={2} mb={7}>
-                <Button
-                  textAlign="center"
-                  bg="blue.400"
-                  color="white"
-                  _hover={{ bg: "teal.500", color: "white" }}
-                  variant="ghost"
-                >
-                  Upload Recipients contacts by File
-                </Button>
-              </Stack>
               <FormControl>
                 <FormLabel>SMS Text</FormLabel>
                 <Textarea

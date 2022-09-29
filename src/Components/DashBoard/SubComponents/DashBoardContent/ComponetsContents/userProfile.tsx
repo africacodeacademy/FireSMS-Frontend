@@ -1,9 +1,12 @@
 import { Box, Stack, Text } from "@chakra-ui/react";
+import { useContext } from "react";
+import { DashBoardContext } from "../../../DashboardContext/dashboardContext";
 import UserPic from "../../../logo/user.png";
 import UpdatePassword from "./updatePasswordForm";
 
 function UserProfile() {
-  const email = "neomolati2020@gmail.com";
+  const { email, phoneNumber, country, userName } =
+    useContext(DashBoardContext);
   return (
     <Box
       id="profile"
@@ -32,10 +35,10 @@ function UserProfile() {
           w={{ base: "100%", md: "32%" }}
         >
           <img alt="UserPic" width="100px" height="100px" src={UserPic} />
-          <Text>Username : Molati</Text>
-          <Text>Country : Lesotho</Text>
-          <Text>Phone number : 63636363</Text>
-          <Text>Email Address : MolatiPaballo@gmail.com</Text>
+          <Text>Username : {userName}</Text>
+          <Text>Country : {country}</Text>
+          <Text>Phone number : {phoneNumber}</Text>
+          <Text>Email Address : {email}</Text>
         </Stack>
 
         <Stack

@@ -79,7 +79,7 @@ function SMSBatch() {
       if (!err?.response) {
         setStatus("No Server Response");
       } else {
-        setStatus("Failed....");
+        setStatus("Failed to send SMS");
       }
     }
   });

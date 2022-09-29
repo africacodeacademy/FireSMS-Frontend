@@ -60,7 +60,7 @@ function SendSMS() {
             userId: usersID,
             action: "message_send",
             text: mydata.smsText,
-            to: mydata.receivernumber,
+            to: mydata.receivernumber.split(/\n/),
             from: mydata.fromUser,
           },
           {
