@@ -38,6 +38,7 @@ function DashBoardContent() {
           alignItems="center"
           textAlign="center"
           mt={{ base: "5%", md: "6%" }}
+          mb={{ base: "90%", md: "1%" }}
         >
           <SMSHistory />
         </Stack>
@@ -72,7 +73,11 @@ function DashBoardContent() {
         </Stack>
       )}
       {selectedContent && selectedContent === "developer" && (
-        <Stack alignItems="center" textAlign="center" mt="-3%">
+        <Stack
+          alignItems="center"
+          textAlign="center"
+          mt={{ base: "-25%", md: "-3%" }}
+        >
           <DeveloperOptions />
         </Stack>
       )}

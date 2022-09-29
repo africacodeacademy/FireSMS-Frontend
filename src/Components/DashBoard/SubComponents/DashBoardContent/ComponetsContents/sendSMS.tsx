@@ -29,7 +29,7 @@ function SendSMS() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
   const toast = useToast();
-  const SMS_URL = "/sms";
+  const SMS_URL = "/api/v1/send/message";
 
   const {
     register,
@@ -60,7 +60,7 @@ function SendSMS() {
             userId: usersID,
             action: "message_send",
             text: mydata.smsText,
-            to: mydata.receivernumber,
+            to: mydata.receivernumber.split(/\n/),
             from: mydata.fromUser,
           },
           {
@@ -136,6 +136,21 @@ function SendSMS() {
                 </FormHelperText>
               </FormControl>
               <FormControl>
+                <FormLabel>SMS Text</FormLabel>
+                <Textarea
+                  id="smsText"
+                  placeholder="Enter Text Message"
+                  aria-describedby="email-helper-text"
+                  {...register("smsText", { required: true, maxLength: 160 })}
+                />
+                <FormHelperText color="red">
+                  {errors.smsText?.type === "required" &&
+                    "SMS text is required"}
+                  {errors.smsText?.type === "maxLength" &&
+                    "Entered Text message is more than 160 charactors"}
+                </FormHelperText>
+              </FormControl>
+              <FormControl>
                 <FormLabel>SMS From</FormLabel>
                 <Input
                   type="text"
@@ -149,20 +164,6 @@ function SendSMS() {
                 <FormHelperText color="red">
                   {errors.fromUser?.type === "required" &&
                     "Phone number or Name is required"}
-                </FormHelperText>
-              </FormControl>
-              <FormControl>
-                <FormLabel>SMS Text</FormLabel>
-                <Textarea
-                  id="smsText"
-                  aria-describedby="email-helper-text"
-                  {...register("smsText", { required: true, maxLength: 160 })}
-                />
-                <FormHelperText color="red">
-                  {errors.smsText?.type === "required" &&
-                    "SMS text is required"}
-                  {errors.smsText?.type === "maxLength" &&
-                    "Entered Text message is more than 160 charactors"}
                 </FormHelperText>
               </FormControl>
               <Stack spacing={10} mt={5}>

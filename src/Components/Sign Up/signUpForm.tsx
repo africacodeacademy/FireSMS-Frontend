@@ -28,7 +28,7 @@ function SignUpForm() {
   const [loginStatus, setLoginStatus] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const REGISTRATION_URL = "/user";
+  const REGISTRATION_URL = "/api/v1/user";
   const toast = useToast();
   const {
     register,

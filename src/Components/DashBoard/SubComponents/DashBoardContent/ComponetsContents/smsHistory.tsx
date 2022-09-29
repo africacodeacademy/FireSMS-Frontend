@@ -15,9 +15,10 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import Loader from "react-spinners/HashLoader";
-import axios from "axios";
+import axios from "../../../../../APIs/axiosBaseURL";
 
 function SMSHistory() {
+  const [loading, setLoading] = useState(true);
   const token = localStorage.getItem("access_token");
   const [status, setStatus] = useState("");
   const [smsMessages, setSmsMessages] = useState<any[]>([]);
@@ -27,7 +28,7 @@ function SMSHistory() {
   const [checkStatus, setcheckStatus] = useState(false);
   const [prevStatus, setprevStatus] = useState(true);
   const [keepCount, setKeepCount] = useState(10);
-  const SMS_HISTORY_URL = `https://firesms-messaging-platform.herokuapp.com/sms/message/history?page=${page}&limit=${myLimit}`;
+  const SMS_HISTORY_URL = `/api/v1/sms/message/history?page=${page}&limit=${myLimit}`;
 
   useEffect(() => {
     axios
@@ -42,9 +43,13 @@ function SMSHistory() {
         if (response.status >= 200 && response.status < 300) {
           setTotalTexts(response.data.messages.count);
           setSmsMessages(response.data.messages.rows);
+          setLoading(false);
         }
       })
-      .catch(() => setStatus("Failed to retrieve SMS texts"));
+      .catch(() => {
+        setStatus("Empty");
+        setLoading(false);
+      });
   }, [SMS_HISTORY_URL, token]);
 
   const movetoNext = () => {
@@ -68,7 +73,7 @@ function SMSHistory() {
     }
   };
 
-  if (smsMessages.length < 1) {
+  if (loading === true) {
     return (
       <Box mt="3%" mb={{ base: "120%", md: "0%" }}>
         <Loader color="#00A3C4" size={50} />
@@ -77,7 +82,7 @@ function SMSHistory() {
   }
 
   return (
-    <Box w="90%">
+    <Box w="100%">
       <Heading
         fontSize="3xl"
         fontWeight="semibold"
@@ -123,7 +128,7 @@ function SMSHistory() {
             </TableCaption>
             <Thead>
               <Tr>
-                <Th>SMS ID</Th>
+                <Th>SMS Recipient</Th>
                 <Th>Date Send</Th>
                 <Th>SMS Text</Th>
               </Tr>
@@ -131,7 +136,7 @@ function SMSHistory() {
             <Tbody>
               {Object.values(smsMessages).map((value) => (
                 <Tr key={value.id + 1}>
-                  <Td>{value.id}</Td>
+                  <Td>{value.to}</Td>
                   <Td>{value.createdAt.split("", 10)}</Td>
                   <Td>{value.text}</Td>
                 </Tr>

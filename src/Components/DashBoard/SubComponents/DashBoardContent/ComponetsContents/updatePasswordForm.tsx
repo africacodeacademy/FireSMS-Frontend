@@ -30,7 +30,7 @@ function UpdatePassword({ email }: EmailProp) {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
   const toast = useToast();
-  const UPDATE_URL = "/user/update-password";
+  const UPDATE_URL = "/api/v1/user/update-password";
   const navigate = useNavigate();
 
   const {

@@ -11,6 +11,9 @@ type UserValues = {
   uuId: string;
   decoded: string;
   idUser: string;
+  email: string;
+  country: string;
+  phone: string;
 };
 
 function DashBaord() {
@@ -21,6 +24,10 @@ function DashBaord() {
   const navigate = useNavigate();
   const [usersID, setUsersID] = useState("");
   const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [country, setCountry] = useState("");
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
     setLoading(true);
@@ -30,7 +37,11 @@ function DashBaord() {
     } else {
       const token = localStorage.getItem("access_token");
       const decoded: UserValues = jwt_decode(token || "");
+      setEmail(decoded.email);
+      setCountry(decoded.country);
+      setPhoneNumber(decoded.phone);
       setUsersID(decoded.uuId);
+      setUserName(decoded.email.split("@")[0]);
       setLoading(false);
     }
   }, [navigate]);
@@ -52,6 +63,10 @@ function DashBaord() {
           selectedContent,
           setSelectedContent,
           usersID,
+          phoneNumber,
+          email,
+          country,
+          userName,
         }}
       >
         <SideBarWithHeader />
