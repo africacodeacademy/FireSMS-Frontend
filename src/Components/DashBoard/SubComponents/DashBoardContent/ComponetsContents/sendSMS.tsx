@@ -27,7 +27,7 @@ function SendSMS() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
   const toast = useToast();
-  const SMS_URL = "/api/v1/send/message";
+  const SMS_URL = "/api/v1/send/bulk";
 
   const {
     register,
