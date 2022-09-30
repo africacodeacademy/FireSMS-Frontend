@@ -60,7 +60,7 @@ function SMSBulk() {
             userId: usersID,
             action: "message_send",
             text: mydata.smsText,
-            to: mydata.receivernumber.split(/\r\n/),
+            to: mydata.receivernumber.split(/\n/),
             from: mydata.fromUser,
           },
           {
