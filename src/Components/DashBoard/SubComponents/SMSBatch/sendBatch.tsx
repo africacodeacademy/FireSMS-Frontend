@@ -14,7 +14,6 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import axios from "../../../../APIs/axiosBaseURL";
 
 type FormValues = {
   smsText: string;
@@ -23,15 +22,12 @@ type FormValues = {
 };
 
 function SMSBatch() {
-  const token = localStorage.getItem("access_token");
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
   const toast = useToast();
-  const SMS_URL = "";
 
   const {
     register,
-    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
@@ -49,35 +45,15 @@ function SMSBatch() {
   const onSubmit = handleSubmit(async (mydata, e) => {
     e?.preventDefault();
     setLoading(true);
-
-    try {
-      await axios
-        .post(
-          SMS_URL,
-          {
-            text: mydata.smsText,
-            to: mydata.receivernumber,
-            from: mydata.fromUser,
-          },
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          },
-        )
-        .then((response) => {
-          if (response.status >= 200 && response.status < 300) {
-            setLoading(false);
-            showToast();
-            reset();
-          }
-        });
-    } catch (err: any) {
-      setLoading(false);
-      if (!err?.response) {
-        setStatus("No Server Response");
-      } else {
-        setStatus("Failed to send SMS");
-      }
-    }
+    // eslint-disable-next-line no-console
+    console.log(mydata.receivernumber);
+    // eslint-disable-next-line no-console
+    console.log(mydata.smsText);
+    // eslint-disable-next-line no-console
+    console.log(mydata.fromUser);
+    showToast();
+    setStatus("");
+    setLoading(false);
   });
   return (
     <Flex align="center" justify="center" w="100%">
