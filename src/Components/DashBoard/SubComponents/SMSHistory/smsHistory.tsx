@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import Loader from "react-spinners/HashLoader";
-import axios from "../../../../../APIs/axiosBaseURL";
+import axios from "../../../../APIs/axiosBaseURL";
 
 function SMSHistory() {
   const [loading, setLoading] = useState(true);

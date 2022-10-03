@@ -67,7 +67,7 @@ function SignINForm() {
             setLoading(false);
             reset();
             showToast();
-            navigate("/DashBoard");
+            navigate("/dashBoard");
           }
         });
     } catch (err: any) {

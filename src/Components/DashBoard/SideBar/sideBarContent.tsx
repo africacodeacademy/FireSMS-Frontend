@@ -8,15 +8,14 @@ import { TiMessages } from "react-icons/ti";
 import { useContext } from "react";
 import NavItem from "./NavItemFormat";
 import User from "./user";
-import { DashBoardContext } from "../../DashboardContext/dashboardContext";
+import { DashBoardContext } from "../DashboardContext/dashboardContext";
 
 interface SidebarProps extends BoxProps {
   onClose: () => void;
 }
 
 export default function SidebarContent({ onClose, ...rest }: SidebarProps) {
-  const { sideBarSize, setSideBarSize, setSelectedContent } =
-    useContext(DashBoardContext);
+  const { sideBarSize, setSideBarSize } = useContext(DashBoardContext);
   return (
     <Box
       transition="0.3s ease"
@@ -57,40 +56,44 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps) {
       </Flex>
       {sideBarSize && sideBarSize === "large" && (
         <>
-          <Text as="span" onClick={() => setSelectedContent("SendSMS")}>
-            <NavItem icon={MdOutlineSms} name="Send SMS" />
-          </Text>
-          <Text as="span" onClick={() => setSelectedContent("SMSBulk")}>
-            <NavItem icon={BiMessageSquareDetail} name="Send Bulk" />
-          </Text>
-          <Text as="span" onClick={() => setSelectedContent("SMSBatch")}>
-            <NavItem icon={TbMessageShare} name="Send Batch" />
-          </Text>
-          <Text as="span" onClick={() => setSelectedContent("History")}>
-            <NavItem icon={TiMessages} name="SMS History" />
-          </Text>
-          <Text as="span" onClick={() => setSelectedContent("CheckBalance")}>
-            <NavItem icon={MdOutlineAccountBalanceWallet} name="View Balance" />
-          </Text>
+          <NavItem icon={MdOutlineSms} name="Send SMS" link="/dashBoard/sms" />
+          <NavItem
+            icon={BiMessageSquareDetail}
+            name="Send Bulk"
+            link="/dashBoard/sms-bulk"
+          />
+          <NavItem
+            icon={TbMessageShare}
+            name="Send Batch"
+            link="/dashBoard/sms-batch"
+          />
+          <NavItem
+            icon={TiMessages}
+            name="SMS History"
+            link="/dashBoard/sms-history"
+          />
+          <NavItem
+            icon={MdOutlineAccountBalanceWallet}
+            name="View Balance"
+            link="/dashBoard/account-balance"
+          />
         </>
       )}
       {sideBarSize && sideBarSize === "small" && (
         <>
-          <Text as="span" onClick={() => setSelectedContent("SendSMS")}>
-            <NavItem icon={MdOutlineSms} name="" />
-          </Text>
-          <Text as="span" onClick={() => setSelectedContent("SMSBulk")}>
-            <NavItem icon={BiMessageSquareDetail} name="" />
-          </Text>
-          <Text as="span" onClick={() => setSelectedContent("SMSBatch")}>
-            <NavItem icon={TbMessageShare} name="" />
-          </Text>
-          <Text as="span" onClick={() => setSelectedContent("History")}>
-            <NavItem icon={TiMessages} name="" />
-          </Text>
-          <Text as="span" onClick={() => setSelectedContent("CheckBalance")}>
-            <NavItem icon={MdOutlineAccountBalanceWallet} name="" />
-          </Text>
+          <NavItem icon={MdOutlineSms} name="" link="/dashBoard/sms" />
+          <NavItem
+            icon={BiMessageSquareDetail}
+            name=""
+            link="/dashBoard/sms-bulk"
+          />
+          <NavItem icon={TbMessageShare} name="" link="/dashBoard/sms-batch" />
+          <NavItem icon={TiMessages} name="" link="/dashBoard/sms-history" />
+          <NavItem
+            icon={MdOutlineAccountBalanceWallet}
+            name=""
+            link="/dashBoard/account-balance"
+          />
         </>
       )}
       <User />

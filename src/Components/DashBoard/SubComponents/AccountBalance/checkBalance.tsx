@@ -1,9 +1,9 @@
 import { Box, Stack, Text } from "@chakra-ui/react";
 import Loader from "react-spinners/HashLoader";
 import { useEffect, useState } from "react";
-import CardsFormat from "../../../cards/cardsFormat";
-import Allcharts from "../../../charts/allCharts";
-import axios from "../../../../../APIs/axiosBaseURL";
+import CardsFormat from "../../cards/cardsFormat";
+import Allcharts from "../../charts/allCharts";
+import axios from "../../../../APIs/axiosBaseURL";
 
 function CheckBalance() {
   const [loading, setLoading] = useState(true);

@@ -1,12 +1,42 @@
 import { Box, Stack, Text } from "@chakra-ui/react";
-import { useContext } from "react";
-import { DashBoardContext } from "../../../DashboardContext/dashboardContext";
-import UserPic from "../../../logo/user.png";
+import jwt_decode from "jwt-decode";
+import { useEffect, useState } from "react";
+import Loader from "react-spinners/HashLoader";
 import UpdatePassword from "./updatePasswordForm";
 
+type UserValues = {
+  decoded: string;
+  email: string;
+  country: string;
+  phone: string;
+};
+
 function UserProfile() {
-  const { email, phoneNumber, country, userName } =
-    useContext(DashBoardContext);
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [country, setCountry] = useState("");
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    setLoading(true);
+    const token = localStorage.getItem("access_token");
+    const decoded: UserValues = jwt_decode(token || "");
+    setEmail(decoded.email);
+    setCountry(decoded.country);
+    setPhoneNumber(decoded.phone);
+    setUserName(decoded.email.split("@")[0]);
+    setLoading(false);
+  }, []);
+
+  if (loading === true) {
+    return (
+      <Box mt="3%">
+        <Loader color="#00A3C4" size={50} />
+      </Box>
+    );
+  }
+
   return (
     <Box
       id="profile"
@@ -34,7 +64,12 @@ function UserProfile() {
           borderRadius="lg"
           w={{ base: "100%", md: "32%" }}
         >
-          <img alt="UserPic" width="100px" height="100px" src={UserPic} />
+          <img
+            alt="UserPic"
+            width="100px"
+            height="100px"
+            src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png"
+          />
           <Text>Username : {userName}</Text>
           <Text>Country : {country}</Text>
           <Text>Phone number : {phoneNumber}</Text>

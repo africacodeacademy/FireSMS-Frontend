@@ -13,7 +13,7 @@ import {
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import axios from "../../../../../APIs/axiosBaseURL";
+import axios from "../../../../APIs/axiosBaseURL";
 
 type FormValues = {
   repeatPassword: string;

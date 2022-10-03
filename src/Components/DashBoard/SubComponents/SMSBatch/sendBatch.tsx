@@ -12,10 +12,9 @@ import {
   Textarea,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import axios from "../../../../../APIs/axiosBaseURL";
-import { DashBoardContext } from "../../../DashboardContext/dashboardContext";
+import axios from "../../../../APIs/axiosBaseURL";
 
 type FormValues = {
   smsText: string;
@@ -24,7 +23,6 @@ type FormValues = {
 };
 
 function SMSBatch() {
-  const { usersID } = useContext(DashBoardContext);
   const token = localStorage.getItem("access_token");
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
@@ -57,8 +55,6 @@ function SMSBatch() {
         .post(
           SMS_URL,
           {
-            userId: usersID,
-            action: "message_send",
             text: mydata.smsText,
             to: mydata.receivernumber,
             from: mydata.fromUser,
