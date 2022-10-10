@@ -68,7 +68,7 @@ describe("Test SignUp component", () => {
     );
 
     const checkBox = screen.getByRole("checkbox", {
-      name: /Accept Tearms and Conditions/i,
+      name: /Accept Terms and Conditions/i,
     });
     expect(checkBox).not.toBeChecked();
     userEvent.click(checkBox);
