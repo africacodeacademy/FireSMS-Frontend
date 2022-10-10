@@ -204,8 +204,7 @@ function SignUpForm() {
             </Checkbox>
             <FormHelperText color="red">
               {errors.checkBox?.type === "required" &&
-                "26773867278
-26776495683 need to be accepted"}
+                "Terms and conditions need to be accepted"}
             </FormHelperText>
           </FormControl>
           <FormControl>
