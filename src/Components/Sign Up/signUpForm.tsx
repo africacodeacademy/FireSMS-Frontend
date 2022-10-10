@@ -196,7 +196,7 @@ function SignUpForm() {
             </FormHelperText>
           </FormControl>
           <FormControl>
-            <Checkbox
+               <Checkbox
               id="checkBox"
               {...register("checkBox", { required: true })}
             >
