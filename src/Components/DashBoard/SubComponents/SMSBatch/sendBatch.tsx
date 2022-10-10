@@ -2,35 +2,22 @@ import {
   Flex,
   FormControl,
   FormLabel,
-  FormHelperText,
-  Input,
   Stack,
   Text,
   Button,
   useToast,
   Heading,
-  Textarea,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-
-type FormValues = {
-  smsText: string;
-  receivernumber: string;
-  fromUser: string;
-};
+import { useCSVReader } from "react-papaparse";
 
 function SMSBatch() {
+  const { CSVReader } = useCSVReader();
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
   const toast = useToast();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormValues>();
+  let fileData: { text: any; to: any; from: any }[] = [];
 
   const showToast = () => {
     toast({
@@ -41,23 +28,50 @@ function SMSBatch() {
       isClosable: true,
     });
   };
+  const FailToast = () => {
+    toast({
+      position: "top",
+      title: "Failed....Uplaod File First",
+      status: "error",
+      duration: 2500,
+      isClosable: true,
+    });
+  };
 
-  const onSubmit = handleSubmit(async (mydata, e) => {
+  const clearArray = () => {
+    fileData = [];
+  };
+
+  const onSubmit = (e: any) => {
     e?.preventDefault();
-    setLoading(true);
-    // eslint-disable-next-line no-console
-    console.log(mydata.receivernumber);
-    // eslint-disable-next-line no-console
-    console.log(mydata.smsText);
-    // eslint-disable-next-line no-console
-    console.log(mydata.fromUser);
-    showToast();
-    setStatus("");
-    setLoading(false);
-  });
+    if (fileData.length > 0) {
+      setLoading(true);
+
+      const BatchSMSState = {
+        messages: fileData,
+      };
+      // eslint-disable-next-line no-console
+      console.log(BatchSMSState);
+
+      showToast();
+      setStatus("");
+      setLoading(false);
+      clearArray();
+    } else {
+      FailToast();
+    }
+  };
+
   return (
     <Flex align="center" justify="center" w="100%">
-      <Stack mx="auto" maxW="xl" py={2} px={6} w="100%">
+      <Stack
+        mx="auto"
+        maxW="xl"
+        py={2}
+        px={6}
+        w="100%"
+        mb={{ base: "50%", md: "1%" }}
+      >
         <Stack align="center">
           <Heading
             fontSize="3xl"
@@ -86,50 +100,62 @@ function SMSBatch() {
           <Stack spacing={4} w="100%">
             <form onSubmit={onSubmit}>
               <FormControl>
-                <FormLabel>Send SMS TO</FormLabel>
-                <Textarea
-                  id="number"
-                  placeholder="Enter or Paste Batch Phone numbers line by line"
-                  aria-describedby="number-helper-text"
-                  {...register("receivernumber", {
-                    required: true,
-                    minLength: 8,
-                    maxLength: 15,
-                  })}
-                />
-                <FormHelperText color="red" textAlign="left">
-                  {errors.receivernumber?.type === "required" &&
-                    "Phone numbers required"}
-                </FormHelperText>
-              </FormControl>
-              <FormControl>
-                <FormLabel>SMS Text</FormLabel>
-                <Textarea
-                  id="smsText"
-                  aria-describedby="email-helper-text"
-                  placeholder="Enter or Paste Batch Texts messages line by line"
-                  {...register("smsText", { required: true })}
-                />
-                <FormHelperText color="red" textAlign="left">
-                  {errors.smsText?.type === "required" &&
-                    "SMS text messages required"}
-                </FormHelperText>
-              </FormControl>
-              <FormControl>
-                <FormLabel>SMS From</FormLabel>
-                <Input
-                  type="text"
-                  id="fromUser"
-                  placeholder="Sender Name or Phone number "
-                  aria-describedby="number-helper-text"
-                  {...register("fromUser", {
-                    required: true,
-                  })}
-                />
-                <FormHelperText color="red" textAlign="left">
-                  {errors.fromUser?.type === "required" &&
-                    "Phone number or Name is required"}
-                </FormHelperText>
+                <CSVReader
+                  onUploadAccepted={(results: any) => {
+                    // eslint-disable-next-line no-plusplus
+                    for (let i = 1; i < results.data.length; i++) {
+                      const phone = results.data[i][0].split(/\n/);
+                      const mytext = results.data[i][1];
+                      const sender = results.data[i][2];
+                      fileData.push({ text: mytext, to: phone, from: sender });
+                    }
+                  }}
+                >
+                  {({
+                    getRootProps,
+                    acceptedFile,
+                    ProgressBar,
+                    getRemoveFileProps,
+                  }: any) => (
+                    <Stack>
+                      <FormLabel textAlign="center">
+                        File with Phone numbers, Messages and a sender
+                      </FormLabel>
+                      <div>
+                        <Button
+                          onClick={clearArray}
+                          textAlign="center"
+                          bg="teal.400"
+                          mb="2%"
+                          w="80%"
+                          color="white"
+                          _hover={{ bg: "blue.400", color: "white" }}
+                          variant="ghost"
+                          {...getRootProps()}
+                        >
+                          Browse file
+                        </Button>
+                        <div>{acceptedFile && acceptedFile.name}</div>
+                        {acceptedFile && (
+                          <div>
+                            <Button
+                              textAlign="center"
+                              bg="white"
+                              mt="2%"
+                              color="Black"
+                              _hover={{ bg: "red.400", color: "white" }}
+                              variant="ghost"
+                              {...getRemoveFileProps()}
+                            >
+                              Remove
+                            </Button>
+                          </div>
+                        )}
+                      </div>
+                      <ProgressBar />
+                    </Stack>
+                  )}
+                </CSVReader>
               </FormControl>
               <Stack spacing={10} mt={5}>
                 <Button
