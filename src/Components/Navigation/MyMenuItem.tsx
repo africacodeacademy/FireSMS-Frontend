@@ -1,22 +1,30 @@
 import { MenuItem } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 interface ItemProp {
+  link: string;
   name: string;
 }
 
 function MyMenuItem(props: ItemProp) {
-  const { name } = props;
+  const { name, link } = props;
 
   return (
-    <MenuItem
-      color="white"
-      _hover={{ bg: "gray.200", color: "gray.900", fontWeight: "semibold" }}
+    <Link
+      to={link}
       onClick={() => {
         window.scroll({ top: 0, left: 0, behavior: "smooth" });
       }}
     >
-      {name}
-    </MenuItem>
+      <MenuItem
+        _hover={{
+          bg: "gray.700",
+          color: "white",
+        }}
+      >
+        {name}
+      </MenuItem>
+    </Link>
   );
 }
 export default MyMenuItem;

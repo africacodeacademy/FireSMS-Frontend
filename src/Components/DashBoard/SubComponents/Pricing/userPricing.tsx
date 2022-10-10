@@ -1,6 +1,6 @@
 import { Box, Stack } from "@chakra-ui/react";
-import CardsFormat from "../../../cards/cardsFormat";
-import Allcharts from "../../../charts/allCharts";
+import CardsFormat from "../../cards/cardsFormat";
+import Allcharts from "../../charts/allCharts";
 
 function UserPricingOptions() {
   return (

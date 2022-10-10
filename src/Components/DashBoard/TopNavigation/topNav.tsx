@@ -1,19 +1,22 @@
 import { Flex, HStack, useColorModeValue, Text, Stack } from "@chakra-ui/react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import NavButtons from "../../../Navigation/NavButtons";
+import NavButtons from "../../Navigation/NavButtons";
 import MyMenuIcon from "./mymenuIcon";
-import companyLogo from "../../logo/logo_fire.png";
-import { DashBoardContext } from "../../DashboardContext/dashboardContext";
+import { DashBoardContext } from "../DashboardContext/dashboardContext";
 
 function TopNav() {
-  const { sideBarSize, setSelectedContent } = useContext(DashBoardContext);
+  const { sideBarSize } = useContext(DashBoardContext);
   const navigate = useNavigate();
 
   const signOut = async () => {
     localStorage.removeItem("session");
     localStorage.removeItem("access_token");
     navigate("/signIn");
+  };
+
+  const Home = () => {
+    navigate("/dashBoard");
   };
 
   // props data for Nav buttons
@@ -35,11 +38,22 @@ function TopNav() {
       zIndex={2}
       w={{ base: "100%", md: sideBarSize === "small" ? "94.2%" : "85%" }}
     >
-      <HStack cursor="pointer" direction="row" spacing={0} w="50%">
-        <Stack alignItems="center" onClick={() => setSelectedContent("Home")}>
-          <img width="30px" height="20px" alt="logo" src={companyLogo} />
+      <HStack
+        cursor="pointer"
+        direction="row"
+        onClick={Home}
+        spacing={0}
+        w="50%"
+      >
+        <Stack alignItems="center">
+          <img
+            width="30px"
+            height="20px"
+            alt="logo"
+            src="https://pngimg.com/uploads/flame/flame_PNG13246.png"
+          />
         </Stack>
-        <Stack w="92%" onClick={() => setSelectedContent("Home")}>
+        <Stack w="92%">
           <Text mt="13.3" color="white" fontSize="2xl" fontWeight="bold">
             FireSMS
           </Text>
@@ -49,17 +63,11 @@ function TopNav() {
       <HStack spacing={{ base: "0", md: "0" }} mr={{ base: "0", md: "5" }}>
         <Flex alignItems="center">
           <HStack display={{ base: "none", md: "contents" }} mr="5">
-            <Text onClick={() => setSelectedContent("Pricing")}>
-              <NavButtons name={name} />
-            </Text>
-            <Text onClick={() => setSelectedContent("developer")}>
-              <NavButtons name={name2} />
-            </Text>
-            <Text onClick={() => setSelectedContent("Profile")}>
-              <NavButtons name={name3} />
-            </Text>
+            <NavButtons name={name} link="/dashBoard/pricing" />
+            <NavButtons name={name2} link="/dashBoard/docs" />
+            <NavButtons name={name3} link="/dashBoard/profile" />
             <Text onClick={signOut}>
-              <NavButtons name={name4} />
+              <NavButtons name={name4} link="/" />
             </Text>
           </HStack>
           <MyMenuIcon />

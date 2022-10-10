@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import axios from "../../../../../APIs/axiosBaseURL";
+import axios from "../../../../APIs/axiosBaseURL";
 
 type FormValues = {
   smsText: string;
