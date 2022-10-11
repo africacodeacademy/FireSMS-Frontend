@@ -69,7 +69,7 @@ function SignUpForm() {
             setLoading(false);
             reset();
             showToast();
-            navigate("/signIn");
+            navigate("/signin");
           }
         });
     } catch (err: any) {

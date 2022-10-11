@@ -15,7 +15,7 @@ function MyMenuIcon() {
   const signOut = async () => {
     localStorage.removeItem("session");
     localStorage.removeItem("access_token");
-    navigate("/signIn");
+    navigate("/signin");
   };
 
   // props data for Nav buttons
@@ -37,9 +37,9 @@ function MyMenuIcon() {
           mr="4"
         />
         <MenuList bg="gray.800" color="white" mt="1.5%">
-          <MyMenuItem name={name} link="/dashBoard/pricing" />
-          <MyMenuItem name={name2} link="/dashBoard/docs" />
-          <MyMenuItem name={name3} link="/dashBoard/profile" />
+          <MyMenuItem name={name} link="/dashboard/pricing" />
+          <MyMenuItem name={name2} link="/dashboard/docs" />
+          <MyMenuItem name={name3} link="/dashboard/profile" />
           <Text onClick={signOut}>
             <MyMenuItem name={name4} link="" />
           </Text>

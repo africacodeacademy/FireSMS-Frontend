@@ -43,8 +43,8 @@ function NavHeader() {
               <NavButtons name={name} link="/" />
             </Text>
             <NavButtons name={name2} link="/docs" />
-            <NavButtons name={name3} link="/signIn" />
-            <NavButtons name={name4} link="/signUp" />
+            <NavButtons name={name3} link="/signin" />
+            <NavButtons name={name4} link="/signup" />
           </Stack>
           <MenuBtn />
         </Box>

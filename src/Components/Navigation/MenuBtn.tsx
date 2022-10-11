@@ -38,8 +38,8 @@ function MenuBtn() {
             <MyMenuItem name={name} link="/" />
           </Text>
           <MyMenuItem name={name2} link="/docs" />
-          <MyMenuItem name={name3} link="/signIn" />
-          <MyMenuItem name={name4} link="/signUp" />
+          <MyMenuItem name={name3} link="/signin" />
+          <MyMenuItem name={name4} link="/signup" />
         </MenuList>
       </Menu>
     </Flex>

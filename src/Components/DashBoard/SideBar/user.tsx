@@ -31,7 +31,7 @@ function User() {
         mb={sideBarSize === "small" ? "-610%" : "-210%"}
       >
         <Link
-          to="/dashBoard/profile"
+          to="/dashboard/profile"
           onClick={() => {
             window.scroll({ top: 0, behavior: "smooth" });
           }}

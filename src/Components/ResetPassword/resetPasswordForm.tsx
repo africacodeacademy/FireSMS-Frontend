@@ -69,7 +69,7 @@ function ResetPasswordForm() {
               setLoading(false);
               showToast();
               reset();
-              navigate("/signIn");
+              navigate("/signin");
             }
           });
       } catch (err: any) {

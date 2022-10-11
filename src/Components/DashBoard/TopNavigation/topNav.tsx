@@ -12,11 +12,11 @@ function TopNav() {
   const signOut = async () => {
     localStorage.removeItem("session");
     localStorage.removeItem("access_token");
-    navigate("/signIn");
+    navigate("/signin");
   };
 
   const Home = () => {
-    navigate("/dashBoard");
+    navigate("/dashboard");
   };
 
   // props data for Nav buttons
@@ -63,9 +63,9 @@ function TopNav() {
       <HStack spacing={{ base: "0", md: "0" }} mr={{ base: "0", md: "5" }}>
         <Flex alignItems="center">
           <HStack display={{ base: "none", md: "contents" }} mr="5">
-            <NavButtons name={name} link="/dashBoard/pricing" />
-            <NavButtons name={name2} link="/dashBoard/docs" />
-            <NavButtons name={name3} link="/dashBoard/profile" />
+            <NavButtons name={name} link="/dashboard/pricing" />
+            <NavButtons name={name2} link="/dashboard/docs" />
+            <NavButtons name={name3} link="/dashboard/profile" />
             <Text onClick={signOut}>
               <NavButtons name={name4} link="/" />
             </Text>

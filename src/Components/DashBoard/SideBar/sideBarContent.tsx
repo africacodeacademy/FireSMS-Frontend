@@ -56,43 +56,43 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps) {
       </Flex>
       {sideBarSize && sideBarSize === "large" && (
         <>
-          <NavItem icon={MdOutlineSms} name="Send SMS" link="/dashBoard/sms" />
+          <NavItem icon={MdOutlineSms} name="Send SMS" link="/dashboard/sms" />
           <NavItem
             icon={BiMessageSquareDetail}
             name="Send Bulk"
-            link="/dashBoard/sms-bulk"
+            link="/dashboard/sms-bulk"
           />
           <NavItem
             icon={TbMessageShare}
             name="Send Batch"
-            link="/dashBoard/sms-batch"
+            link="/dashboard/sms-batch"
           />
           <NavItem
             icon={TiMessages}
             name="SMS History"
-            link="/dashBoard/sms-history"
+            link="/dashboard/sms-history"
           />
           <NavItem
             icon={MdOutlineAccountBalanceWallet}
             name="View Balance"
-            link="/dashBoard/account-balance"
+            link="/dashboard/account-balance"
           />
         </>
       )}
       {sideBarSize && sideBarSize === "small" && (
         <>
-          <NavItem icon={MdOutlineSms} name="" link="/dashBoard/sms" />
+          <NavItem icon={MdOutlineSms} name="" link="/dashboard/sms" />
           <NavItem
             icon={BiMessageSquareDetail}
             name=""
-            link="/dashBoard/sms-bulk"
+            link="/dashboard/sms-bulk"
           />
-          <NavItem icon={TbMessageShare} name="" link="/dashBoard/sms-batch" />
-          <NavItem icon={TiMessages} name="" link="/dashBoard/sms-history" />
+          <NavItem icon={TbMessageShare} name="" link="/dashboard/sms-batch" />
+          <NavItem icon={TiMessages} name="" link="/dashboard/sms-history" />
           <NavItem
             icon={MdOutlineAccountBalanceWallet}
             name=""
-            link="/dashBoard/account-balance"
+            link="/dashboard/account-balance"
           />
         </>
       )}
