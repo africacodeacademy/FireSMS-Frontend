@@ -4,7 +4,7 @@ import SMSHistory from "./smsHistory";
 
 function DisplayHistory() {
   return (
-    <Box justifyContent="center" mb={{ base: "90%", md: "1%" }} w="100%">
+    <Box justifyContent="center" w="100%">
       <SideBarWithHeader>
         <SMSHistory />
       </SideBarWithHeader>

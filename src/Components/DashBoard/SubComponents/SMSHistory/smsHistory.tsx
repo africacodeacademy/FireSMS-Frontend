@@ -99,7 +99,7 @@ function SMSHistory() {
       >
         {status}
       </Text>
-      <Box w="100%" bg="white" mt="3%">
+      <Box w="100%" bg="white" mt="3%" mb={{ base: "92%", md: "0%" }}>
         <TableContainer id="mytable">
           <Table variant="striped" colorScheme="telegram" size="sm">
             <TableCaption>
