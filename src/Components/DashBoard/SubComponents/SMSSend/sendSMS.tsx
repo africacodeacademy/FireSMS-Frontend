@@ -56,7 +56,7 @@ function SendSMS() {
           SMS_URL,
           {
             text: mydata.smsText,
-            to: mydata.receivernumber.split(/\n/),
+            to: mydata.receivernumber,
             from: mydata.fromUser,
           },
           {
