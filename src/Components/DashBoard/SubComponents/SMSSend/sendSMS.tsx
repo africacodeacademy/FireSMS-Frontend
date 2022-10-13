@@ -55,8 +55,8 @@ function SendSMS() {
         .post(
           SMS_URL,
           {
-            text: mydata.smsText,
-            to: mydata.receivernumber.split(/\n/),
+            message: mydata.smsText,
+            to: mydata.receivernumber,
             from: mydata.fromUser,
           },
           {
@@ -88,6 +88,7 @@ function SendSMS() {
             fontWeight="semibold"
             textAlign="center"
             color="gray.800"
+            fontFamily="arial"
           >
             SEND SMS
           </Heading>

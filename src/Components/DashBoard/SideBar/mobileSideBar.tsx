@@ -5,7 +5,6 @@ function MobileSideBar() {
   return (
     <Stack direction="column" spacing={7} pos="fixed" zIndex={2}>
       <MobileSideBarFormat name="Send SMS" link="/dashboard/sms" />
-      <MobileSideBarFormat name="Send Bulk" link="/dashboard/sms-bulk" />
       <MobileSideBarFormat name="Send Batch" link="/dashboard/sms-batch" />
       <MobileSideBarFormat name="History" link="/dashboard/sms-history" />
       <MobileSideBarFormat name="Balance" link="/dashboard/account-balance" />

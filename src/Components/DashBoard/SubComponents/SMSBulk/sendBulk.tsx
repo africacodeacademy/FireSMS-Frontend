@@ -88,6 +88,7 @@ function SMSBulk() {
             fontWeight="semibold"
             textAlign="center"
             color="gray.800"
+            fontFamily="arial"
           >
             SEND BULK
           </Heading>

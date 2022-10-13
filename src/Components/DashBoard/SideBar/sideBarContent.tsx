@@ -1,6 +1,5 @@
 import { Box, useColorModeValue, Text, BoxProps, Flex } from "@chakra-ui/react";
 import { FiMenu } from "react-icons/fi";
-import { BiMessageSquareDetail } from "react-icons/bi";
 import { GrClose } from "react-icons/gr";
 import { MdOutlineSms, MdOutlineAccountBalanceWallet } from "react-icons/md";
 import { TbMessageShare } from "react-icons/tb";
@@ -58,11 +57,6 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps) {
         <>
           <NavItem icon={MdOutlineSms} name="Send SMS" link="/dashboard/sms" />
           <NavItem
-            icon={BiMessageSquareDetail}
-            name="Send Bulk"
-            link="/dashboard/sms-bulk"
-          />
-          <NavItem
             icon={TbMessageShare}
             name="Send Batch"
             link="/dashboard/sms-batch"
@@ -82,11 +76,6 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps) {
       {sideBarSize && sideBarSize === "small" && (
         <>
           <NavItem icon={MdOutlineSms} name="" link="/dashboard/sms" />
-          <NavItem
-            icon={BiMessageSquareDetail}
-            name=""
-            link="/dashboard/sms-bulk"
-          />
           <NavItem icon={TbMessageShare} name="" link="/dashboard/sms-batch" />
           <NavItem icon={TiMessages} name="" link="/dashboard/sms-history" />
           <NavItem
