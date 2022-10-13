@@ -55,7 +55,7 @@ function SendSMS() {
         .post(
           SMS_URL,
           {
-            text: mydata.smsText,
+            message: mydata.smsText,
             to: mydata.receivernumber,
             from: mydata.fromUser,
           },
