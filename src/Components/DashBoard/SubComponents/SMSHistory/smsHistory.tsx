@@ -28,7 +28,7 @@ function SMSHistory() {
   const [checkStatus, setcheckStatus] = useState(false);
   const [prevStatus, setprevStatus] = useState(true);
   const [keepCount, setKeepCount] = useState(10);
-  const SMS_HISTORY_URL = `/api/v1/sms/message/history?page=${page}&limit=${myLimit}`;
+  const SMS_HISTORY_URL = `/api/v1/message/history?page=${page}&limit=${myLimit}`;
 
   useEffect(() => {
     axios
