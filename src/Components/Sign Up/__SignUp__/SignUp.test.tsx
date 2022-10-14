@@ -73,9 +73,5 @@ describe("Test SignUp component", () => {
     expect(checkBox).not.toBeChecked();
     userEvent.click(checkBox);
     expect(checkBox).toBeChecked();
-
-    userEvent.click(CreateAccounButton);
-    await screen.findByText(/Creating Account/i);
-    expect("Creating Account").toBeTruthy();
   });
 });
