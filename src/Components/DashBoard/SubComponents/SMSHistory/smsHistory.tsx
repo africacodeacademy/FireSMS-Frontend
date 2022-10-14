@@ -22,7 +22,7 @@ function SMSHistory() {
   const token = localStorage.getItem("access_token");
   const [status, setStatus] = useState("");
   const [smsMessages, setSmsMessages] = useState<any[]>([]);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const myLimit = 10;
   const [totalTexts, setTotalTexts] = useState(0);
   const [checkStatus, setcheckStatus] = useState(false);
