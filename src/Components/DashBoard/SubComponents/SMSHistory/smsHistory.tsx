@@ -23,11 +23,11 @@ function SMSHistory() {
   const [status, setStatus] = useState("");
   const [smsMessages, setSmsMessages] = useState<any[]>([]);
   const [page, setPage] = useState(1);
-  const myLimit = 10;
+  const myLimit = 5;
   const [totalTexts, setTotalTexts] = useState(0);
   const [checkStatus, setcheckStatus] = useState(false);
   const [prevStatus, setprevStatus] = useState(true);
-  const [keepCount, setKeepCount] = useState(10);
+  const [keepCount, setKeepCount] = useState(5);
   const SMS_HISTORY_URL = `/api/v1/message/history?page=${page}&limit=${myLimit}`;
 
   useEffect(() => {
@@ -59,14 +59,14 @@ function SMSHistory() {
       setprevStatus(false);
       setcheckStatus(false);
       setPage(page + 1);
-      setKeepCount(keepCount + 10);
+      setKeepCount(keepCount + 5);
     }
   };
 
   const movetoBack = () => {
     if (page > 1) {
       setPage(page - 1);
-      setKeepCount(keepCount - 10);
+      setKeepCount(keepCount - 5);
       setcheckStatus(false);
     } else {
       setprevStatus(true);
