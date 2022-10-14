@@ -87,6 +87,8 @@ function SMSHistory() {
         fontSize="3xl"
         fontWeight="semibold"
         textAlign="center"
+        fontFamily="arial"
+        mb="0.5%"
         color="gray.800"
       >
         SMS HISTORY

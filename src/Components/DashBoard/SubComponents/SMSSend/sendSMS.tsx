@@ -88,6 +88,7 @@ function SendSMS() {
             fontWeight="semibold"
             textAlign="center"
             color="gray.800"
+            fontFamily="arial"
           >
             SEND SMS
           </Heading>
