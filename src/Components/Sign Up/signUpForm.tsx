@@ -158,16 +158,17 @@ function SignUpForm() {
               aria-describedby="number-helper-text"
               {...register("phone", {
                 required: true,
-                minLength: 8,
-                maxLength: 15,
+                minLength: 11,
+                maxLength: 20,
               })}
             />
             <FormHelperText color="red">
-              {errors.phone?.type === "required" && "Phone number is required"}
+              {errors.phone?.type === "required" &&
+                "Phone number is required & must include contry Code"}
               {errors.phone?.type === "minLength" &&
-                "Entered number is less than 8 digits"}
+                "Phone number must include contry Code"}
               {errors.phone?.type === "maxLength" &&
-                "Entered number is more than 15 digits"}
+                "Entered number is more than 20 digits"}
             </FormHelperText>
           </FormControl>
           <FormControl>

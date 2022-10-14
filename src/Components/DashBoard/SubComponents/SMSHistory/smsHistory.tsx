@@ -22,13 +22,13 @@ function SMSHistory() {
   const token = localStorage.getItem("access_token");
   const [status, setStatus] = useState("");
   const [smsMessages, setSmsMessages] = useState<any[]>([]);
-  const [page, setPage] = useState(0);
-  const myLimit = 10;
+  const [page, setPage] = useState(1);
+  const myLimit = 5;
   const [totalTexts, setTotalTexts] = useState(0);
   const [checkStatus, setcheckStatus] = useState(false);
   const [prevStatus, setprevStatus] = useState(true);
-  const [keepCount, setKeepCount] = useState(10);
-  const SMS_HISTORY_URL = `/api/v1/sms/message/history?page=${page}&limit=${myLimit}`;
+  const [keepCount, setKeepCount] = useState(5);
+  const SMS_HISTORY_URL = `/api/v1/message/history?page=${page}&limit=${myLimit}`;
 
   useEffect(() => {
     axios
@@ -59,14 +59,14 @@ function SMSHistory() {
       setprevStatus(false);
       setcheckStatus(false);
       setPage(page + 1);
-      setKeepCount(keepCount + 10);
+      setKeepCount(keepCount + 5);
     }
   };
 
   const movetoBack = () => {
     if (page > 1) {
       setPage(page - 1);
-      setKeepCount(keepCount - 10);
+      setKeepCount(keepCount - 5);
       setcheckStatus(false);
     } else {
       setprevStatus(true);
