@@ -57,7 +57,7 @@ function ResetPasswordForm() {
           .post(
             RESETPASSWORD_URL,
             {
-              resetKey: tokenId,
+              resetKey: tokenId.resetId,
               newPassword: data.password,
             },
             {
