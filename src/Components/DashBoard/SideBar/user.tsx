@@ -28,7 +28,7 @@ function User() {
         align="center"
         p="4"
         mx="2"
-        mb={sideBarSize === "small" ? "-610%" : "-210%"}
+        mb={sideBarSize === "small" ? "-440%" : "-150%"}
       >
         <Link
           to="/dashboard/profile"
