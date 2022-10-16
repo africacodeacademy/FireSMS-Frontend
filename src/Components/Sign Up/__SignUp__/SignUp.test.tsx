@@ -31,7 +31,7 @@ describe("Test SignUp component", () => {
       </Router>,
     );
     const EnteredPhoneNumber = screen.getByPlaceholderText("Phone Number");
-    expect(EnteredPhoneNumber).toHaveAttribute("type", "tel");
+    expect(EnteredPhoneNumber).toHaveAttribute("type", "number");
   });
 
   test("password input is password", () => {
