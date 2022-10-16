@@ -123,7 +123,7 @@ function SendSMS() {
                     maxLength: 15,
                   })}
                 />
-                <FormHelperText color="red">
+                <FormHelperText color="red" textAlign="left">
                   {errors.receivernumber?.type === "required" &&
                     "Phone number is required"}
                   {errors.receivernumber?.type === "minLength" &&
@@ -140,7 +140,7 @@ function SendSMS() {
                   aria-describedby="email-helper-text"
                   {...register("smsText", { required: true, maxLength: 160 })}
                 />
-                <FormHelperText color="red">
+                <FormHelperText color="red" textAlign="left">
                   {errors.smsText?.type === "required" &&
                     "SMS text is required"}
                   {errors.smsText?.type === "maxLength" &&
@@ -154,14 +154,8 @@ function SendSMS() {
                   id="fromUser"
                   placeholder="Sender Name or Phone number "
                   aria-describedby="number-helper-text"
-                  {...register("fromUser", {
-                    required: true,
-                  })}
+                  {...register("fromUser")}
                 />
-                <FormHelperText color="red">
-                  {errors.fromUser?.type === "required" &&
-                    "Phone number or Name is required"}
-                </FormHelperText>
               </FormControl>
               <Stack spacing={10} mt={5}>
                 <Button

@@ -9,12 +9,12 @@ function CheckBalance() {
   const [loading, setLoading] = useState(true);
   const [UserBalance, setUserBalance] = useState("");
   const token = localStorage.getItem("access_token");
-  const SMS_HISTORY_URL = "/api/v1/account/balance";
+  const ACCOUNT_BALANCE_URL = "/api/v1/account/balance";
   const [status, setStatus] = useState("");
 
   useEffect(() => {
     axios
-      .get(SMS_HISTORY_URL, {
+      .get(ACCOUNT_BALANCE_URL, {
         headers: {
           Authorization: `Bearer ${token}`,
           Accept: "application/json",
@@ -31,7 +31,7 @@ function CheckBalance() {
         setStatus("Error Failed to get User Balance");
         setLoading(false);
       });
-  }, [SMS_HISTORY_URL, token]);
+  }, [ACCOUNT_BALANCE_URL, token]);
 
   if (loading === true) {
     return (

@@ -15,6 +15,7 @@ import DisplayBatch from "./Components/DashBoard/SubComponents/SMSBatch/displayB
 import DisplayPrices from "./Components/DashBoard/SubComponents/Pricing/displayPrices";
 import DisplayDevelopersDocs from "./Components/DashBoard/SubComponents/Developers/displayDevelopers";
 import DisplayProfile from "./Components/DashBoard/SubComponents/UserProfile/displayProfile";
+import DisplayApi from "./Components/DashBoard/SubComponents/user_API_KEY/display_Api";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/dashboard/pricing" element={<DisplayPrices />} />
         <Route path="/dashboard/docs" element={<DisplayDevelopersDocs />} />
         <Route path="/dashboard/profile" element={<DisplayProfile />} />
+        <Route path="/dashboard/api-key" element={<DisplayApi />} />
       </Routes>
     </Box>
   );
