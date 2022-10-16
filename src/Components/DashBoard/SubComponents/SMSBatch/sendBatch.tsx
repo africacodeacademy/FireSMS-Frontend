@@ -70,7 +70,7 @@ function SMSBatch() {
         py={2}
         px={6}
         w="100%"
-        mb={{ base: "50%", md: "1%" }}
+        mb={{ base: "80%", md: "1%" }}
       >
         <Stack align="center">
           <Heading

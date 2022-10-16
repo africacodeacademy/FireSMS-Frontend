@@ -35,7 +35,7 @@ function CheckBalance() {
 
   if (loading === true) {
     return (
-      <Box mt="3%" mb={{ base: "120%", md: "0%" }}>
+      <Box mt="3%" mb={{ base: "150%", md: "0%" }}>
         <Loader color="#00A3C4" size={50} />
       </Box>
     );

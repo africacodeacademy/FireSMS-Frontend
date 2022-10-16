@@ -75,7 +75,7 @@ function SMSHistory() {
 
   if (loading === true) {
     return (
-      <Box mt="3%" mb={{ base: "120%", md: "0%" }}>
+      <Box mt="3%" mb={{ base: "150%", md: "0%" }}>
         <Loader color="#00A3C4" size={50} />
       </Box>
     );
@@ -101,9 +101,14 @@ function SMSHistory() {
       >
         {status}
       </Text>
-      <Box w="100%" bg="white" mt="3%" mb={{ base: "92%", md: "0%" }}>
+      <Box w="100%" bg="white" mt="3%" mb={{ base: "100%", md: "0%" }}>
         <TableContainer id="mytable">
-          <Table variant="striped" colorScheme="telegram" size="sm">
+          <Table
+            variant="striped"
+            colorScheme="telegram"
+            size="sm"
+            mb={{ base: "10%", md: "0%" }}
+          >
             <TableCaption>
               <Stack spacing={6} justifyContent="center" direction="row">
                 <Button

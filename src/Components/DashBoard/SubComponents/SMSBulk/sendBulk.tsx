@@ -81,7 +81,14 @@ function SMSBulk() {
   });
   return (
     <Flex align="center" justify="center" w="100%">
-      <Stack mx="auto" maxW="xl" py={2} px={6} w="100%">
+      <Stack
+        mx="auto"
+        maxW="xl"
+        py={2}
+        px={6}
+        w="100%"
+        mb={{ base: "10%", md: "0%" }}
+      >
         <Stack align="center">
           <Heading
             fontSize="3xl"
