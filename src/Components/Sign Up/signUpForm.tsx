@@ -152,21 +152,20 @@ function SignUpForm() {
           <FormControl>
             <FormLabel>Phone Number</FormLabel>
             <Input
-              type="tel"
+              type="number"
               id="phone"
               placeholder="Phone Number"
               aria-describedby="number-helper-text"
               {...register("phone", {
                 required: true,
-                minLength: 11,
+                minLength: 8,
                 maxLength: 20,
               })}
             />
             <FormHelperText color="red">
-              {errors.phone?.type === "required" &&
-                "Phone number is required & must include contry Code"}
+              {errors.phone?.type === "required" && "Phone number is required"}
               {errors.phone?.type === "minLength" &&
-                "Phone number must include contry Code"}
+                "Phone numbers must include at least 8 numbers"}
               {errors.phone?.type === "maxLength" &&
                 "Entered number is more than 20 digits"}
             </FormHelperText>
