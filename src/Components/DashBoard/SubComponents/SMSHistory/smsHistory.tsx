@@ -15,7 +15,13 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import Loader from "react-spinners/HashLoader";
+import jwt_decode from "jwt-decode";
 import axios from "../../../../APIs/axiosBaseURL";
+
+type UserValues = {
+  decoded: string;
+  uuId: string;
+};
 
 function SMSHistory() {
   const [loading, setLoading] = useState(true);
@@ -24,13 +30,17 @@ function SMSHistory() {
   const [smsMessages, setSmsMessages] = useState<any[]>([]);
   const [page, setPage] = useState(1);
   const myLimit = 5;
+  const [uuId, setUuId] = useState("");
   const [totalTexts, setTotalTexts] = useState(0);
   const [checkStatus, setcheckStatus] = useState(false);
   const [prevStatus, setprevStatus] = useState(true);
   const [keepCount, setKeepCount] = useState(5);
-  const SMS_HISTORY_URL = `/api/v1/message/history?page=${page}&limit=${myLimit}`;
+  const SMS_HISTORY_URL = `/api/v1/message/history/${uuId}?page=${page}&limit=${myLimit}`;
 
   useEffect(() => {
+    const decoded: UserValues = jwt_decode(token || "");
+    setUuId(decoded.uuId);
+
     axios
       .get(SMS_HISTORY_URL, {
         headers: {
@@ -44,6 +54,7 @@ function SMSHistory() {
           setTotalTexts(response.data.messages.count);
           setSmsMessages(response.data.messages.rows);
           setLoading(false);
+          setStatus("");
         }
       })
       .catch(() => {

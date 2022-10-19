@@ -12,8 +12,9 @@ import {
   Textarea,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import jwt_decode from "jwt-decode";
 import axios from "../../../../APIs/axiosBaseURL";
 
 type FormValues = {
@@ -22,12 +23,23 @@ type FormValues = {
   fromUser: string;
 };
 
+type UserValues = {
+  decoded: string;
+  uuId: string;
+};
+
 function SendSMS() {
   const token = localStorage.getItem("access_token");
   const [loading, setLoading] = useState(false);
+  const [uuId, setUuId] = useState("");
   const [status, setStatus] = useState("");
   const toast = useToast();
-  const SMS_URL = "/api/v1/send/message";
+  const SMS_URL = `/api/v1/send/message/${uuId}`;
+
+  useEffect(() => {
+    const decoded: UserValues = jwt_decode(token || "");
+    setUuId(decoded.uuId);
+  }, [token]);
 
   const {
     register,

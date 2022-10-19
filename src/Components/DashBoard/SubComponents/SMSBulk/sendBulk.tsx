@@ -153,14 +153,8 @@ function SMSBulk() {
                   id="fromUser"
                   placeholder="Sender Name or Phone number "
                   aria-describedby="number-helper-text"
-                  {...register("fromUser", {
-                    required: true,
-                  })}
+                  {...register("fromUser")}
                 />
-                <FormHelperText color="red" textAlign="left">
-                  {errors.fromUser?.type === "required" &&
-                    "Phone number or Name is required"}
-                </FormHelperText>
               </FormControl>
               <Stack spacing={10} mt={5}>
                 <Button

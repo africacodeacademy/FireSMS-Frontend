@@ -1,18 +1,28 @@
 import { Box, Stack, Text } from "@chakra-ui/react";
 import Loader from "react-spinners/HashLoader";
 import { useEffect, useState } from "react";
+import jwt_decode from "jwt-decode";
 import CardsFormat from "../../cards/cardsFormat";
 import Allcharts from "../../charts/allCharts";
 import axios from "../../../../APIs/axiosBaseURL";
+
+type UserValues = {
+  decoded: string;
+  uuId: string;
+};
 
 function CheckBalance() {
   const [loading, setLoading] = useState(true);
   const [UserBalance, setUserBalance] = useState("");
   const token = localStorage.getItem("access_token");
-  const ACCOUNT_BALANCE_URL = "/api/v1/account/balance";
+  const [uuId, setUuId] = useState("");
+  const ACCOUNT_BALANCE_URL = `/api/v1/account/balance/${uuId}`;
   const [status, setStatus] = useState("");
 
   useEffect(() => {
+    const decoded: UserValues = jwt_decode(token || "");
+    setUuId(decoded.uuId);
+
     axios
       .get(ACCOUNT_BALANCE_URL, {
         headers: {
@@ -25,6 +35,7 @@ function CheckBalance() {
         if (response.status >= 200 && response.status < 300) {
           setUserBalance(response.data.account.balance);
           setLoading(false);
+          setStatus("");
         }
       })
       .catch(() => {
