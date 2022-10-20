@@ -159,7 +159,7 @@ function SignUpForm() {
               {...register("phone", {
                 required: true,
                 minLength: 8,
-                maxLength: 20,
+                maxLength: 12,
               })}
             />
             <FormHelperText color="red">
@@ -167,7 +167,7 @@ function SignUpForm() {
               {errors.phone?.type === "minLength" &&
                 "Phone numbers must include at least 8 numbers"}
               {errors.phone?.type === "maxLength" &&
-                "Entered number is more than 20 digits"}
+                "Entered number is more than 12 digits"}
             </FormHelperText>
           </FormControl>
           <FormControl>
