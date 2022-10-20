@@ -57,9 +57,13 @@ function SMSHistory() {
           setStatus("");
         }
       })
-      .catch(() => {
-        setStatus("Failed to retrieve history");
+      .catch((err: any) => {
         setLoading(false);
+        if (!err?.response) {
+          setStatus("No Server Response");
+        } else {
+          setStatus("Failed to retrieve history");
+        }
       });
   }, [SMS_HISTORY_URL, token]);
 
