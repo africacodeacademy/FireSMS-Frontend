@@ -58,7 +58,7 @@ function SMSHistory() {
         }
       })
       .catch(() => {
-        setStatus("Empty");
+        setStatus("Failed to retrieve history");
         setLoading(false);
       });
   }, [SMS_HISTORY_URL, token]);
