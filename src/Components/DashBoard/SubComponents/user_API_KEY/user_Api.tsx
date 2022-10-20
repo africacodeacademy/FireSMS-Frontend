@@ -1,20 +1,30 @@
 import { Box, Stack, Button } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import jwt_decode from "jwt-decode";
 import CardsFormat from "../../cards/cardsFormat";
 import Allcharts from "../../charts/allCharts";
 
-interface KeyProp {
-  apikey: string;
-}
-function UserApi({ apikey }: KeyProp) {
+type UserValues = {
+  decoded: string;
+  apiKey: string;
+  account: any;
+};
+
+function UserApi() {
   const [apiKeyStatus, setApiKeyStatus] = useState(false);
-  const userAPI = apikey;
+  const [userAPI, setUserAPI] = useState("");
   const hidden = "***************************";
   const [apiKey, setApiKey] = useState(hidden);
 
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    const decoded: UserValues = jwt_decode(token || "");
+    setUserAPI(decoded.account.apiKey);
+  }, []);
+
   const ApiShow = () => {
-    setApiKeyStatus(true);
     setApiKey(userAPI);
+    setApiKeyStatus(true);
   };
   const ApiHide = () => {
     setApiKeyStatus(false);
