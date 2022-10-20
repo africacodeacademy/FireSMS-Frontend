@@ -33,8 +33,8 @@ function CheckBalance() {
       })
       .then((response) => {
         if (response.status >= 200 && response.status < 300) {
-          setStatus("");
           setUserBalance(response.data.account.balance);
+          setStatus("");
           setLoading(false);
         }
       })
@@ -42,8 +42,6 @@ function CheckBalance() {
         setLoading(false);
         if (!err?.response) {
           setStatus("No Server Response");
-        } else {
-          setStatus("Error Failed to get User Balance");
         }
       });
   }, [ACCOUNT_BALANCE_URL, token]);

@@ -51,9 +51,9 @@ function SMSHistory() {
       })
       .then((response) => {
         if (response.status >= 200 && response.status < 300) {
-          setStatus("");
           setTotalTexts(response.data.messages.count);
           setSmsMessages(response.data.messages.rows);
+          setStatus("");
           setLoading(false);
         }
       })
@@ -61,8 +61,6 @@ function SMSHistory() {
         setLoading(false);
         if (!err?.response) {
           setStatus("No Server Response");
-        } else {
-          setStatus("Failed to retrieve history");
         }
       });
   }, [SMS_HISTORY_URL, token]);
