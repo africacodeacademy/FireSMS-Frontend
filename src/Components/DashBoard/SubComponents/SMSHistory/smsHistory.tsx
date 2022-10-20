@@ -51,10 +51,10 @@ function SMSHistory() {
       })
       .then((response) => {
         if (response.status >= 200 && response.status < 300) {
+          setStatus("");
           setTotalTexts(response.data.messages.count);
           setSmsMessages(response.data.messages.rows);
           setLoading(false);
-          setStatus("");
         }
       })
       .catch((err: any) => {

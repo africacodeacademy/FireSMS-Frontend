@@ -33,9 +33,9 @@ function CheckBalance() {
       })
       .then((response) => {
         if (response.status >= 200 && response.status < 300) {
+          setStatus("");
           setUserBalance(response.data.account.balance);
           setLoading(false);
-          setStatus("");
         }
       })
       .catch((err: any) => {
