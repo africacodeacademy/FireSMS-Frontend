@@ -56,7 +56,6 @@ function UpdatePassword({ email }: EmailProp) {
     if (mydata.repeatPassword === mydata.password) {
       setLoading(true);
       setPasswordMatchErr(false);
-
       try {
         await axios
           .put(
@@ -89,6 +88,7 @@ function UpdatePassword({ email }: EmailProp) {
         }
       }
     } else {
+      setLoading(false);
       setPasswordMatchErr(true);
     }
   };
@@ -110,7 +110,9 @@ function UpdatePassword({ email }: EmailProp) {
         )
         .then((response) => {
           if (response.status >= 200 && response.status < 300) {
+            setStatus("");
             updatePassword(mydata);
+            setLoading(false);
           }
         });
     } catch (err: any) {
