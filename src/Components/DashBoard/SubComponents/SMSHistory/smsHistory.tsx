@@ -147,10 +147,10 @@ function SMSHistory() {
               </Stack>
             </TableCaption>
             <Thead>
-              <Tr>
-                <Th>SMS Recipient</Th>
-                <Th>Date Send</Th>
-                <Th>SMS Text</Th>
+              <Tr fontFamily="arial">
+                <Th fontFamily="arial">SMS Recipient</Th>
+                <Th fontFamily="arial">Date Send</Th>
+                <Th fontFamily="arial">SMS Text</Th>
               </Tr>
             </Thead>
             <Tbody>

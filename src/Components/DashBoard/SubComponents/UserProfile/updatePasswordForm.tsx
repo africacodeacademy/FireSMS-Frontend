@@ -18,6 +18,7 @@ import axios from "../../../../APIs/axiosBaseURL";
 type FormValues = {
   repeatPassword: string;
   password: string;
+  currentpassword: string;
 };
 interface EmailProp {
   email: string;
@@ -30,6 +31,7 @@ function UpdatePassword({ email }: EmailProp) {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
   const toast = useToast();
+  const LOGIN_URL = "/api/v1/user/login";
   const UPDATE_URL = "/api/v1/user/update-password";
   const navigate = useNavigate();
 
@@ -50,9 +52,7 @@ function UpdatePassword({ email }: EmailProp) {
     });
   };
 
-  const onSubmit = handleSubmit(async (mydata, e) => {
-    e?.preventDefault();
-
+  const updatePassword = async (mydata: any) => {
     if (mydata.repeatPassword === mydata.password) {
       setLoading(true);
       setPasswordMatchErr(false);
@@ -72,9 +72,9 @@ function UpdatePassword({ email }: EmailProp) {
           )
           .then((response) => {
             if (response.status >= 200 && response.status < 300) {
-              setLoading(false);
               showToast();
               reset();
+              setLoading(false);
               localStorage.removeItem("session");
               localStorage.removeItem("access_token");
               navigate("/signIn");
@@ -91,6 +91,36 @@ function UpdatePassword({ email }: EmailProp) {
     } else {
       setPasswordMatchErr(true);
     }
+  };
+
+  const onSubmit = handleSubmit(async (mydata, e) => {
+    e?.preventDefault();
+    setLoading(true);
+    try {
+      await axios
+        .post(
+          LOGIN_URL,
+          JSON.stringify({
+            emailOrPhone: userEmail,
+            password: mydata.currentpassword,
+          }),
+          {
+            headers: { "Content-Type": "application/json" },
+          },
+        )
+        .then((response) => {
+          if (response.status >= 200 && response.status < 300) {
+            updatePassword(mydata);
+          }
+        });
+    } catch (err: any) {
+      setLoading(false);
+      if (!err?.response) {
+        setStatus("No Server Response");
+      } else {
+        setStatus("Current Password not recognised");
+      }
+    }
   });
   return (
     <Flex align="center" justify="center" w="100%">
@@ -98,12 +128,12 @@ function UpdatePassword({ email }: EmailProp) {
         <Stack align="center">
           <Heading
             fontSize="2xl"
-            fontFamily="Arial"
             fontWeight="semibold"
             textAlign="center"
             color="gray.800"
             pt="2%"
             mb="2%"
+            fontFamily="arial"
           >
             Update Password
           </Heading>
@@ -119,6 +149,34 @@ function UpdatePassword({ email }: EmailProp) {
         <Flex w="100%">
           <Stack spacing={4} w="100%">
             <form onSubmit={onSubmit}>
+              <FormControl>
+                <FormLabel>Current Password</FormLabel>
+                <Input
+                  type="password"
+                  id="currentpassword"
+                  color="black"
+                  placeholder="Current Password"
+                  aria-describedby="password-helper-text"
+                  {...register("currentpassword", {
+                    required: true,
+                    pattern:
+                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{10,30}$/,
+                    minLength: 10,
+                    maxLength: 30,
+                  })}
+                />
+                <FormHelperText color="red.500" textAlign="left">
+                  {errors.currentpassword?.type === "required" &&
+                    "Current Pssword is required"}
+                  {errors.currentpassword?.type === "minLength" &&
+                    "Required Current Pssword minLength is 10"}
+                  {errors.currentpassword?.type === "maxLength" &&
+                    "Required Current Pssword maxLength is 30"}
+                  {errors.currentpassword?.type === "pattern" &&
+                    "Current Pssword should at least include 1 Symbol,1 Uppercase, 1 Lowercase & 1 Number"}
+                </FormHelperText>
+              </FormControl>
+
               <FormControl>
                 <FormLabel>New Password</FormLabel>
                 <Input
