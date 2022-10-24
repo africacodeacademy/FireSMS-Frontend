@@ -8,6 +8,7 @@ import {
 import JSDevelopers from "./Languages/jsDeveloper";
 import PHPDevelopers from "./Languages/phpDevelper";
 import PythonDevelopers from "./Languages/pythonDeveloper";
+import python_Icon from "../../DashBoard/logo/python-icon.png";
 
 function SelectDeveloper() {
   const [value, setValue] = useControllableState({
@@ -68,8 +69,8 @@ function SelectDeveloper() {
             onClick={() => setValue("Python")}
             boxSize="26px"
             objectFit="cover"
-            src="https://icons.iconarchive.com/icons/papirus-team/papirus-apps/512/python-icon.png"
-            alt="icon"
+            src={python_Icon}
+            alt="Python-Icon"
           />
           <Text cursor="pointer" onClick={() => setValue("Python")}>
             Python

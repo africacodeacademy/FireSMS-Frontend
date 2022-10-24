@@ -2,7 +2,6 @@ import { Box, Stack, Button } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import CardsFormat from "../../cards/cardsFormat";
-import Allcharts from "../../charts/allCharts";
 
 type UserValues = {
   decoded: string;
@@ -36,6 +35,7 @@ function UserApi() {
       id="cards"
       alignItems="center"
       pb={{ base: "20%", md: "5%" }}
+      mb={{ base: "90%", md: "4%" }}
       justifyContent="center"
       w="100%"
     >
@@ -73,7 +73,6 @@ function UserApi() {
           Show Key
         </Button>
       )}
-      <Allcharts />
     </Box>
   );
 }

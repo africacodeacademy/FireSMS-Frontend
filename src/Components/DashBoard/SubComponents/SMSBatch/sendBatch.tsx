@@ -105,10 +105,16 @@ function SMSBatch() {
                   onUploadAccepted={(results: any) => {
                     // eslint-disable-next-line no-plusplus
                     for (let i = 1; i < results.data.length; i++) {
-                      const phone = results.data[i][0].split(/\n/);
+                      const phone = results.data[i][0];
                       const mytext = results.data[i][1];
                       const sender = results.data[i][2];
-                      fileData.push({ text: mytext, to: phone, from: sender });
+                      if (phone !== "" || mytext !== undefined) {
+                        fileData.push({
+                          text: mytext,
+                          to: phone,
+                          from: sender,
+                        });
+                      }
                     }
                   }}
                 >

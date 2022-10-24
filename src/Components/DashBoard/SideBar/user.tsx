@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { useContext, useEffect, useState } from "react";
 import { DashBoardContext } from "../DashboardContext/dashboardContext";
+import userLogo from "../logo/user.png";
 
 type UserValues = {
   decoded: string;
@@ -37,12 +38,7 @@ function User() {
           }}
         >
           <HStack cursor="pointer">
-            <img
-              alt="UserPic"
-              width="35px"
-              height="35px"
-              src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png"
-            />
+            <img alt="User-Icon" width="35px" height="35px" src={userLogo} />
             {sideBarSize && sideBarSize === "large" && (
               <VStack
                 display={{ base: "none", md: "flex" }}

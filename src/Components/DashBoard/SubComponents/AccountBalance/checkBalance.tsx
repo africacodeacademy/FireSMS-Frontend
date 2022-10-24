@@ -3,7 +3,6 @@ import Loader from "react-spinners/HashLoader";
 import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import CardsFormat from "../../cards/cardsFormat";
-import Allcharts from "../../charts/allCharts";
 import axios from "../../../../APIs/axiosBaseURL";
 
 type UserValues = {
@@ -59,6 +58,7 @@ function CheckBalance() {
       id="cards"
       alignItems="center"
       pb={{ base: "20%", md: "5%" }}
+      mb={{ base: "25%", md: "4%" }}
       justifyContent="center"
       w="100%"
     >
@@ -86,7 +86,6 @@ function CheckBalance() {
         <CardsFormat title="Failed Messages" subTitle="" dataContent1="0" />
         <CardsFormat title="Pending Messages" subTitle="" dataContent1="0" />
       </Stack>
-      <Allcharts />
     </Box>
   );
 }

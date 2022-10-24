@@ -1,6 +1,5 @@
 import { Box, Stack } from "@chakra-ui/react";
 import CardsFormat from "../../cards/cardsFormat";
-import Allcharts from "../../charts/allCharts";
 
 function UserPricingOptions() {
   return (
@@ -16,7 +15,7 @@ function UserPricingOptions() {
         alignItems="center"
         justifyContent="center"
         direction={{ base: "column", md: "row" }}
-        mb="4%"
+        mb={{ base: "25%", md: "4%" }}
       >
         <CardsFormat
           title="Hobby"
@@ -34,7 +33,6 @@ function UserPricingOptions() {
           dataContent1="R 0,12 /sms"
         />
       </Stack>
-      <Allcharts />
     </Box>
   );
 }
