@@ -8,16 +8,32 @@ import {
   useToast,
   Heading,
   useColorModeValue,
+  Box,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCSVReader } from "react-papaparse";
+import jwt_decode from "jwt-decode";
+import axios from "../../../../APIs/axiosBaseURL";
+
+type UserValues = {
+  decoded: string;
+  uuId: string;
+};
 
 function SMSBatch() {
+  const token = localStorage.getItem("access_token");
   const { CSVReader } = useCSVReader();
+  const [uuId, setUuId] = useState("");
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
   const toast = useToast();
-  let fileData: { text: any; to: any; from: any }[] = [];
+  const SMSBATCH_URL = `/api/v1/send/batch/${uuId}`;
+  let fileData: { text: string; to: []; from: string }[] = [];
+
+  useEffect(() => {
+    const decoded: UserValues = jwt_decode(token || "");
+    setUuId(decoded.uuId);
+  }, [token]);
 
   const showToast = () => {
     toast({
@@ -31,7 +47,7 @@ function SMSBatch() {
   const FailToast = () => {
     toast({
       position: "top",
-      title: "Failed....Uplaod File First",
+      title: "Uplaod File First !",
       status: "error",
       duration: 2500,
       isClosable: true,
@@ -42,23 +58,42 @@ function SMSBatch() {
     fileData = [];
   };
 
-  const onSubmit = (e: any) => {
+  const onSubmit = async (e: any) => {
     e?.preventDefault();
     if (fileData.length > 0) {
       setLoading(true);
-
-      const BatchSMSState = {
-        messages: fileData,
-      };
-      // eslint-disable-next-line no-console
-      console.log(BatchSMSState);
-
-      showToast();
-      setStatus("");
-      setLoading(false);
-      clearArray();
+      try {
+        await axios
+          .post(
+            SMSBATCH_URL,
+            {
+              messages: fileData,
+            },
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            },
+          )
+          .then((response) => {
+            if (response.status >= 200 && response.status < 300) {
+              showToast();
+              setStatus("");
+              setLoading(false);
+              clearArray();
+            }
+          });
+      } catch (err: any) {
+        setLoading(false);
+        if (!err?.response) {
+          setStatus("No Server Response");
+          clearArray();
+        } else {
+          clearArray();
+          setStatus("SMS Batch sending Failed");
+        }
+      }
     } else {
       FailToast();
+      clearArray();
     }
   };
 
@@ -98,20 +133,19 @@ function SMSBatch() {
           boxShadow="lg"
           p={8}
         >
-          <Stack spacing={4} w="100%">
+          <Stack direction="column" spacing={4} w="100%">
             <form onSubmit={onSubmit}>
               <FormControl>
                 <CSVReader
                   onUploadAccepted={(results: any) => {
-                    // eslint-disable-next-line no-plusplus
-                    for (let i = 1; i < results.data.length; i++) {
+                    for (let i = 1; i < results.data.length; i += 1) {
                       const phone = results.data[i][0];
                       const mytext = results.data[i][1];
                       const sender = results.data[i][2];
                       if (phone !== "" || mytext !== undefined) {
                         fileData.push({
                           text: mytext,
-                          to: phone,
+                          to: phone.split(/\n/),
                           from: sender,
                         });
                       }
@@ -124,60 +158,50 @@ function SMSBatch() {
                     ProgressBar,
                     getRemoveFileProps,
                   }: any) => (
-                    <Stack>
-                      <FormLabel textAlign="center">
-                        File with Phone numbers, Messages and a sender
-                      </FormLabel>
-                      <div>
-                        <Button
-                          onClick={clearArray}
-                          textAlign="center"
-                          bg="teal.400"
-                          mb="2%"
-                          w="80%"
-                          color="white"
-                          _hover={{ bg: "blue.400", color: "white" }}
-                          variant="ghost"
-                          {...getRootProps()}
-                        >
-                          Browse file
-                        </Button>
-                        <div>{acceptedFile && acceptedFile.name}</div>
-                        {acceptedFile && (
-                          <div>
+                    <>
+                      <Stack>
+                        <FormLabel textAlign="center">
+                          File with Phone numbers, Messages and a sender
+                        </FormLabel>
+                        <div>
+                          <Box onClick={clearArray}>
                             <Button
+                              onClick={clearArray}
                               textAlign="center"
-                              bg="white"
-                              mt="2%"
-                              color="Black"
-                              _hover={{ bg: "red.400", color: "white" }}
+                              bg="teal.400"
+                              mb="2%"
+                              w="80%"
+                              color="white"
+                              _hover={{ bg: "blue.400", color: "white" }}
                               variant="ghost"
-                              {...getRemoveFileProps()}
+                              {...getRootProps()}
                             >
-                              Remove
+                              Browse file
                             </Button>
-                          </div>
-                        )}
-                      </div>
-                      <ProgressBar />
-                    </Stack>
+                            <div>{acceptedFile && acceptedFile.name}</div>
+                          </Box>
+                        </div>
+                        <ProgressBar />
+                      </Stack>
+                      <Stack spacing={10} mt={5}>
+                        <Button
+                          textAlign="center"
+                          type="submit"
+                          bg="blue.400"
+                          {...getRemoveFileProps()}
+                          color="white"
+                          _hover={{ bg: "teal.500", color: "white" }}
+                          variant="ghost"
+                          loadingText="Sending SMS"
+                          isLoading={loading}
+                        >
+                          Send
+                        </Button>
+                      </Stack>
+                    </>
                   )}
                 </CSVReader>
               </FormControl>
-              <Stack spacing={10} mt={5}>
-                <Button
-                  textAlign="center"
-                  type="submit"
-                  bg="blue.400"
-                  color="white"
-                  _hover={{ bg: "teal.500", color: "white" }}
-                  variant="ghost"
-                  loadingText="Sending SMS"
-                  isLoading={loading}
-                >
-                  Send
-                </Button>
-              </Stack>
             </form>
           </Stack>
         </Flex>
