@@ -9,6 +9,8 @@ import JSDevelopers from "./Languages/jsDeveloper";
 import PHPDevelopers from "./Languages/phpDevelper";
 import PythonDevelopers from "./Languages/pythonDeveloper";
 import python_Icon from "../../DashBoard/logo/python-icon.png";
+import js_Icon from "../../DashBoard/logo/js.webp";
+import php_Icon from "../../DashBoard/logo/php.png";
 
 function SelectDeveloper() {
   const [value, setValue] = useControllableState({
@@ -43,7 +45,7 @@ function SelectDeveloper() {
             onClick={() => setValue("Javascript")}
             boxSize="26px"
             objectFit="cover"
-            src="https://cdn.iconscout.com/icon/free/png-256/javascript-2752148-2284965.png"
+            src={js_Icon}
             alt="icon"
           />
           <Text cursor="pointer" onClick={() => setValue("Javascript")}>
@@ -56,7 +58,7 @@ function SelectDeveloper() {
             onClick={() => setValue("PHP")}
             boxSize="26px"
             objectFit="cover"
-            src="https://cdn-icons-png.flaticon.com/512/919/919830.png"
+            src={php_Icon}
             alt="icon"
           />
           <Text cursor="pointer" onClick={() => setValue("PHP")}>

@@ -51,6 +51,7 @@ function SMSHistory() {
       })
       .then((response) => {
         if (response.status >= 200 && response.status < 300) {
+          setStatus("");
           setTotalTexts(response.data.messages.count);
           setSmsMessages(response.data.messages.rows);
           setStatus("");
@@ -61,6 +62,10 @@ function SMSHistory() {
         setLoading(false);
         if (!err?.response) {
           setStatus("No Server Response");
+        } else if (err?.response === 401) {
+          setStatus("Authorization token is required");
+        } else {
+          setStatus("");
         }
       });
   }, [SMS_HISTORY_URL, token]);

@@ -3,6 +3,7 @@ import jwt_decode from "jwt-decode";
 import { useEffect, useState } from "react";
 import Loader from "react-spinners/HashLoader";
 import UpdatePassword from "./updatePasswordForm";
+import user_Icon from "../../logo/user.png";
 
 type UserValues = {
   decoded: string;
@@ -64,12 +65,7 @@ function UserProfile() {
           borderRadius="lg"
           w={{ base: "100%", md: "32%" }}
         >
-          <img
-            alt="UserPic"
-            width="100px"
-            height="100px"
-            src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png"
-          />
+          <img alt="UserPic" width="100px" height="100px" src={user_Icon} />
           <Text>Username : {userName}</Text>
           <Text>Country : {country}</Text>
           <Text>Phone number : {phoneNumber}</Text>
