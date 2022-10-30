@@ -16,7 +16,7 @@ function JSDevelopers() {
       w={{ base: "95%", md: "100%" }}
     >
       <Code color="white" variant="gost" pl="5%">
-        POST("/api/v1/send/sms", {"{"}
+        fetch("/api/v1/send/sms", {"{"}
       </Code>
       <Code color="white" variant="gost" pl="5%">
         "method": "POST",
