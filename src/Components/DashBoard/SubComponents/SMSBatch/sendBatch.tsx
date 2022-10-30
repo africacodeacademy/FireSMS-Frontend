@@ -161,7 +161,7 @@ function SMSBatch() {
                     <>
                       <Stack>
                         <FormLabel textAlign="center">
-                          File with Phone numbers, Messages and a sender
+                          CSV File with Phone numbers and Messages
                         </FormLabel>
                         <div>
                           <Box onClick={clearArray}>

@@ -13,37 +13,37 @@ type UserValues = {
 function CheckBalance() {
   const [loading, setLoading] = useState(true);
   const [UserBalance, setUserBalance] = useState("");
-  const token = localStorage.getItem("access_token");
-  const [uuId, setUuId] = useState("");
-  const ACCOUNT_BALANCE_URL = `/api/v1/account/balance/${uuId}`;
   const [status, setStatus] = useState("");
 
   useEffect(() => {
+    const token = localStorage.getItem("access_token");
     const decoded: UserValues = jwt_decode(token || "");
-    setUuId(decoded.uuId);
+    const myuuId = decoded.uuId;
+    const ACCOUNT_BALANCE_URL = `/api/v1/account/balance/${myuuId}`;
 
-    axios
-      .get(ACCOUNT_BALANCE_URL, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        if (response.status >= 200 && response.status < 300) {
-          setUserBalance(response.data.account.balance);
-          setStatus("");
-          setLoading(false);
-        }
-      })
-      .catch((err: any) => {
-        setLoading(false);
-        if (!err?.response) {
-          setStatus("No Server Response");
-        }
-      });
-  }, [ACCOUNT_BALANCE_URL, token]);
+    try {
+      axios
+        .get(ACCOUNT_BALANCE_URL, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => {
+          if (response.status >= 200 && response.status < 300) {
+            setUserBalance(response.data.account.balance);
+            setStatus("");
+            setLoading(false);
+          }
+        });
+    } catch (err: any) {
+      setLoading(false);
+      if (!err?.response) {
+        setStatus("No Server Response");
+      }
+    }
+  }, []);
 
   if (loading === true) {
     return (

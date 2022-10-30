@@ -25,50 +25,51 @@ type UserValues = {
 
 function SMSHistory() {
   const [loading, setLoading] = useState(true);
-  const token = localStorage.getItem("access_token");
+
   const [status, setStatus] = useState("");
   const [smsMessages, setSmsMessages] = useState<any[]>([]);
   const [page, setPage] = useState(1);
   const myLimit = 5;
-  const [uuId, setUuId] = useState("");
   const [totalTexts, setTotalTexts] = useState(0);
   const [checkStatus, setcheckStatus] = useState(false);
   const [prevStatus, setprevStatus] = useState(true);
   const [keepCount, setKeepCount] = useState(5);
-  const SMS_HISTORY_URL = `/api/v1/message/history/${uuId}?page=${page}&limit=${myLimit}`;
 
   useEffect(() => {
+    const token = localStorage.getItem("access_token");
     const decoded: UserValues = jwt_decode(token || "");
-    setUuId(decoded.uuId);
+    const myuuId = decoded.uuId;
+    const SMS_HISTORY_URL = `/api/v1/message/history/${myuuId}?page=${page}&limit=${myLimit}`;
 
-    axios
-      .get(SMS_HISTORY_URL, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        if (response.status >= 200 && response.status < 300) {
-          setStatus("");
-          setTotalTexts(response.data.messages.count);
-          setSmsMessages(response.data.messages.rows);
-          setStatus("");
-          setLoading(false);
-        }
-      })
-      .catch((err: any) => {
-        setLoading(false);
-        if (!err?.response) {
-          setStatus("No Server Response");
-        } else if (err?.response === 401) {
-          setStatus("Authorization token is required");
-        } else {
-          setStatus("");
-        }
-      });
-  }, [SMS_HISTORY_URL, token]);
+    try {
+      axios
+        .get(SMS_HISTORY_URL, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => {
+          if (response.status >= 200 && response.status < 300) {
+            setStatus("");
+            setTotalTexts(response.data.messages.count);
+            setSmsMessages(response.data.messages.rows);
+            setStatus("");
+            setLoading(false);
+          }
+        });
+    } catch (err: any) {
+      setLoading(false);
+      if (!err?.response) {
+        setStatus("No Server Response");
+      } else if (err?.response === 401) {
+        setStatus("Authorization token is required");
+      } else {
+        setStatus("");
+      }
+    }
+  }, [page]);
 
   const movetoNext = () => {
     if (keepCount >= totalTexts) {
