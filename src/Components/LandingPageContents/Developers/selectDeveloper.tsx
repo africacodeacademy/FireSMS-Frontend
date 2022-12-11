@@ -8,9 +8,9 @@ import {
 import JSDevelopers from "./Languages/jsDeveloper";
 import PHPDevelopers from "./Languages/phpDevelper";
 import PythonDevelopers from "./Languages/pythonDeveloper";
-import python_Icon from "../../DashBoard/logo/python-icon.png";
-import js_Icon from "../../DashBoard/logo/js.webp";
-import php_Icon from "../../DashBoard/logo/php.png";
+import python_Icon from "../../../icons/python-icon.png";
+import js_Icon from "../../../icons/js.webp";
+import php_Icon from "../../../icons/php.png";
 
 function SelectDeveloper() {
   const [value, setValue] = useControllableState({

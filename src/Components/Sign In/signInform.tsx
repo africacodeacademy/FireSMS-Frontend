@@ -13,7 +13,6 @@ import {
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import axios from "../../APIs/axiosBaseURL";
 
 type FormValues = {
   userName: string;
@@ -21,9 +20,7 @@ type FormValues = {
 };
 
 function SignINForm() {
-  const LOGIN_URL = "/api/v1/user/login";
   const navigate = useNavigate();
-  const [loginStatus, setLoginStatus] = useState("");
   const [loading, setLoading] = useState(false);
   const toast = useToast();
 
@@ -48,40 +45,12 @@ function SignINForm() {
     e?.preventDefault();
     setLoading(true);
 
-    try {
-      await axios
-        .post(
-          LOGIN_URL,
-          JSON.stringify({
-            emailOrPhone: mydata.userName,
-            password: mydata.password,
-          }),
-          {
-            headers: { "Content-Type": "application/json" },
-          },
-        )
-        .then((response) => {
-          if (response.status >= 200 && response.status < 300) {
-            localStorage.setItem("access_token", response.data.accessToken);
-            localStorage.setItem("session", response.data);
-            setLoading(false);
-            reset();
-            showToast();
-            navigate("/dashboard");
-          }
-        });
-    } catch (err: any) {
-      setLoading(false);
-      if (!err?.response) {
-        setLoginStatus("No Server Response");
-      } else if (err.response?.status === 400) {
-        setLoginStatus("Missing Username or Password");
-      } else if (err.response?.status === 401) {
-        setLoginStatus("Unauthorized");
-      } else {
-        setLoginStatus("Login Failed");
-      }
-    }
+    localStorage.setItem("access_token", "set access token");
+    localStorage.setItem("session", "set session");
+    setLoading(false);
+    reset();
+    showToast();
+    navigate("/dashboard");
   });
 
   return (
@@ -107,17 +76,6 @@ function SignINForm() {
           >
             Login
           </Heading>
-          <FormControl>
-            <FormHelperText
-              pb={{ base: "5%", md: "5%" }}
-              textAlign="center"
-              fontFamily="sans-serif"
-              fontWeight="semi-bold"
-              color="red"
-            >
-              {loginStatus}
-            </FormHelperText>
-          </FormControl>
           <FormControl>
             <FormLabel>Username</FormLabel>
             <Input

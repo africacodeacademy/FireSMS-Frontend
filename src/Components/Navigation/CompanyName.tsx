@@ -1,6 +1,6 @@
 import { Flex, HStack, Stack, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import companyLogo from "../DashBoard/logo/logo_fire.png";
+import companyLogo from "../../icons/logo_fire.png";
 
 function CompanyName() {
   return (

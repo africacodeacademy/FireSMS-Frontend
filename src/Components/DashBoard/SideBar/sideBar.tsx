@@ -1,69 +1,63 @@
-/* eslint-disable react/jsx-no-constructed-context-values */
-import {
-  Box,
-  useColorModeValue,
-  Drawer,
-  DrawerContent,
-  useDisclosure,
-  Stack,
-} from "@chakra-ui/react";
-import { ReactNode, useState } from "react";
-import TopNav from "../TopNavigation/topNav";
-import SidebarContent from "./sideBarContent";
-import { DashBoardContext } from "../DashboardContext/dashboardContext";
-import Footer from "../../Footer/footer";
-import MobileSideBar from "./mobileSideBar";
+import { Box, Icon, CloseButton, Flex, Text, BoxProps } from "@chakra-ui/react";
+import { FiHome, FiCompass, FiStar, FiSettings } from "react-icons/fi";
+import NavItem from "./sideBarNavItem";
 
-function SideBarWithHeader({ children }: { children: ReactNode }) {
-  const { isOpen, onClose } = useDisclosure();
-  const [sideBarSize, setSideBarSize] = useState("large");
+interface SidebarProps extends BoxProps {
+  onClose: () => void;
+}
 
+export default function SidebarContent({ onClose, ...rest }: SidebarProps) {
   return (
-    <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
-      <DashBoardContext.Provider
-        value={{
-          sideBarSize,
-          setSideBarSize,
-        }}
-      >
-        <SidebarContent
-          onClose={() => onClose}
-          display={{ base: "none", md: "block" }}
-        />
-        <Drawer
-          autoFocus={false}
-          isOpen={isOpen}
-          placement="left"
-          onClose={onClose}
-          returnFocusOnClose={false}
-          onOverlayClick={onClose}
-          size="full"
+    <Box
+      transition="3s ease"
+      bg="#1A202C"
+      border="1px solid"
+      borderColor="rgba(26,32,44,0.2)"
+      mt="0px"
+      ml="-1px"
+      w={{ base: "full", md: "285px" }}
+      pos="fixed"
+      h="full"
+      {...rest}
+    >
+      <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
+        <Text
+          color="white"
+          fontSize="2xl"
+          fontFamily="monospace"
+          fontWeight="bold"
         >
-          <DrawerContent>
-            <SidebarContent onClose={onClose} />
-          </DrawerContent>
-        </Drawer>
-        <TopNav />
-        <Box ml={{ base: 0, md: sideBarSize === "small" ? "79" : "15%" }} p="4">
-          <Box alignItems="center" py={10}>
-            <Box mt="22%" display={{ base: "Block", md: "none" }}>
-              <MobileSideBar />
-            </Box>
-            <Stack
-              alignItems="center"
-              textAlign="center"
-              mt={{ base: "5%", md: "6%" }}
-            >
-              {children}
-            </Stack>
-          </Box>
-        </Box>
-        <Box display={{ base: "contents", md: "none" }}>
-          <Footer />
-        </Box>
-      </DashBoardContext.Provider>
+          Logo
+        </Text>
+        <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
+      </Flex>
+      <Flex
+        align="center"
+        p="4"
+        cursor="pointer"
+        mx="4"
+        color="white"
+        bg="#FF6406"
+        borderRadius="18px"
+        w="231px"
+        h="54px"
+        mt="95px"
+        mb="95px"
+      >
+        <Icon
+          mr="4"
+          fontSize="16"
+          _groupHover={{
+            color: "white",
+          }}
+          as={FiHome}
+        />
+        Send SMS
+      </Flex>
+      <NavItem icon={FiHome} ItemName="Home" link="/dashboard/api-key" />
+      <NavItem icon={FiStar} ItemName="Our-Star" link="/dashboard/sms" />
+      <NavItem icon={FiCompass} ItemName="Compass" link="/dashboard/api-key" />
+      <NavItem icon={FiSettings} ItemName="Settings" link="/dashboard/sms" />
     </Box>
   );
 }
-
-export default SideBarWithHeader;
