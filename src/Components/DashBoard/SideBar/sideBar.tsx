@@ -1,6 +1,15 @@
-import { Box, Icon, CloseButton, Flex, Text, BoxProps } from "@chakra-ui/react";
+import {
+  Box,
+  Icon,
+  CloseButton,
+  Stack,
+  Flex,
+  Text,
+  BoxProps,
+} from "@chakra-ui/react";
 import { FiHome, FiCompass, FiStar, FiSettings } from "react-icons/fi";
 import NavItem from "./sideBarNavItem";
+import logo from "../../../icons/Fire_Sms_Logo.png";
 
 interface SidebarProps extends BoxProps {
   onClose: () => void;
@@ -21,32 +30,48 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps) {
       {...rest}
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text
-          color="white"
-          fontSize="2xl"
-          fontFamily="monospace"
-          fontWeight="bold"
-        >
-          Logo
-        </Text>
+        <Stack spacing={1} direction="row">
+          <img src={logo} alt="fireSMS-Logo" />
+          <Text
+            color="white"
+            fontSize="24px"
+            fontStyle="normal"
+            fontFamily="sans-serif"
+            lineHeight="29px"
+            fontWeight="500px"
+          >
+            FireSmS
+          </Text>
+        </Stack>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       <Flex
+        fontFamily="sans-serif"
+        fontStyle="normal"
+        fontSize="15px"
+        fontWeight="400px"
+        lineHeight="24px"
         align="center"
         p="4"
         cursor="pointer"
-        mx="4"
+        ml="8"
+        gap="7px"
         color="white"
         bg="#FF6406"
         borderRadius="18px"
         w="231px"
         h="54px"
-        mt="95px"
-        mb="95px"
+        mt="45px"
+        mb="65px"
+        _hover={{
+          bg: "#FF6406",
+          color: "white",
+        }}
       >
         <Icon
-          mr="4"
-          fontSize="16"
+          mr="22"
+          w="16px"
+          h="16px"
           _groupHover={{
             color: "white",
           }}
@@ -54,10 +79,10 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps) {
         />
         Send SMS
       </Flex>
-      <NavItem icon={FiHome} ItemName="Home" link="/dashboard/api-key" />
-      <NavItem icon={FiStar} ItemName="Our-Star" link="/dashboard/sms" />
-      <NavItem icon={FiCompass} ItemName="Compass" link="/dashboard/api-key" />
-      <NavItem icon={FiSettings} ItemName="Settings" link="/dashboard/sms" />
+      <NavItem icon={FiHome} ItemName="Account" link="/dashboard/api-key" />
+      <NavItem icon={FiStar} ItemName="Transactions" link="/dashboard/sms" />
+      <NavItem icon={FiCompass} ItemName="API Keys" link="/dashboard/api-key" />
+      <NavItem icon={FiSettings} ItemName="Profile" link="/dashboard/sms" />
     </Box>
   );
 }

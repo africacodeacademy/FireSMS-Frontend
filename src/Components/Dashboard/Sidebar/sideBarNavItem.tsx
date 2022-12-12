@@ -17,13 +17,19 @@ export default function NavItem(props: NavItemProps) {
       }}
     >
       <Flex
+        fontFamily="sans-serif"
+        fontStyle="normal"
+        fontSize="15px"
+        fontWeight="400px"
+        lineHeight="24px"
         align="center"
         p="4"
-        pb="49px"
-        mx="4"
+        mb="15px"
+        gap="7px"
+        ml="8"
         w="231px"
         h="54px"
-        borderRadius="18px"
+        borderRadius="8px"
         color="white"
         role="group"
         cursor="pointer"
@@ -34,8 +40,9 @@ export default function NavItem(props: NavItemProps) {
       >
         {icon && (
           <Icon
-            mr="4"
-            fontSize="16"
+            mr="22"
+            w="16px"
+            h="16px"
             _groupHover={{
               color: "white",
             }}
