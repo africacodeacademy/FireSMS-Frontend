@@ -18,7 +18,7 @@ function MyMenuItem(props: ItemProp) {
     >
       <MenuItem
         _hover={{
-          bg: "gray.700",
+          bg: "#1A202C",
           color: "white",
         }}
       >

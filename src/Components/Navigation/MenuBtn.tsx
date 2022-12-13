@@ -33,7 +33,7 @@ function MenuBtn() {
           display={["flex", "flex", "none", "none"]}
           mr="4"
         />
-        <MenuList bg="gray.800" color="white">
+        <MenuList bg="#1A202C" color="white">
           <Text onClick={goTo}>
             <MyMenuItem name={name} link="/" />
           </Text>
