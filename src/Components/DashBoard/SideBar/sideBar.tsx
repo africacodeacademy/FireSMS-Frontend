@@ -7,7 +7,7 @@ import {
   Text,
   BoxProps,
 } from "@chakra-ui/react";
-import { FiHome, FiCompass, FiStar, FiSettings } from "react-icons/fi";
+import { FiHome } from "react-icons/fi";
 import NavItem from "./sideBarNavItem";
 import logo from "../../../icons/Fire_Sms_Logo.png";
 
@@ -29,7 +29,12 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps) {
       h="full"
       {...rest}
     >
-      <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
+      <Flex
+        height="70px"
+        alignItems="center"
+        mx="8"
+        justifyContent="space-between"
+      >
         <Stack spacing={1} direction="row">
           <img src={logo} alt="fireSMS-Logo" />
           <Text
@@ -80,9 +85,9 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps) {
         Send SMS
       </Flex>
       <NavItem icon={FiHome} ItemName="Account" link="/dashboard/api-key" />
-      <NavItem icon={FiStar} ItemName="Transactions" link="/dashboard/sms" />
-      <NavItem icon={FiCompass} ItemName="API Keys" link="/dashboard/api-key" />
-      <NavItem icon={FiSettings} ItemName="Profile" link="/dashboard/sms" />
+      <NavItem icon={FiHome} ItemName="Transactions" link="/dashboard/sms" />
+      <NavItem icon={FiHome} ItemName="API Keys" link="/dashboard/api-key" />
+      <NavItem icon={FiHome} ItemName="Profile" link="/dashboard/sms" />
     </Box>
   );
 }

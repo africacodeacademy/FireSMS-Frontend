@@ -5,7 +5,6 @@ import {
   Flex,
   HStack,
   useColorModeValue,
-  Text,
   FlexProps,
   Menu,
   MenuButton,
@@ -13,7 +12,7 @@ import {
   MenuItem,
   MenuList,
 } from "@chakra-ui/react";
-import { FiMenu, FiChevronDown } from "react-icons/fi";
+import { FiMenu, FiChevronDown, FiSettings } from "react-icons/fi";
 
 interface MobileProps extends FlexProps {
   onOpen: () => void;
@@ -23,11 +22,11 @@ export default function MobileNav({ onOpen, ...rest }: MobileProps) {
     <Flex
       ml={{ base: 0, md: 60 }}
       px={{ base: 4, md: 4 }}
-      height="20"
+      height="70px"
       alignItems="center"
-      bg={useColorModeValue("white", "gray.900")}
+      bg="white"
       borderBottomWidth="1px"
-      borderBottomColor={useColorModeValue("gray.200", "gray.700")}
+      borderBottomColor="gray.300"
       justifyContent={{ base: "space-between", md: "flex-end" }}
       {...rest}
     >
@@ -39,16 +38,7 @@ export default function MobileNav({ onOpen, ...rest }: MobileProps) {
         icon={<FiMenu />}
       />
 
-      <Text
-        display={{ base: "flex", md: "none" }}
-        fontSize="2xl"
-        fontFamily="monospace"
-        fontWeight="bold"
-      >
-        Logo
-      </Text>
-
-      <HStack spacing={{ base: "0", md: "6" }}>
+      <HStack mr="4" spacing={{ base: "0", md: "6" }}>
         <Flex alignItems="center">
           <Menu>
             <MenuButton
@@ -64,14 +54,38 @@ export default function MobileNav({ onOpen, ...rest }: MobileProps) {
               </HStack>
             </MenuButton>
             <MenuList
-              bg={useColorModeValue("white", "gray.900")}
+              bg="#1A202C"
+              color="white"
               borderColor={useColorModeValue("gray.200", "gray.700")}
             >
-              <MenuItem>Profile</MenuItem>
-              <MenuItem>Settings</MenuItem>
-              <MenuItem>Billing</MenuItem>
+              <MenuItem
+                icon={<FiSettings />}
+                _hover={{
+                  bg: "#1A202C",
+                  color: "white",
+                }}
+              >
+                My Profile
+              </MenuItem>
+              <MenuItem
+                icon={<FiSettings />}
+                _hover={{
+                  bg: "#1A202C",
+                  color: "white",
+                }}
+              >
+                Settings
+              </MenuItem>
               <MenuDivider />
-              <MenuItem>Sign out</MenuItem>
+              <MenuItem
+                icon={<FiSettings />}
+                _hover={{
+                  bg: "#1A202C",
+                  color: "white",
+                }}
+              >
+                Logout
+              </MenuItem>
             </MenuList>
           </Menu>
         </Flex>
