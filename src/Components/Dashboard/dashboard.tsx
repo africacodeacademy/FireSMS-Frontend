@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Box, Drawer, DrawerContent, useDisclosure } from "@chakra-ui/react";
 import Sidebar from "./Sidebar/sideBar";
-import TopNav from "./MobileNavigation/TopNav";
+import TopNav from "./TopNavigation/TopNav";
 
 function Dashboard({ children }: { children: ReactNode }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -25,7 +25,7 @@ function Dashboard({ children }: { children: ReactNode }) {
         </DrawerContent>
       </Drawer>
       <TopNav onOpen={onOpen} />
-      <Box ml={{ base: 0, md: "291px" }} p="4">
+      <Box ml={{ base: 0, md: "293px" }} p="4">
         {children}
       </Box>
     </Box>

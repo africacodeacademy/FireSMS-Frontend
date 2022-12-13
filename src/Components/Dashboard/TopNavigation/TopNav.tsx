@@ -16,6 +16,7 @@ import { FiChevronDown, FiSettings } from "react-icons/fi";
 import TestUserLogo from "../../../icons/user.jpg";
 import logo from "../../../icons/Fire_Sms_Logo.png";
 import MobileNav from "./MobileMenu";
+import Search from "./search";
 
 interface MobileProps extends FlexProps {
   onOpen: () => void;
@@ -25,7 +26,7 @@ export default function TopNav({ onOpen, ...rest }: MobileProps) {
     <Flex
       ml={{ base: 0, md: 60 }}
       px={{ base: 4, md: 4 }}
-      height="70px"
+      height="65px"
       alignItems="center"
       bg={{ base: "#1A202C", md: "white" }}
       borderBottomWidth="1px"
@@ -50,14 +51,7 @@ export default function TopNav({ onOpen, ...rest }: MobileProps) {
       </Flex>
       <MobileNav />
 
-      <Flex
-        justifyContent="flex-start"
-        display={{ base: "none", md: "contents" }}
-      >
-        <Text ml="50px" color="black" fontWeight="bold">
-          Search
-        </Text>
-      </Flex>
+      <Search />
       <HStack
         justifyContent="flex-end"
         display={{ base: "none", md: "contents" }}
@@ -77,6 +71,7 @@ export default function TopNav({ onOpen, ...rest }: MobileProps) {
                   height="36px"
                   alt="User_Image"
                   src={TestUserLogo}
+                  style={{ borderRadius: "4px" }}
                 />
                 <Box display={{ base: "none", md: "flex" }}>
                   <FiChevronDown />

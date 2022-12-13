@@ -30,7 +30,7 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps) {
       {...rest}
     >
       <Flex
-        height="70px"
+        height="65px"
         alignItems="center"
         mx="8"
         justifyContent="space-between"

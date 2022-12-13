@@ -5,7 +5,7 @@ import MyMenuItem from "../../Navigation/MyMenuItem";
 function MobileNav() {
   // props data for Nav buttons
   const name = "Send SmS";
-  const name2 = "Acount";
+  const name2 = "Account";
   const name3 = "Transactions";
   const name4 = "API Keys";
   const name5 = "Profile";
