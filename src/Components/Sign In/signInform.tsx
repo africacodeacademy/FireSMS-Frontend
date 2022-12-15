@@ -50,7 +50,7 @@ function SignINForm() {
     setLoading(false);
     reset();
     showToast();
-    navigate("/dashboard");
+    navigate("/account");
   });
 
   return (

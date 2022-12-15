@@ -66,8 +66,8 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps) {
         borderRadius="18px"
         w="231px"
         h="54px"
-        mt="45px"
-        mb="65px"
+        mt="81px"
+        mb="81px"
         _hover={{
           bg: "#FF6406",
           color: "white",
@@ -84,10 +84,10 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps) {
         />
         Send SMS
       </Flex>
-      <NavItem icon={FiHome} ItemName="Account" link="/dashboard/api-key" />
-      <NavItem icon={FiHome} ItemName="Transactions" link="/dashboard/sms" />
-      <NavItem icon={FiHome} ItemName="API Keys" link="/dashboard/api-key" />
-      <NavItem icon={FiHome} ItemName="Profile" link="/dashboard/sms" />
+      <NavItem icon={FiHome} ItemName="Account" link="" />
+      <NavItem icon={FiHome} ItemName="Transactions" link="" />
+      <NavItem icon={FiHome} ItemName="API Keys" link="" />
+      <NavItem icon={FiHome} ItemName="Profile" link="" />
     </Box>
   );
 }

@@ -6,7 +6,7 @@ import Signin from "./Components/Sign In/signin";
 import Signup from "./Components/Sign Up/signUp";
 import ForgotPassword from "./Components/ForgotPassword/ForgotPassword";
 import ResetPassword from "./Components/ResetPassword/restPassword";
-import DashBoardHome from "./Components/Dashboard/SubComponents/dashBoardHome";
+import Account from "./Components/Dashboard/SubComponents/Account/account";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         <Route path="/reset-password/:resetId" element={<ResetPassword />} />
         <Route path="/docs" element={<DisplayDevelopers />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
-        <Route path="/dashboard" element={<DashBoardHome />} />
+        <Route path="/account" element={<Account />} />
       </Routes>
     </Box>
   );

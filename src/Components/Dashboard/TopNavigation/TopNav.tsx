@@ -13,7 +13,7 @@ import {
   MenuList,
 } from "@chakra-ui/react";
 import { FiChevronDown, FiSettings } from "react-icons/fi";
-import TestUserLogo from "../../../icons/user.jpg";
+import userLogo from "../../../icons/user_icon.jpg";
 import logo from "../../../icons/Fire_Sms_Logo.png";
 import MobileNav from "./MobileMenu";
 import Search from "./search";
@@ -22,6 +22,7 @@ interface MobileProps extends FlexProps {
   onOpen: () => void;
 }
 export default function TopNav({ onOpen, ...rest }: MobileProps) {
+  const userImage = "";
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -66,13 +67,23 @@ export default function TopNav({ onOpen, ...rest }: MobileProps) {
               _focus={{ boxShadow: "none" }}
             >
               <HStack>
-                <img
-                  width="36px"
-                  height="36px"
-                  alt="User_Image"
-                  src={TestUserLogo}
-                  style={{ borderRadius: "4px" }}
-                />
+                {userImage === "" ? (
+                  <img
+                    width="36px"
+                    height="36px"
+                    alt="User_Image"
+                    src={userLogo}
+                    style={{ borderRadius: "4px" }}
+                  />
+                ) : (
+                  <img
+                    width="36px"
+                    height="36px"
+                    alt="User_Image"
+                    src={userImage}
+                    style={{ borderRadius: "4px" }}
+                  />
+                )}
                 <Box display={{ base: "none", md: "flex" }}>
                   <FiChevronDown />
                 </Box>
