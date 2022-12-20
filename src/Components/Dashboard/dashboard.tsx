@@ -25,7 +25,7 @@ function Dashboard({ children }: { children: ReactNode }) {
         </DrawerContent>
       </Drawer>
       <TopNav onOpen={onOpen} />
-      <Box ml={{ base: 0, md: "293px" }} p="4">
+      <Box ml={{ base: 4, md: "304px" }} mr={{ base: 4, md: "20px" }} p="1">
         {children}
       </Box>
     </Box>

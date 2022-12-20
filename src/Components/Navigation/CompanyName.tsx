@@ -1,6 +1,6 @@
-import { Flex, HStack, Stack, Text } from "@chakra-ui/react";
+import { Flex, Stack, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import companyLogo from "../../icons/logo_fire.png";
+import logo from "../../icons/Fire_Sms_Logo.png";
 
 function CompanyName() {
   return (
@@ -11,29 +11,24 @@ function CompanyName() {
           window.scroll({ top: 0, left: 0, behavior: "smooth" });
         }}
       >
-        <HStack
-          direction="row"
-          spacing={0}
-          mt={{ sm: "0", md: "-2" }}
-          ml="1"
-          w="100%"
-        >
-          <Stack w={{ base: "17%", md: "17%" }} alignItems="center">
-            <Text mt="-3">
-              <img width="80px" height="40px" alt="logo" src={companyLogo} />
-            </Text>
+        <Stack direction="row" spacing={1} mt="1">
+          <Stack ml={{ base: 4, md: 4 }} mt="-1px" alignItems="center">
+            <img alt="logo" src={logo} />
           </Stack>
           <Stack>
             <Text
               color="white"
-              fontWeight="bold"
-              fontSize="2xl"
+              fontSize="24px"
+              fontStyle="normal"
+              fontFamily="sans-serif"
+              lineHeight="29px"
+              fontWeight="500px"
               cursor="pointer"
             >
-              FireSMS
+              FireSmS
             </Text>
           </Stack>
-        </HStack>
+        </Stack>
       </Link>
     </Flex>
   );

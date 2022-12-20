@@ -7,16 +7,17 @@ import {
   Menu,
   Stack,
   Text,
+  Icon,
   MenuButton,
-  MenuDivider,
   MenuItem,
   MenuList,
 } from "@chakra-ui/react";
-import { FiChevronDown, FiSettings } from "react-icons/fi";
+import { FiChevronDown, FiSettings, FiLogOut } from "react-icons/fi";
+import { CgProfile } from "react-icons/cg";
 import userLogo from "../../../icons/user_icon.jpg";
 import logo from "../../../icons/Fire_Sms_Logo.png";
 import MobileNav from "./MobileMenu";
-import Search from "./search";
+import SearchBar from "./searchBar";
 
 interface MobileProps extends FlexProps {
   onOpen: () => void;
@@ -52,14 +53,14 @@ export default function TopNav({ onOpen, ...rest }: MobileProps) {
       </Flex>
       <MobileNav />
 
-      <Search />
+      <SearchBar />
       <HStack
         justifyContent="flex-end"
         display={{ base: "none", md: "contents" }}
-        mr="8"
+        mr="5"
         spacing={{ base: "0", md: "6" }}
       >
-        <Flex alignItems="center">
+        <Flex alignItems="center" mr={{ base: 0, md: "5px" }}>
           <Menu>
             <MenuButton
               py={2}
@@ -93,34 +94,71 @@ export default function TopNav({ onOpen, ...rest }: MobileProps) {
               bg="#1A202C"
               color="white"
               borderColor={useColorModeValue("gray.200", "gray.700")}
+              _hover={{
+                bg: "#1A202C",
+                color: "white",
+              }}
             >
               <MenuItem
-                icon={<FiSettings />}
                 _hover={{
                   bg: "#1A202C",
                   color: "white",
                 }}
               >
-                My Profile
+                <Icon
+                  as={CgProfile}
+                  mr="8px"
+                  width="23.83px"
+                  height="23.83px"
+                />
+                <Text
+                  fontSize="15px"
+                  fontStyle="normal"
+                  fontWeight="400"
+                  lineHeight="24px"
+                  fontFamily="sans-serif"
+                >
+                  My Profile
+                </Text>
               </MenuItem>
               <MenuItem
-                icon={<FiSettings />}
                 _hover={{
                   bg: "#1A202C",
                   color: "white",
                 }}
               >
-                Settings
+                <Icon
+                  as={FiSettings}
+                  mr="8px"
+                  width="23.83px"
+                  height="23.83px"
+                />
+                <Text
+                  fontSize="15px"
+                  fontStyle="normal"
+                  fontWeight="400"
+                  lineHeight="24px"
+                  fontFamily="sans-serif"
+                >
+                  Settings
+                </Text>
               </MenuItem>
-              <MenuDivider />
               <MenuItem
-                icon={<FiSettings />}
                 _hover={{
                   bg: "#1A202C",
                   color: "white",
                 }}
               >
-                Logout
+                <Icon as={FiLogOut} mr="8px" width="23.83px" height="23.83px" />
+                <Text
+                  fontSize="15px"
+                  fontStyle="normal"
+                  fontWeight="400"
+                  lineHeight="24px"
+                  fontFamily="sans-serif"
+                >
+                  Logout
+                </Text>
               </MenuItem>
             </MenuList>
           </Menu>

@@ -31,7 +31,7 @@ function MenuBtn() {
           variant="outline"
           color="white"
           display={["flex", "flex", "none", "none"]}
-          mr="4"
+          mr="5"
         />
         <MenuList bg="#1A202C" color="white">
           <Text onClick={goTo}>

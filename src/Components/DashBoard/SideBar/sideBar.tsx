@@ -1,15 +1,19 @@
 import {
   Box,
-  Icon,
   CloseButton,
   Stack,
   Flex,
   Text,
   BoxProps,
 } from "@chakra-ui/react";
-import { FiHome } from "react-icons/fi";
+// import { BiMessageAltDots } from "react-icons/bi";
 import NavItem from "./sideBarNavItem";
 import logo from "../../../icons/Fire_Sms_Logo.png";
+import sendSMS from "../../../icons/sendSMS.png";
+import transactions_icon from "../../../icons/transactions.png";
+import account_icon from "../../../icons/account_icon.png";
+import apiKey_icon from "../../../icons/api_key.png";
+import profile_icon from "../../../icons/profile.png";
 
 interface SidebarProps extends BoxProps {
   onClose: () => void;
@@ -36,7 +40,7 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps) {
         justifyContent="space-between"
       >
         <Stack spacing={1} direction="row">
-          <img src={logo} alt="fireSMS-Logo" />
+          <img src={logo} style={{ marginTop: "-1px" }} alt="fireSMS-Logo" />
           <Text
             color="white"
             fontSize="24px"
@@ -73,21 +77,27 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps) {
           color: "white",
         }}
       >
-        <Icon
-          mr="22"
-          w="16px"
-          h="16px"
-          _groupHover={{
-            color: "white",
-          }}
-          as={FiHome}
+        <img
+          style={{ marginRight: "22px" }}
+          width="16px"
+          height="16px"
+          src={sendSMS}
+          alt="sendSMSIcon"
         />
-        Send SMS
+        <Text
+          fontSize="15px"
+          fontStyle="normal"
+          fontWeight="400"
+          lineHeight="24px"
+          fontFamily="sans-serif"
+        >
+          Send SMS
+        </Text>
       </Flex>
-      <NavItem icon={FiHome} ItemName="Account" link="" />
-      <NavItem icon={FiHome} ItemName="Transactions" link="" />
-      <NavItem icon={FiHome} ItemName="API Keys" link="" />
-      <NavItem icon={FiHome} ItemName="Profile" link="" />
+      <NavItem pic={account_icon} ItemName="Account" link="" />
+      <NavItem pic={transactions_icon} ItemName="Transactions" link="" />
+      <NavItem pic={apiKey_icon} ItemName="API Keys" link="" />
+      <NavItem pic={profile_icon} ItemName="Profile" link="" />
     </Box>
   );
 }

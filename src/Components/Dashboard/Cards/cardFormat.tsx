@@ -28,7 +28,7 @@ function CardFormat(props: CardData) {
             fontSize="14px"
             fontStyle="normal"
             lineHeight="20px"
-            fontFamily="Open sans"
+            fontFamily="sans-serif"
             fontWeight="700"
           >
             {title}
@@ -36,16 +36,16 @@ function CardFormat(props: CardData) {
           <Text
             mt="4px"
             color="#000000"
-            fontSize="14px"
+            fontSize="24px"
             fontStyle="normal"
             lineHeight="32px"
-            fontFamily="Open sans"
+            fontFamily="sans-serif"
             fontWeight="400"
           >
             {amount}
           </Text>
         </Stack>
-        <Stack>
+        <Stack pr="2">
           <img src={cardIcon} width="23.22px" height="24px" alt="card_icon" />
         </Stack>
       </HStack>

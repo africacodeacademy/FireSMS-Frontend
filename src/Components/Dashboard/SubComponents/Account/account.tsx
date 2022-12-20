@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Dashboard from "../../dashboard";
 import Cards from "../../Cards/cards";
+import AllChart from "../../Charts/allCharts";
 
 function Account() {
   const navigate = useNavigate();
@@ -39,6 +40,7 @@ function Account() {
             Here`s your SMS overview
           </Text>
           <Cards />
+          <AllChart />
         </Box>
       </Dashboard>
     </Box>

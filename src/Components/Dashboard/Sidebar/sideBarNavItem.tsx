@@ -1,14 +1,13 @@
-import { Flex, FlexProps, Icon } from "@chakra-ui/react";
-import { IconType } from "react-icons";
+import { Flex, FlexProps } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 interface NavItemProps extends FlexProps {
-  icon: IconType;
   ItemName: string;
   link: string;
+  pic: string;
 }
 export default function NavItem(props: NavItemProps) {
-  const { ItemName, icon, link } = props;
+  const { ItemName, pic, link } = props;
   return (
     <Link
       to={link}
@@ -38,17 +37,13 @@ export default function NavItem(props: NavItemProps) {
           color: "white",
         }}
       >
-        {icon && (
-          <Icon
-            mr="22"
-            w="16px"
-            h="16px"
-            _groupHover={{
-              color: "white",
-            }}
-            as={icon}
-          />
-        )}
+        <img
+          style={{ marginRight: "22px" }}
+          width="20px"
+          height="20px"
+          src={pic}
+          alt="btn_icon"
+        />
         {ItemName}
       </Flex>
     </Link>

@@ -3,7 +3,7 @@ import CardFormat from "./cardFormat";
 
 function Cards() {
   return (
-    <Box id="cards" alignItems="center" mt="28px" mb="28px">
+    <Box id="cards" alignItems="center" mt="28px" mb="29px">
       <Stack
         spacing={5}
         alignItems="center"

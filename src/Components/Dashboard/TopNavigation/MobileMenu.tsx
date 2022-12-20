@@ -20,7 +20,7 @@ function MobileNav() {
           variant="outline"
           color="white"
           display={["flex", "flex", "none", "none"]}
-          mr="2"
+          mr="1"
         />
         <MenuList bg="gray.800" color="white" mt="1.5%">
           <MyMenuItem name={name} link="" />
