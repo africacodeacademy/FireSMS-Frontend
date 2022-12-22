@@ -11,8 +11,6 @@ function CardFormat(props: CardData) {
   return (
     <Box
       bg="rgba(25, 32, 43, 0.1)"
-      p={0}
-      shadow="lg"
       borderWidth="0px"
       borderRadius="4px"
       w={{ base: "100%", md: "249px" }}
@@ -25,7 +23,7 @@ function CardFormat(props: CardData) {
         <Stack w={{ base: "90%", md: "80%" }}>
           <Heading
             color="#000000"
-            fontSize="14px"
+            fontSize="sm"
             fontStyle="normal"
             lineHeight="20px"
             fontFamily="sans-serif"
@@ -36,7 +34,7 @@ function CardFormat(props: CardData) {
           <Text
             mt="4px"
             color="#000000"
-            fontSize="24px"
+            fontSize="2xl"
             fontStyle="normal"
             lineHeight="32px"
             fontFamily="sans-serif"

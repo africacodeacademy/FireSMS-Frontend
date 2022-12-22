@@ -11,9 +11,9 @@ function Cards() {
         direction={{ base: "column", md: "row" }}
       >
         <CardFormat title="Balance" amount="200" />
-        <CardFormat title="Failed Messages" amount="2" />
-        <CardFormat title="Pending Messages" amount="2" />
-        <CardFormat title="Total Sent" amount="20" />
+        <CardFormat title="Failed Messages" amount="200" />
+        <CardFormat title="Pending Messages" amount="200" />
+        <CardFormat title="Total Sent" amount="200" />
       </Stack>
     </Box>
   );
