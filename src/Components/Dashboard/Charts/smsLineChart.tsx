@@ -16,15 +16,17 @@ function SMSLineChart() {
       {
         data: [15, 20, 30, 20, 40, 40, 40, 45, 45],
         borderColor: "#FF7A00",
-        pointBorderColor: "Transparent",
-        pointBorderwidth: 6,
+        pointBorderColor: "rgba(255, 255, 255, -2.0)",
+        pointBorderwidth: 0,
         tension: 0.5,
+        borderWidth: 5,
       },
     ],
   };
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         display: false,
@@ -48,7 +50,7 @@ function SMSLineChart() {
     },
   };
 
-  return <Line data={data} options={options} />;
+  return <Line data={data} options={options} height={171} />;
 }
 
 export default SMSLineChart;

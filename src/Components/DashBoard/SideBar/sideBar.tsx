@@ -6,7 +6,6 @@ import {
   Text,
   BoxProps,
 } from "@chakra-ui/react";
-// import { BiMessageAltDots } from "react-icons/bi";
 import NavItem from "./sideBarNavItem";
 import logo from "../../../icons/Fire_Sms_Logo.png";
 import sendSMS from "../../../icons/sendSMS.png";
@@ -66,7 +65,7 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps) {
         ml="8"
         gap="7px"
         color="white"
-        bg="#FF6406"
+        bg="#1A202C"
         borderRadius="18px"
         w="231px"
         h="54px"
@@ -78,11 +77,11 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps) {
         }}
       >
         <img
-          style={{ marginRight: "22px" }}
           width="16px"
           height="16px"
-          src={sendSMS}
           alt="sendSMSIcon"
+          src={sendSMS}
+          style={{ marginRight: "22px" }}
         />
         <Text
           fontSize="15px"

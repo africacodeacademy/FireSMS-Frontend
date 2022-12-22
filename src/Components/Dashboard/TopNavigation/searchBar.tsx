@@ -26,8 +26,8 @@ function SearchBar() {
       <form onSubmit={onSearch}>
         <HStack spacing={4} ml="14%">
           <InputGroup>
-            <InputLeftElement pointerEvents="none" mr="3">
-              <Icon as={IoIosSearch} color="gray.500" w="15.88px" h="15.88px" />
+            <InputLeftElement pointerEvents="none" mr="2">
+              <Icon as={IoIosSearch} color="#1A202C" w="15.88px" h="15.88px" />
             </InputLeftElement>
             <Input
               type="search"

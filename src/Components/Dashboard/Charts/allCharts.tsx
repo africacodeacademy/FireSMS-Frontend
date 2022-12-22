@@ -6,7 +6,7 @@ function ChartFormat() {
   return (
     <Box w="100%" bg="white" mb="40px">
       <Stack
-        spacing={{ base: "38px", md: "2%" }}
+        spacing={{ base: "38px", md: "3%" }}
         bg="white"
         direction={{ base: "column", md: "row" }}
         w="100%"
@@ -15,9 +15,9 @@ function ChartFormat() {
           borderRadius="12px"
           p="4"
           bg="rgba(22, 42, 69, 0.1)"
-          w={{ base: "100%", md: "60%" }}
+          w={{ base: "100%", md: "62%" }}
         >
-          <Stack w="100%" mb="15px" direction="row">
+          <Stack w="100%" mb="45px" direction="row">
             <Stack w="50%">
               <Text
                 color="#000000"
@@ -26,6 +26,7 @@ function ChartFormat() {
                 lineHeight="20px"
                 fontFamily="sans-serif"
                 fontWeight="400"
+                mb="-1"
               >
                 OVERVIEW
               </Text>
@@ -80,16 +81,18 @@ function ChartFormat() {
               </Button>
             </Stack>
           </Stack>
-          <SMSLineChart />
+          <Box h={{ base: "", md: "171px" }}>
+            <SMSLineChart />
+          </Box>
         </Stack>
         <Stack
           borderRadius="12px"
           bg="#E8EAED"
           p="4"
           mb="15px"
-          w={{ base: "100%", md: "40%" }}
+          w={{ base: "100%", md: "35%" }}
         >
-          <Stack w="100%" mb={{ base: "15px", md: "29%" }} direction="row">
+          <Stack w="100%" mb="48px" direction="row">
             <Stack w="50%">
               <Text
                 color="#000000"
@@ -98,6 +101,7 @@ function ChartFormat() {
                 lineHeight="20px"
                 fontFamily="sans-serif"
                 fontWeight="400"
+                mb="-1"
               >
                 USAGE
               </Text>
@@ -120,13 +124,15 @@ function ChartFormat() {
                 lineHeight="20px"
                 fontFamily="sans-serif"
                 fontWeight="600"
-                mt="28px"
+                mt="24px"
               >
                 17,000
               </Text>
             </Stack>
           </Stack>
-          <SMSBarChart />
+          <Box h={{ base: "", md: "171px" }}>
+            <SMSBarChart />
+          </Box>
         </Stack>
       </Stack>
     </Box>

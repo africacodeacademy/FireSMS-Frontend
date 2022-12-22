@@ -20,6 +20,7 @@ ChartJS.register(
 
 export const options = {
   responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       display: false,
@@ -55,12 +56,12 @@ export const data = {
       borderRadius: 9,
       borderWidth: 0,
       borderSkipped: false,
-      barThickness: 10,
+      barThickness: 8,
     },
   ],
 };
 
 function SMSBarChart() {
-  return <Bar options={options} data={data} />;
+  return <Bar options={options} data={data} height={171} />;
 }
 export default SMSBarChart;
