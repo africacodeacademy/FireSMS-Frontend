@@ -13,13 +13,13 @@ function CardFormat(props: CardData) {
       bg="rgba(25, 32, 43, 0.1)"
       borderWidth="0px"
       borderRadius="4px"
-      w={{ base: "100%", md: "249px" }}
+      w={{ base: "100%", md: "25%" }}
       height="112px"
       boxShadow="none"
       gap="4px"
       {...rest}
     >
-      <HStack mt="28px" mb="28px" ml="14.5px" mr="5px">
+      <HStack mt={{ base: "28px", md: "10%" }} mb="28px" ml="14.5px" mr="5px">
         <Stack w={{ base: "90%", md: "80%" }}>
           <Heading
             color="#000000"
